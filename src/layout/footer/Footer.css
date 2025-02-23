@@ -1,4 +1,22 @@
-footer{
-    background-color: #00586F;
-    padding: 1rem;
+@import "@/assets/variables.css";
+
+
+/* Estilo del Footer */
+footer {
+    background-color: var(--color-rojo-oscuro);
+    color: var(--color-claro);
+    padding: 1rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-top: 4px solid var(--color-rojo-vibrante);
+}
+
+footer a {
+    color: var(--color-arena);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--color-rojo-vibrante);
 }

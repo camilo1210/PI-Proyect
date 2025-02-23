@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -6,7 +6,13 @@ const Footer = () => {
     <footer>
       <ul>
         <li>
-          <Link to="/corazon/presion-alta">Presión alta</Link>
+          <Link to="/">Inicio</Link>
+        </li>
+        <li>
+          <Link to="/quiz">Quiz</Link>
+        </li>
+        <li>
+          <Link to="/contacto">Contacto</Link>
         </li>
       </ul>
     </footer>
