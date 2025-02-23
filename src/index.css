@@ -1,13 +1,10 @@
+@import './assets/variables.css';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  /* Paleta de colores */
-  --color-claro: #FEF9E1;
-  --color-arena: #E5D0AC;
-  --color-rojo-vibrante: #A31D1D;
-  --color-rojo-oscuro: #6D2323;
 
   color-scheme: light dark;
   color: var(--color-rojo-oscuro);

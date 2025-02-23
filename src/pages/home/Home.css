@@ -1,0 +1,33 @@
+@import './variables.css'; /* Importa las variables de color */
+
+/* Estilo del contenedor */
+div {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-claro);
+  color: var(--color-rojo-oscuro);
+}
+
+/* Estilo para el título */
+h1 {
+  color: var(--color-rojo-oscuro);
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo para el botón */
+button {
+  padding: 0.8em 1.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--color-claro);
+  background-color: var(--color-rojo-vibrante);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--color-rojo-oscuro);
+}
