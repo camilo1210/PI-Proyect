@@ -32,3 +32,65 @@ button {
 button:hover {
   background-color: var(--color-rojo-oscuro);
 }
+
+.home-description {
+  text-align: left;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.home-title {
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  color: var(--color-rojo-oscuro);
+}
+
+.encabezado {
+  background-color: darkred;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.titulo {
+  color: darkred;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.descripcion {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.boton {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.boton:hover {
+  background-color: #333;
+}
+
+.home-container {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-claro);
+  color: var(--color-rojo-oscuro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

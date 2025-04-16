@@ -1,11 +1,83 @@
-header{
-    background-color: #00586F;
-    padding: 1rem;
-}
+@import "@/assets/variables.css";
 
-nav{
+header {
+    background-color: #941c1c; /* Fondo rojo oscuro */
     display: flex;
-    justify-content: end;
     align-items: center;
-    gap: 1rem;
-}
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: border-bottom 0.3s;
+  }
+  
+  nav a.active {
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  }
+  
+  .btnClose {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btnClose a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .sub-menu {
+    display: none;
+    position: absolute;
+    top: 120%; /* Ajusta según tamaño del header */
+    left: 0;
+    background-color: #941c1c;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 180px;
+    z-index: 10;
+    flex-direction: column;
+  }
+  
+  .nav-item:hover .sub-menu {
+    display: flex;
+  }
+  
+  .sub-menu li {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sub-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+  }
+  
+  .sub-menu a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
