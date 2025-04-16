@@ -1,6 +1,17 @@
 @import "@/assets/variables.css";
 
+
 header {
+  /* Esté header afecta a todos los div que sean header */
+    background-color: #941c1c; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+
+
+  .logo-container {
     background-color: #941c1c; /* Fondo rojo oscuro */
     display: flex;
     align-items: center;
@@ -13,7 +24,12 @@ header {
     align-items: center;
     gap: 2rem;
   }
-  
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
   nav a {
     color: white;
     text-decoration: none;

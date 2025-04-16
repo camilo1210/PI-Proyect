@@ -10,7 +10,7 @@
   text-align: center;
   background-color: var(--color-claro);
   color: var(--color-rojo-oscuro);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); */
   border-radius: 12px;
 }
 

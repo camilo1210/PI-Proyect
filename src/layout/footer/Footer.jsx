@@ -10,7 +10,6 @@ const Footer = () => {
     <footer>
       {/* Sección superior del Footer */}
       <div className="footer-top">
-        {/* Lista de enlaces (puedes usar <ul> y <li> o <nav> y <Link>/ <a>) */}
         <ul>
           <li>
             <Link to="/mapa">Mapa de la página web</Link>

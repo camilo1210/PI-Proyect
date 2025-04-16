@@ -5,10 +5,12 @@ footer {
   background-color: var(--color-rojo-oscuro);
   color: var(--color-claro);
   padding: 1.5rem 2rem;
-  text-align: left; /* Puedes usar left, center o lo que prefieras */
+  text-align: left; 
+  /* Puedes usar left, center o lo que prefieras */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-top: 4px solid var(--color-rojo-vibrante);
-  font-family: sans-serif; /* Ajusta a tu tipografía */
+  font-family: sans-serif;
+   /* Ajusta a tu tipografía */
 }
 
 /* ===========================
@@ -19,6 +21,11 @@ footer {
   justify-content: center; /* Centra horizontalmente la lista */
   align-items: center;
   margin-bottom: 1rem;
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  font-family: 'Raleway';
 }
 
 .footer-top ul {
@@ -61,6 +68,11 @@ footer hr {
   align-items: center;
   margin-top: 1rem;
   flex-wrap: wrap; /* Para que en pantallas pequeñas se acomode abajo */
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  font-family: 'Raleway';
 }
 
 .footer-bottom p,
@@ -74,6 +86,11 @@ footer hr {
   display: flex;
   gap: 1rem;
   font-size: 1.2rem; /* Ajusta tamaño si usas react-icons */
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  font-family: 'Raleway';
 }
 
 .social-icons svg {
@@ -111,6 +128,4 @@ footer hr {
     color: var(--color-rojo-vibrante);
   }
 }
-/* Fin del CSS */
-/* Fin del CSS */
 /* Fin del CSS */

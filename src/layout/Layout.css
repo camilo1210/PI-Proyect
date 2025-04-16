@@ -1,7 +1,5 @@
 @import "@/assets/variables.css";
 
-
-
 /* Estilo para el contenedor principal */
 .layout {
   display: flex;
@@ -11,6 +9,13 @@
   background-color: var(--color-claro);
   color: var(--color-rojo-oscuro);
   overflow-x: hidden;
+}
+
+/* La siguiente línea elimina el bullet o la viñeta de las listas ul */
+ul {
+  list-style: none;
+  padding: 0; /* opcional: elimina padding por defecto */
+  margin: 0; /* opcional: elimina margen por defecto */
 }
 
 /* Estilo para el contenido de la página */

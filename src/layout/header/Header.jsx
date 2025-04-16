@@ -41,6 +41,9 @@ const Header = () => {
                 <li>
                   <NavLink to="/Aqui va el link">Miocardiopatía Dilatada</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/Aortic_stenosis">Estenosis aórtica</NavLink>
+                </li>
               </ul>
             )}
           </li>
@@ -51,7 +54,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/nosotros" end>
+            <NavLink to="/About_us" end>
               Sobre nosotros
             </NavLink>
           </li>

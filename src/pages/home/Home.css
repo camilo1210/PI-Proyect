@@ -1,5 +1,5 @@
 @import "@/assets/variables.css";
-
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 /* Estilo del contenedor */
 div {
@@ -93,4 +93,46 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Efecto de un del "Conoce más sobre las enfermedades" */
+
+:root {
+  --rojo: #a01b1b;   /* rojo oscuro de la franja */
+  --crema: #f8f2dc;  /* color de fondo de la página */
+}
+.banner {
+  /* forma exterior (franja roja) */
+  background: var(--rojo);
+  border-top-right-radius: 8rem; /* curva de 180° a la derecha */
+  border-bottom-right-radius: 8rem;
+
+  /* ajusta el grosor de la “orilla” roja */
+  padding: 0.65rem 0.65rem 0.65rem 0; /* sin padding a la izquierda */
+
+  /* que solo ocupe lo necesario para el texto */
+  width: max-content;
+}
+
+.banner-text{
+   /* franja clara */
+   background: var(--crema);
+   display: block;                 /* para respetar padding arriba/abajo */
+   padding: 0.5rem 2.5rem;         /* grosor interior */
+   
+   /* tipografía y alineación */
+   font-family: "Raleway", sans-serif;
+   font-weight: 700;
+   font-size: 2rem;
+   line-height: 1;
+   color: var(--rojo);             /* texto en rojo */
+   
+   /* quita márgenes nativos */
+   margin: 0;
+   text-align: left;               /* alineado a la izquierda */
+   
+   /* curva interna que siga la exterior */
+   border-top-right-radius: 7rem;
+   border-bottom-right-radius: 7rem;
+ 
 }
