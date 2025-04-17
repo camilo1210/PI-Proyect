@@ -22,24 +22,32 @@ const Home = () => {
         cuidar tu salud cardiovascular. 💖
       </p>
 
-      <div className="contenedor">
-        <div className="encabezado">Conoce sobre las enfermedades</div>
+      <div className="container">
 
-        <h2 className="titulo">Síndrome del corazón roto</h2>
-
-        <p className="descripcion">
-          Cuando el estrés o una emoción intensa afectan tu corazón como si
-          fuera un ataque, pero sin serlo. ¿Puede el corazón realmente romperse?
-        </p>
-
-        <button className="boton" >Saber más</button>
         {/* Esto es la línea divisora */}
         <hr></hr>
 
 
         <div className="banner">
             <span className="banner-text">Conoce más sobre las enfermedades</span>
+
+            {/* Esto es la línea divisora */}
+<hr></hr>
         </div>
+        <h2 className="title-description-left">Síndrome del corazón roto</h2>
+
+        <div>
+        <p style={{ textAlign: 'left' }} 
+        className="description-left">
+        Cuando el estrés o una emoción intensa afectan tu corazón como si
+        fuera un ataque, pero sin serlo. ¿Puede el corazón realmente romperse?
+        </p>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+        <button className="button-disease-left" >Saber más</button>
+        </div>
+      
       </div>
     </div>
   );

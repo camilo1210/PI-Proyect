@@ -45,32 +45,28 @@ button:hover {
   color: var(--color-rojo-oscuro);
 }
 
-.encabezado {
-  background-color: darkred;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 2rem;
-}
 
-.titulo {
+/* estilo para la descrpcion de las enfermedades*/
+.title-description-left {
   color: darkred;
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  text-align: left;
 }
-
-.descripcion {
+/*descripcion sobre la enfermedad */
+.description-left {
+  max-width: 450px;  
+  text-align: left;     
+  margin-left: -30px;   
   color: #555;
   font-size: 0.95rem;
   line-height: 1.5;
-  margin-bottom: 1rem;
-}
 
-.boton {
+
+}
+/*boton para entrar a la enfermedad en la izquierda*/
+.button-disease-left {
   background-color: black;
   color: white;
   border: none;
@@ -79,14 +75,18 @@ button:hover {
   cursor: pointer;
   font-size: 0.9rem;
   transition: background-color 0.3s;
-}
+  margin-top: 0.5rem;
+  margin-left:-30px ;
+  
 
-.boton:hover {
+}
+/*efecto para el boton izquierdo*/
+.button-disease-left:hover {
   background-color: #333;
 }
 
 .home-container {
-  text-align: center;
+  text-align: left;
   padding: 2rem;
   background-color: var(--color-claro);
   color: var(--color-rojo-oscuro);
