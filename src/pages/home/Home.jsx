@@ -26,7 +26,7 @@ const diseases = [
     title: "Miocardiopatía dilatada",
     description:
       "El corazón se agranda tratando de compensar su debilidad, pero en el proceso pierde su fuerza. ¿Qué lo causa y cómo afecta tu vida?",
-    link: "/Aqui va el link de su enfermedad",
+    link: "/Dilated-cardiomyopathy",
   },
   {
     title: "Estenosis aórtica",
