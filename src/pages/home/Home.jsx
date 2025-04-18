@@ -60,11 +60,9 @@ const Home = () => {
           <div key={index} className="card">
             <h3 className="card-title">{e.title}</h3>
             <p className="card-description">{e.description}</p>
-            <button>
               <NavLink to={e.link} className="card-button" end>
                 Saber más
               </NavLink>
-            </button>
           </div>
         ))}
       </div>

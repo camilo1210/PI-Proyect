@@ -107,6 +107,25 @@ button:hover {
   line-height: 1.5;
   text-align: le;
 }
+.card-button {
+  display: inline-block; /* o flex si necesitas centrar cosas internas */
+  padding: 0.8em 1.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #FEF9E1;
+  background-color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.3s;
+}
+
+.card-button:hover {
+  background-color: var(--color-rojo-oscuro);
+  text-decoration: none;  
+}
+
 
 /* Botón de sección izquierda */
 .button-disease-left {
@@ -145,21 +164,7 @@ button:hover {
   animation: slideIn 1s ease-out;
 }
 
-.banner-text {
-  background: var(--crema);
-  display: block;
-  padding: 0.5rem 2.5rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--rojo);
-  margin: 0rem;
-  text-align: left;
-  border-top-right-radius: 7rem;
-  border-bottom-right-radius: 7rem;
-  
-}
+
 
 @keyframes slideIn {
   from {
