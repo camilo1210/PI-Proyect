@@ -6,9 +6,11 @@ import NotFound from "./pages/not-found/NotFound.jsx";
 import AorticStenosis from "./pages/aortic-stenosis/AorticStenosis.jsx";
 import BrokenHeartSyndrome from "./pages/broken-heart-syndrome/BrokenHeartSyndrome.jsx";
 import DilatedCardiomyopathy from "./pages/dilated-cardiomyopathy/DilatedCardiomyopathy.jsx";
+import HeartFailure from "./pages/heart-failure/HeartFailure.jsx";
 import './App.css';
 import "./pages/about-us/About.jsx";
 import About from "./pages/about-us/About.jsx";
+
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <Route path="/Aortic_stenosis" element={<AorticStenosis/>} />
         <Route path="/Dilated-cardiomyopathy" element={<DilatedCardiomyopathy />} />
         <Route path="/Broken_heart_syndrome" element={<BrokenHeartSyndrome />} />
+        <Route path="/Heart_failure" element={<HeartFailure />} />
       </Routes>
     </Layout>
   );
