@@ -1,22 +1,77 @@
 @import "@/assets/variables.css";
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
-/* Estilo del contenedor */
-div {
-  text-align: center;
-  padding: 2rem;
+/* Reset para body y html */
+html, body {
+  margin: 0;
+  padding: 0;
   background-color: var(--color-claro);
-  color: var(--color-rojo-oscuro);
+  font-family: "Raleway", sans-serif;
+  width: auto;
 }
 
-/* Estilo para el título */
+
+
+/* Estilo del contenedor principal */
+.home-container {
+  width: auto;
+  min-height: 100vh;
+  background-color: var(--color-claro);
+  color: var(--color-rojo-oscuro);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  height: auto;
+  width: auto;
+  text-align: center;
+}
+
+/* Contenedor interno */
+.container {
+  width: 100vw;
+  max-width: 1200px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Estilo para los títulos */
 h1 {
   color: var(--color-rojo-oscuro);
   font-size: 2.5em;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-/* Estilo para el botón */
+.welcome {
+  animation: slideIn 1s ease-out;
+}
+
+
+/* Subtítulo personalizado */
+.home-title {
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  color: var(--color-rojo-oscuro);
+  text-align: justify;
+}
+
+
+
+/* Descripción principal */
+.home-description {
+  text-align: left;
+  max-width: 800px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  text-align: justify;
+  
+}
+
+/* Estilo para los botones generales */
 button {
   padding: 0.8em 1.5em;
   font-size: 1.1em;
@@ -33,20 +88,7 @@ button:hover {
   background-color: var(--color-rojo-oscuro);
 }
 
-.home-description {
-  text-align: left;
-  max-width: 800px;
-  line-height: 1.6;
-}
-
-.home-title {
-  font-size: 2.5em;
-  margin-bottom: 1.5rem;
-  color: var(--color-rojo-oscuro);
-}
-
-
-/* estilo para la descrpcion de las enfermedades*/
+/* Título de sección izquierda */
 .title-description-left {
   color: darkred;
   font-size: 1.5rem;
@@ -54,18 +96,19 @@ button:hover {
   margin-bottom: 0.5rem;
   text-align: left;
 }
-/*descripcion sobre la enfermedad */
+
+/* Texto de descripción izquierda */
 .description-left {
-  max-width: 450px;  
-  text-align: left;     
-  margin-left: -30px;   
+  max-width: 450px;
+  text-align: left;
+  margin-left: -30px;
   color: #555;
   font-size: 0.95rem;
   line-height: 1.5;
-
-
+  text-align: le;
 }
-/*boton para entrar a la enfermedad en la izquierda*/
+
+/* Botón de sección izquierda */
 .button-disease-left {
   background-color: black;
   color: white;
@@ -76,63 +119,55 @@ button:hover {
   font-size: 0.9rem;
   transition: background-color 0.3s;
   margin-top: 0.5rem;
-  margin-left:-30px ;
-  
-
+  margin-left: -30px;
+  text-align: left;
 }
-/*efecto para el boton izquierdo*/
+
 .button-disease-left:hover {
   background-color: #333;
 }
 
-.home-container {
-  text-align: left;
-  padding: 2rem;
-  background-color: var(--color-claro);
-  color: var(--color-rojo-oscuro);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Efecto de un del "Conoce más sobre las enfermedades" */
-
+/* -------------------- */
+/* Estilo de la franja animada */
 :root {
-  --rojo: #a01b1b;   /* rojo oscuro de la franja */
-  --crema: #f8f2dc;  /* color de fondo de la página */
+  --rojo: #a01b1b;
+  --crema: #FEF9E1;
 }
+
 .banner {
-  /* forma exterior (franja roja) */
   background: var(--rojo);
-  border-top-right-radius: 8rem; /* curva de 180° a la derecha */
+  border-top-right-radius: 8rem;
   border-bottom-right-radius: 8rem;
-
-  /* ajusta el grosor de la “orilla” roja */
-  padding: 0.65rem 0.65rem 0.65rem 0; /* sin padding a la izquierda */
-
-  /* que solo ocupe lo necesario para el texto */
+  padding: 0.65rem 0.65rem 0.65rem 0;
   width: max-content;
+  margin: 0rem auto;
+  /* display: flex; */
+  animation: slideIn 1s ease-out;
 }
 
-.banner-text{
-   /* franja clara */
-   background: var(--crema);
-   display: block;                 /* para respetar padding arriba/abajo */
-   padding: 0.5rem 2.5rem;         /* grosor interior */
-   
-   /* tipografía y alineación */
-   font-family: "Raleway", sans-serif;
-   font-weight: 700;
-   font-size: 2rem;
-   line-height: 1;
-   color: var(--rojo);             /* texto en rojo */
-   
-   /* quita márgenes nativos */
-   margin: 0;
-   text-align: left;               /* alineado a la izquierda */
-   
-   /* curva interna que siga la exterior */
-   border-top-right-radius: 7rem;
-   border-bottom-right-radius: 7rem;
- 
+.banner-text {
+  background: var(--crema);
+  display: block;
+  padding: 0.5rem 2.5rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--rojo);
+  margin: 0rem;
+  text-align: left;
+  border-top-right-radius: 7rem;
+  border-bottom-right-radius: 7rem;
+  
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const hideTimer = useRef(null);
 
+  // ----- manejadores comunes -----
+  const handleEnter = () => {
+    clearTimeout(hideTimer.current); // evita que se cierre si vuelve a entrar
+    setIsHovered(true);
+  };
+
+  const handleLeave = () => {
+    hideTimer.current = setTimeout(() => {
+      setIsHovered(false); // se ejecuta 1 s después
+    }, 100);
+  };
   return (
     <header>
       <div className="logo-container">
@@ -21,25 +33,36 @@ const Header = () => {
 
           <li
             className="nav-item"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
           >
-            <NavLink to="/enfermedades" end>
+            <NavLink end>
               Enfermedades
             </NavLink>
             {isHovered && (
-              <ul className="sub-menu">
+              <ul
+                className="sub-menu"
+                onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
+              >
                 <li>
-                  <NavLink to="/Aqui va el link">Sindrome Del Corazon Roto</NavLink>
+                  <NavLink to="/Broken_heart_syndrome">
+                    Sindrome Del Corazon Roto
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/Aqui va el link">Hipertensión Arterial</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/Aqui va el link"> Insuficiencia Cardíaca</NavLink>
+                  <NavLink to="/Aqui va el link">
+                    {" "}
+                    Insuficiencia Cardíaca
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/Aqui va el link">Miocardiopatía Dilatada</NavLink>
+                  <NavLink to="/Aqui va el link">
+                    Miocardiopatía Dilatada
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/Aortic_stenosis">Estenosis aórtica</NavLink>

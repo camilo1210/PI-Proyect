@@ -63,7 +63,7 @@ header {
   }
   
   .sub-menu {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 120%; /* Ajusta según tamaño del header */
     left: 0;
@@ -77,7 +77,7 @@ header {
   }
   
   .nav-item:hover .sub-menu {
-    display: flex;
+    /* display: flex; */
   }
   
   .sub-menu li {
@@ -91,7 +91,7 @@ header {
     color: white;
     text-decoration: none;
     font-size: 0.9rem;
-    transition: background 0.2s ease;
+    transition: opacity 5s ease;
   }
   
   .sub-menu a:hover {
