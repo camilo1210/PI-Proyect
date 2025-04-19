@@ -1,0 +1,47 @@
+@import "@/assets/variables.css";
+
+/* Estilo para el contenedor principal */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-claro);
+  color: var(--color-rojo-oscuro);
+  overflow-x: hidden;
+}
+
+/* La siguiente línea elimina el bullet o la viñeta de las listas ul */
+ul {
+  list-style: none;
+  padding: 0; /* opcional: elimina padding por defecto */
+  margin: 0; /* opcional: elimina margen por defecto */
+}
+
+/* Estilo para el contenido de la página */
+.layout-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+/* Ajustes de responsividad */
+@media (max-width: 768px) {
+  .layout-content {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,131 @@
+@import "@/assets/variables.css";
+
+/* Estilo general del footer */
+footer {
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  /* Puedes usar left, center o lo que prefieras */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-top: 4px solid var(--color-rojo-vibrante);
+  font-family: sans-serif;
+   /* Ajusta a tu tipografía */
+}
+
+/* ===========================
+   SECCIÓN SUPERIOR (footer-top)
+   =========================== */
+.footer-top {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente la lista */
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  font-family: 'Raleway';
+}
+
+.footer-top ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Para colocar los li en la misma línea */
+  gap: 1.5rem;   /* Espacio horizontal entre ellos */
+}
+
+.footer-top{
+  /* Ajustes de espacio, tipografía, etc. */
+}
+
+.footer-top a {
+  color: var(--color-arena);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-top a:hover {
+  color: var(--color-rojo-vibrante);
+}
+
+/* Línea divisoria opcional */
+footer hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-rojo-vibrante);
+  width: 80%; /* Ajusta el ancho de la línea según tu gusto */
+  margin: 0 auto;
+}
+
+/* ===========================
+   SECCIÓN INFERIOR (footer-bottom)
+   =========================== */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap; /* Para que en pantallas pequeñas se acomode abajo */
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  font-family: 'Raleway';
+}
+
+.footer-bottom p,
+.footer-bottom span {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Iconos sociales, si los incluyes */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem; /* Ajusta tamaño si usas react-icons */
+  background-color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
+  padding: 1.5rem 2rem;
+  text-align: left; 
+  font-family: 'Raleway';
+}
+
+.social-icons svg {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.social-icons svg:hover {
+  color: var(--color-rojo-vibrante);
+}
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .footer-top ul {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+  }
+
+  .footer-bottom {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+  }
+}
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  footer {
+    background-color: var(--color-rojo-oscuro);
+    color: var(--color-claro);
+  }
+
+  .footer-top a {
+    color: var(--color-arena);
+  }
+
+  .footer-top a:hover {
+    color: var(--color-rojo-vibrante);
+  }
+}
+/* Fin del CSS */
