@@ -107,20 +107,8 @@ button:hover {
   line-height: 1.5;
   text-align: le;
 }
-.card-button {
-  display: inline-block; /* o flex si necesitas centrar cosas internas */
-  padding: 0.8em 1.5em;
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #FEF9E1;
-  background-color: black;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none; 
-  transition: background-color 0.3s;
-}
 
+/* Estilo de los enlaces */
 .card-button:hover {
   background-color: var(--color-rojo-oscuro);
   text-decoration: none;  
@@ -176,3 +164,49 @@ button:hover {
     opacity: 1;
   }
 }
+
+/* Estilo de la tarjeta */
+.diseases-grid {
+  display: flex;
+  flex-direction: column; /* una debajo de la otra */
+  align-items: center;     /* centra horizontalmente las cards */
+  gap: 2rem;               /* espacio entre ellas */
+  margin-top: 3rem;
+}
+
+.card {
+  background-color: #e0c5a1;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 600px;
+  width: 100%;              /* se adapta al ancho máximo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.card-title {
+  color: #5f1a13;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  color: #402218;
+  margin-bottom: 1.5rem;
+}
+
+.card-button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #333;
+}
+
