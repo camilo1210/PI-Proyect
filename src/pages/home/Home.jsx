@@ -20,7 +20,7 @@ const diseases = [
     title: "Insuficiencia cardíaca",
     description:
       "Cuando el corazón pierde la capacidad de bombear con fuerza, cada actividad se vuelve un reto. ¿Es el final… o hay esperanza?",
-    link: "/Aqui va el link de su enfermedad",
+    link: "/Heart_failure",
   },
   {
     title: "Miocardiopatía dilatada",

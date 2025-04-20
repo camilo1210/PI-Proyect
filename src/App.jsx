@@ -9,6 +9,7 @@ import DilatedCardiomyopathy from "./pages/dilated-cardiomyopathy/DilatedCardiom
 import './App.css';
 import "./pages/about-us/About.jsx";
 import About from "./pages/about-us/About.jsx";
+import HeartFailure from "./pages/heart-failure/HeartFailure.jsx";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/Aortic_stenosis" element={<AorticStenosis/>} />
         <Route path="/Dilated-cardiomyopathy" element={<DilatedCardiomyopathy />} />
         <Route path="/Broken_heart_syndrome" element={<BrokenHeartSyndrome />} />
+        <Route path="/Heart_failure" element={<HeartFailure />} />
       </Routes>
     </Layout>
   );
