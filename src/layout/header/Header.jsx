@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "@/assets/logo.png";
+import { useLocation } from "react-router-dom";
+
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -18,6 +20,13 @@ const Header = () => {
       setIsHovered(false); // se ejecuta 1 s después
     }, 100);
   };
+
+  const location = useLocation();
+  const isEnfermedadesActive = location.pathname.includes("/Broken_heart_syndrome") ||
+                             location.pathname.includes("/Heart_failure") ||
+                             location.pathname.includes("/Dilated-cardiomyopathy") ||
+                             location.pathname.includes("/Aortic_stenosis");
+
   return (
     <header>
       <div className="logo-container">
@@ -36,9 +45,12 @@ const Header = () => {
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
           >
-            <NavLink end>
+            {/* <NavLink end>
               Enfermedades
-            </NavLink>
+            </NavLink> */}
+            <span className={`nav-link ${isEnfermedadesActive ? "active" : ""}`}>
+              Enfermedades
+            </span>
             {isHovered && (
               <ul
                 className="sub-menu"

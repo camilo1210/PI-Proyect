@@ -100,4 +100,19 @@ header {
   .sub-menu a:hover {
     background-color: rgba(0, 0, 0, 0.2);
   }
+
+  .nav-link {
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: border-bottom 0.3s;
+    cursor: pointer;
+  }
+  
+  .nav-link.active {
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  }
+  
   

@@ -21,7 +21,7 @@ footer {
   justify-content: center; /* Centra horizontalmente la lista */
   align-items: center;
   margin-bottom: 1rem;
-  background-color: var(--color-rojo-oscuro);
+  background-color: var(--color-rojo-vibrante);
   color: var(--color-claro);
   padding: 1.5rem 2rem;
   text-align: left; 
@@ -68,7 +68,7 @@ footer hr {
   align-items: center;
   margin-top: 1rem;
   flex-wrap: wrap; /* Para que en pantallas pequeñas se acomode abajo */
-  background-color: var(--color-rojo-oscuro);
+  background-color: var(--color-rojo-vibrante);
   color: var(--color-claro);
   padding: 1.5rem 2rem;
   text-align: left; 
@@ -86,7 +86,7 @@ footer hr {
   display: flex;
   gap: 1rem;
   font-size: 1.2rem; /* Ajusta tamaño si usas react-icons */
-  background-color: var(--color-rojo-oscuro);
+  background-color: var(--color-rojo-vibrante);
   color: var(--color-claro);
   padding: 1.5rem 2rem;
   text-align: left; 
@@ -116,7 +116,7 @@ footer hr {
 /* Modo oscuro */
 @media (prefers-color-scheme: dark) {
   footer {
-    background-color: var(--color-rojo-oscuro);
+    background-color: var(--color-rojo-vibrante);
     color: var(--color-claro);
   }
 
