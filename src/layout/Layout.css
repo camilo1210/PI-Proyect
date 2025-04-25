@@ -1,6 +1,5 @@
 @import "@/assets/variables.css";
 
-/* Estilo para el contenedor principal */
 .layout {
   display: flex;
   flex-direction: column;
@@ -11,25 +10,24 @@
   overflow-x: hidden;
 }
 
-/* La siguiente línea elimina el bullet o la viñeta de las listas ul */
-ul {
-  list-style: none;
-  padding: 0; /* opcional: elimina padding por defecto */
-  margin: 0; /* opcional: elimina margen por defecto */
-}
-
-/* Estilo para el contenido de la página */
+/* Contenedor para el contenido central con ancho limitado */
 .layout-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 100%;
+  width: 100vw;
   flex: 1;
   padding: 2rem;
   box-sizing: border-box;
   transition: all 0.3s;
+}
+
+/* Contenedor fullwidth: ocupa el 100vw sin afectar el centrado */
+.fullwidth {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
 /* Ajustes de responsividad */
