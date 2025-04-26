@@ -41,7 +41,7 @@ html, body {
 h1 {
   color: var(--color-rojo-oscuro);
   font-size: 2.5em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.2rem;
   text-align: center;
 }
 
@@ -53,9 +53,10 @@ h1 {
 /* Subtítulo personalizado */
 .home-title {
   font-size: 2.5em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.0rem;
   color: var(--color-rojo-oscuro);
-  text-align: justify;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 
@@ -198,7 +199,7 @@ button:hover {
 
 .card-button {
   display: inline-block;
-  background-color: black;
+  background-color: #721010;
   color: white;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
@@ -207,6 +208,7 @@ button:hover {
 }
 
 .card-button:hover {
-  background-color: #333;
+  background-color: var(--color-rojo-oscuro);
+  color: white;
 }
 

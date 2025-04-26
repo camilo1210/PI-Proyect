@@ -12,7 +12,7 @@ const HeartFailure = () => {
       <Canvas
           className="heart-canvas"
           shadows
-          camera={{ position: [0, 2, 5], fov: 50 }}
+          camera={{ position: [0, 2, 8], fov: 60 }}
           style={{ width: "100%", height: "100%" }}
         >
           <ambientLight intensity={1.8} />
@@ -24,7 +24,7 @@ const HeartFailure = () => {
             shadow-mapSize-height={1024}
           />
          <pointLight position={[-5, 5, -5]} intensity={1.5} />
-          <Heartfailure position={[0, 0, 0]} scale={1.5} />
+          <Heartfailure position={[0, 0, 0]} scale={2.0} />
           {/* Suelo para recibir sombra */}
           <mesh
             receiveShadow

@@ -15,16 +15,17 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
-  
+
   .heart-canvas {
     width: 100%;
-    height: 1200px;               /* altura fija */
+    min-height: 80vh; /* 80% del alto de la ventana */
     background-color: #ddd;
     border: 2px dashed var(--color-arena);
     border-radius: 1rem;
-    margin: 0 auto 2rem;         /* centrado y margen inferior */
-    max-width: 800px;             /* opcional: límite de ancho */
+    margin: 0 auto 2rem;
     display: block;
+    overflow: visible;
+    aspect-ratio: 16/9;
   }
   
   .labels {
