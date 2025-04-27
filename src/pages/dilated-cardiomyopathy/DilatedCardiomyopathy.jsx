@@ -2,19 +2,46 @@ import "./DilatedCardiomyopathy.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import HeartDilatedModel from "./models-3d/DilatedCardiomiopathyModel";
+import Staging from "./staging/Staging";
 import Lights from "../dilated-cardiomyopathy/lights/Lights";
+import { Circle } from "@react-three/drei";
+
 
 const DilatedCardiomyopathy = () => {
   return (
     <div className="dilated-cardiomyopathy">
       <h1>Miocardiopatía Dilatada</h1>
 
-      <Canvas camera={{ position: [0, 2, 0] }}>
+      <div className="model-container">
+      <Canvas shadows
+       camera={{ position: [0.3, 0, -0.7] }}
+       >
+        
       <OrbitControls target={[0, 0, 0]} />
       <HeartDilatedModel scale={50} />
       <Lights/>
-      </Canvas>
 
+    {/* Piso para recibir sombras */}
+      <Circle
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[0, -0.5, 0]}
+      args={[10, 10]}
+      receiveShadow
+      >
+      <meshStandardMaterial color="grey" />
+      </Circle>
+
+  {/* Controles de cámara */}
+  <OrbitControls target={[0, 0, 0]} />
+
+  {/* Modelo del corazón */}
+  <HeartDilatedModel scale={50} />
+
+  {/* Luces latientes */}
+  <Lights />
+      
+      </Canvas>
+      </div>
 
 
       <div className="card left">
