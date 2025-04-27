@@ -35,7 +35,7 @@ const Lights = () => {
       {/* Luz direccional extra para rellenar sombras */}
       <directionalLight position={[5, 5, 5]} intensity={0.3} />
 
-      {/* Spot animado en latido */}
+      {/* Spot animado en latido  */ }
       <spotLight
         ref={spotLightRef}
         position={[0, 3, 0]}
