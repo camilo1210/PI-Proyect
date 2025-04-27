@@ -1,41 +1,72 @@
-@import "@/assets/variables.css";
+@import "@/assets/variables.css"; 
 
 .broken-heart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    padding: var(--spacing-lg);
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .broken-heart-title {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+    color: var(--color-rojo-oscuro);
     text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Secciones alineadas horizontalmente */
+  .broken-heart-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+  }
+  
+  /* Inversión de dirección */
+  .broken-heart-section.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  /* Burbuja */
+  .broken-heart-bubble {
+    background-color: var(--color-rojo-vibrante);
+    color:var(--color-claro);
+    padding: 0.8rem 1.2rem;
+    font-weight: bold;
+    max-width: 200px;
+    display: inline-block;
+    align-items: center;
+    height: 100%;
+    font-size: 1.1rem;
+    margin: bottom 1rem ;
 }
 
-.broken-heart-description {
-    font-size: var(--font-size-md);
-    line-height: var(--line-height);
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.broken-heart-button {
-    background-color: var(--primary-color);
-    color: var(--button-text-color);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-md);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.broken-heart-button:hover {
-    background-color: var(--primary-color-hover);
-}
+  /* Burbujas con forma de cápsula */
+  .broken-heart-bubble.left {
+    border-radius: 50px 0 0 50px;
+    justify-content: flex-start;
+  }
+  
+  .broken-heart-bubble.right {
+    border-radius: 0 50px 50px 0;
+    justify-content: flex-end;
+  }
+  
+  /* Párrafos */
+  .broken-heart-text {
+    flex: 1;
+    font-size: 1rem;
+    color: #5a3a3a;
+    line-height: 1.6;
+    text-align: justify;
+  }
+  
+  
+  .model-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+  canvas {
+    border-radius: 12px;
+  }
+  
