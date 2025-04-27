@@ -1,4 +1,4 @@
-@import "@/assets/variables.css";
+@import "@/assets/variables.css"; 
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 
@@ -12,8 +12,9 @@
   }
   
   .heart-failure h1 {
-    font-size: 2rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
+    color: black;
   }
 
   .heart-canvas {
@@ -32,34 +33,35 @@
     display: flex;
     justify-content: center;
     gap: 5rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--color-rojo-oscuro);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
   
   .info-section {
-    background-color: var(--color-claro);
+    background-color: var(--color-arena); /* Color de fondo más parecido al ejemplo */
     padding: 1.5rem;
     margin-top: 2rem;
-    border-radius: 12px;
+    border-radius: 16px;
     line-height: 1.6;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Limita el ancho del texto */
-    margin-left: auto;  /* Centra el bloque */
-    margin-right: auto; /* Centra el bloque */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left; /* Alinea el texto a la izquierda */
   }
   
   .info-title {
-    background-color: var(--color-rojo-vibrante);
-    color: white;
-    font-size: 1rem;
+    background-color: transparent; /* Sin fondo */
+    color: var(--color-rojo-vibrante);
+    font-weight: bold;
+    font-size: 1.1rem;
     padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
+    border: 2px solid var(--color-rojo-vibrante); /* Borde rojo */
+    border-radius: 30px;
     margin-bottom: 1rem;
-    transition: background-color 0.3s ease;
-    max-width: 300px;
-    margin-left: auto;
+    max-width: 150px;
+    margin-left: 0; /* Alinear al inicio */
     margin-right: auto;
+    text-align: center;
   }
