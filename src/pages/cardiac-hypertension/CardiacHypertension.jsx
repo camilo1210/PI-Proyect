@@ -10,7 +10,7 @@ const CardiacHypertension = () => {
             <h1 className="cardiac-hypertension-title">Hipertension Arterial</h1>
 
             <div className="model-container">
-            <Canvas
+                <Canvas
                     shadows
                     // Selecciona el tipo de shadowMap:
                     gl={{
@@ -40,14 +40,14 @@ const CardiacHypertension = () => {
                     />
 
                     <Lights />
-                   <Model scale={4} position={[0, 0, 0]} /> 
+                    <Model scale={4} position={[0, 0, 0]} />
 
                     <OrbitControls
                         enableZoom
                         maxDistance={10}
                         minDistance={2}
                         autoRotate
-                        autoRotateSpeed={1}
+                        autoRotateSpeed={10}
                     />
                 </Canvas>
             </div>
