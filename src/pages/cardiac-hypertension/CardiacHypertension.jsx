@@ -1,8 +1,7 @@
-import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { ContactShadows, OrbitControls } from "@react-three/drei";
-import Lights from "./lights/Lights";
+import { OrbitControls } from "@react-three/drei";
 import { Model } from "./models-3d/HealthyHeartModel";
+import "./CardiacHypertension.css";
 
 const CardiacHypertension = () => {
     return (
@@ -11,36 +10,32 @@ const CardiacHypertension = () => {
 
             <div className="model-container">
                 <Canvas
+                    className="healthyHeart-canvas"
                     shadows
-                    // Selecciona el tipo de shadowMap:
-                    gl={{
-                        antialias: true,
-                        // Para SOMBRAS SUAVES:
-                        shadowMap: { type: THREE.PCFSoftShadowMap },
-                        // Para SOMBRAS DURAS, reemplaza por THREE.BasicShadowMap
-                    }}
-                    style={{
-                        width: "100%",
-                        height: 300,
-                        background: "transparent",
-                    }}
+                    camera={{ position: [0, 2, 8], fov: 60 }}
+                    style={{ width: "75%", height: "100%" }}
                 >
-                    {/* Opción: plano invisible que solo recibe sombras */}
-                    <ContactShadows
-                        position={[0, -0.75, 0]} // justo debajo del modelo
-                        rotation-x={-Math.PI / 2} // acostado horizontal
-                        width={10}
-                        height={10}
-                        far={1} // distancia máxima del drop
-                        resolution={512}
-                        // blur = 0 → sombra dura
-                        // blur > 0 → sombra más suave
-                        blur={2}
-                        opacity={0.5}
+                    <ambientLight intensity={1.8} />
+                    <directionalLight
+                        castShadow
+                        position={[5, 10, 5]}
+                        intensity={2}
+                        shadow-mapSize-width={1024}
+                        shadow-mapSize-height={1024}
                     />
+                    <pointLight position={[-5, 5, -5]} intensity={1.5} />
 
-                    <Lights />
-                    <Model scale={4} position={[0, 0, 0]} />
+                    {/* Suelo para recibir sombra */}
+                    <mesh
+                        receiveShadow
+                        rotation={[-Math.PI / 2, 0, 0]}
+                        position={[0, -3.43, 0]}
+                    >
+                        <planeGeometry args={[20, 20]} />
+                        <shadowMaterial opacity={0.3} />    
+                    </mesh>
+                    
+                    <Model scale={6} position={[0, 0, 0]} />
 
                     <OrbitControls
                         enableZoom

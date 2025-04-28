@@ -66,7 +66,17 @@
     height: 300px;
     margin-bottom: 2rem;
   }
-  canvas {
-    border-radius: 12px;
+
+
+  .healthyHeart-canvas {
+    width: 100%;
+    min-height: 10vh; /* 80% del alto de la ventana */
+    background-color: #ddd;
+    border: 2px dashed var(--color-arena);
+    border-radius: 1rem;
+    margin: 0 auto 2rem;
+    display: block;
+    overflow: visible;
+    aspect-ratio: 16/9;
   }
-  
+
