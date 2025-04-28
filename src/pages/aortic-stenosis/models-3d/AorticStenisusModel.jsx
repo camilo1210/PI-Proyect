@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import { useFrame } from "@react-three/fiber";
 
 export function FullHeart(props) {
-  const { nodes, materials } = useGLTF('/public/models-3d/aortic-stenosis-models/full-heart.glb');
+  const { nodes, materials } = useGLTF('/models-3d/aortic-stenosis-models/full-heart.glb');
   const meshRef = useRef();
 
   // Función para simular la animación del latido
@@ -38,4 +38,4 @@ export function FullHeart(props) {
 
 export default FullHeart;
 
-useGLTF.preload('/public/models-3d/aortic-stenosis-models/full-heart.glb');
+useGLTF.preload('/models-3d/aortic-stenosis-models/full-heart.glb');

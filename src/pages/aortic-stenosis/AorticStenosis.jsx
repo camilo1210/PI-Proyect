@@ -13,7 +13,7 @@ const AorticStenosis = () => {
         <Canvas
           shadows
           gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
-          camera={{ position: [0, 0, -0.7] }}
+          camera={{ position: [0, 0, -0.3] }}
         >
           <SoftShadows
             frustum={3.75}
