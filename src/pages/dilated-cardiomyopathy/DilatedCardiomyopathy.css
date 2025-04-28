@@ -1,0 +1,132 @@
+/* Contenedor general */
+.dilated-cardiomyopathy {
+    background-color: #fefced;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: "Segoe UI", sans-serif;
+    color: #2e2e2e;
+  }
+  
+  /* Título principal */
+  .dilated-cardiomyopathy h1 {
+    text-align: left;
+    font-size: 2.8rem;
+    color: #000000;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .model-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+  canvas {
+    border-radius: 12px;
+  }
+
+
+    .broken-heart-section.reverse {
+    flex-direction: row-reverse;
+  }
+
+  
+  
+  /* Secciones generales */
+  .section {
+    margin-bottom: 80px;
+    padding: 10px;
+  }
+  
+  /* Sección que se alinea a la derecha */
+  .sintomas-section {
+    align-self: flex-end;
+    background-color: #fff6f6;
+    padding: 25px;
+    border-radius: 16px;
+    max-width: 65%;
+    margin-left: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Nueva sección alineada a la derecha */
+  .dilated-cardiomyopathy {
+    background-color: #fefced;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: "Segoe UI", sans-serif;
+    color: #2e2e2e;
+    
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  /* Títulos burbuja */
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  
+  .heart-canvas {
+    width: 100%;
+    height: 1200px;               /* altura fija */
+    background-color: #ddd;
+    border: 2px dashed var(--color-arena);
+    border-radius: 1rem;
+    margin: 0 auto 2rem;         /* centrado y margen inferior */
+    max-width: 800px;             /* opcional: límite de ancho */
+    display: block;
+  }
+
+  /* Burbuja visual con borde rojo */
+  .bubble {
+    border: 4px solid #b10000;
+    border-radius: 25px;
+    padding: 10px 20px;
+    display: inline-block;
+    background-color: #fff;
+    color: #b10000;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Efecto hover opcional */
+  .bubble:hover {
+    transform: scale(1.05);
+  }
+  
+  .card {
+    background-color: #fff7f9;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    width: 45%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 2rem;
+  }
+  
+  .left {
+    text-align: left;
+    margin-left: 2rem;
+  }
+  
+  .right {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+  
+  .title {
+    border: 3px solid red;
+    color: red;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  

@@ -1,0 +1,18 @@
+@import "../../assets/variables.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+
+.aortic-stenosis h1 {
+    /* alinea el texto a la izquierda */
+    text-align: left;
+  
+    /* color negro puro */
+    color: #000;
+  
+    /* usa la fuente Raleway, con sans‑serif de respaldo */
+    font-family: 'Raleway', sans-serif;
+  
+    /* opcional: quita márgenes si quieres que empiece justo en el borde */
+    margin: 0;
+  }
+  
