@@ -63,7 +63,7 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/Aqui va el link">Hipertensión Arterial</NavLink>
+                  <NavLink to="/Cardiac_hypertension">Hipertensión Arterial</NavLink>
                 </li>
                 <li>
                   <NavLink to="/Heart_failure">Insuficiencia Cardíaca

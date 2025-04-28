@@ -14,7 +14,7 @@ const diseases = [
     title: "Hipertensión arterial",
     description:
       "Una amenaza silenciosa que obliga al corazón a trabajar sin descanso, sin mostrar señales evidentes… hasta que es demasiado tarde.",
-    link: "/Aqui va el link de su enfermedad",
+    link: "/Cardiac_hypertension",
   },
   {
     title: "Insuficiencia cardíaca",
