@@ -44,14 +44,38 @@ const HeartFailure = () => {
         </div>
       
 
-      <section className="info-section">
+      <div className="info-section">
+        <div className="card-center">
         <div className="info-title">¿Qué es?</div>
         <p>
           La insuficiencia cardíaca es una condición en la que el corazón no puede
           bombear sangre de manera eficiente para satisfacer las necesidades del cuerpo.
           Puede deberse a debilidad del músculo cardíaco, rigidez o problemas estructurales.
         </p>
-      </section>
+        </div>
+        
+        <div className="card-left">
+        <div className="info-tittle">¿Cuales son sus síntomas?</div>
+        <p>
+          Proximamente...   
+        </p>
+        </div>
+
+        <div className="card-right">
+        <div className="info-tittle">¿Qué lo causa?</div>
+        <p>
+          Proximamente...   
+        </p>
+        </div>
+
+        <div className="card-left">
+        <div className="info-tittle">¿Cómo tratarlo?</div>
+        <p>
+          Proximamente...   
+        </p>
+        </div>
+      
+      </div>
     </div>
   );
 };

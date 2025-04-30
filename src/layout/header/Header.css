@@ -1,6 +1,5 @@
 @import "@/assets/variables.css";
 
-
 header {
   /* Esté header afecta a todos los div que sean header */
     background-color: #941c1c; 
@@ -44,6 +43,8 @@ header {
   nav a.active {
     border-bottom: 2px solid white;
     font-weight: bold;
+    display: inline-block;
+    padding: 0 4px;
   }
   
   .btnClose {
