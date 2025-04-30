@@ -47,12 +47,17 @@ header {
   }
   
   .btnClose {
-    background-color: rgb(43, 6, 6);
+    background-color: rgb(0, 0, 0);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
+  }
+
+  .btnClose:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s;
   }
   
   .btnClose a {

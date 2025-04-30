@@ -1,6 +1,6 @@
 @import "@/assets/variables.css";
 
-
+/* hover significa on-mouse-over */
 
 /* Configuración de fuentes y accesibilidad */
 :root {
@@ -25,8 +25,9 @@ a {
   text-decoration: none;
   transition: color 0.3s;
 }
+/* El mouse al pasar por encima de un hover o una lista con dirección se coloque una línea blanca abajo de la opción que quiere seleccionar*/
 a:hover {
-  color: var(--color-rojo-oscuro);
+  color: var(--color-claro);
   text-decoration: underline;
 }
 
@@ -66,10 +67,11 @@ button {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Hover de los botones en general*/
 button:hover {
   border-color: var(--color-rojo-vibrante);
   background-color: var(--color-rojo-vibrante);
-  color: var(--color-claro);
+  color: var(--color-rojo-vibrante);
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

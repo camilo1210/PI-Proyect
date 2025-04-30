@@ -4,7 +4,6 @@ import "./Header.css";
 import logo from "@/assets/logo.png";
 import { useLocation } from "react-router-dom";
 
-
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const hideTimer = useRef(null);
@@ -22,10 +21,11 @@ const Header = () => {
   };
 
   const location = useLocation();
-  const isEnfermedadesActive = location.pathname.includes("/Broken_heart_syndrome") ||
-                             location.pathname.includes("/Heart_failure") ||
-                             location.pathname.includes("/Dilated-cardiomyopathy") ||
-                             location.pathname.includes("/Aortic_stenosis");
+  const isEnfermedadesActive =
+    location.pathname.includes("/Broken_heart_syndrome") ||
+    location.pathname.includes("/Heart_failure") ||
+    location.pathname.includes("/Dilated-cardiomyopathy") ||
+    location.pathname.includes("/Aortic_stenosis");
 
   return (
     <header>
@@ -48,7 +48,9 @@ const Header = () => {
             {/* <NavLink end>
               Enfermedades
             </NavLink> */}
-            <span className={`nav-link ${isEnfermedadesActive ? "active" : ""}`}>
+            <span
+              className={`nav-link ${isEnfermedadesActive ? "active" : ""}`}
+            >
               Enfermedades
             </span>
             {isHovered && (
@@ -63,11 +65,12 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/Cardiac_hypertension">Hipertensión Arterial</NavLink>
+                  <NavLink to="/Cardiac_hypertension">
+                    Hipertensión Arterial
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/Heart_failure">Insuficiencia Cardíaca
-                  </NavLink>
+                  <NavLink to="/Heart_failure">Insuficiencia Cardíaca</NavLink>
                 </li>
                 <li>
                   <NavLink to="/Dilated-cardiomyopathy">
