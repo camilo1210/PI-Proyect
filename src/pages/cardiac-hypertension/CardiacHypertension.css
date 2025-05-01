@@ -1,0 +1,82 @@
+@import "@/assets/variables.css"; 
+
+.cardiac-hypertension-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cardiac-hypertension-title {
+    font-size: 2rem;
+    color: var(--color-rojo-oscuro);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Secciones alineadas horizontalmente */
+  .cardiac-hypertension-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+  }
+  
+  /* Inversión de dirección */
+  .cardiac-hypertension-section.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  /* Burbuja */
+  .cardiac-hypertension-bubble {
+    background-color: var(--color-rojo-vibrante);
+    color:var(--color-claro);
+    padding: 0.8rem 1.2rem;
+    font-weight: bold;
+    max-width: 200px;
+    display: inline-block;
+    align-items: center;
+    height: 100%;
+    font-size: 1.1rem;
+    margin: bottom 1rem ;
+}
+
+  /* Burbujas con forma de cápsula */
+  .cardiac-hypertension-bubble.left {
+    border-radius: 50px 0 0 50px;
+    justify-content: flex-start;
+  }
+  
+  .cardiac-hypertension-bubble.right {
+    border-radius: 0 50px 50px 0;
+    justify-content: flex-end;
+  }
+  
+  /* Párrafos */
+  .cardiac-hypertension-text {
+    flex: 1;
+    font-size: 1rem;
+    color: #5a3a3a;
+    line-height: 1.6;
+    text-align: justify;
+  }
+  
+  
+  .model-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+
+
+  .healthyHeart-canvas {
+    width: 100%;
+    min-height: 10vh; /* 80% del alto de la ventana */
+    background-color: #ddd;
+    border: 2px dashed var(--color-arena);
+    border-radius: 1rem;
+    margin: 0 auto 2rem;
+    display: block;
+    overflow: visible;
+    aspect-ratio: 16/9;
+  }
+
