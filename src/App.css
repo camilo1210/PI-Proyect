@@ -6,7 +6,10 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
   text-align: center;
   background-color: var(--color-claro);
   color: var(--color-rojo-oscuro);

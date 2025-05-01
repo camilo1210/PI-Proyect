@@ -33,7 +33,7 @@ a:hover {
 
 /* Estilo para el cuerpo de la página */
 body {
-  margin: 0;
+  margin-top: 0;
   display: flex;
   justify-content: column;
   align-items: stretch;
