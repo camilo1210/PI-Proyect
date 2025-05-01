@@ -60,7 +60,7 @@ const DilatedCardiomyopathy = () => {
       </div>
 
       <div className="card left">
-        <div className="title">¿Cuáles son sus síntomas?</div>
+        <div className="title">¿Cuáles son?</div>
         <p>
           Los síntomas más comunes incluyen dificultad para respirar, fatiga,
           hinchazón en las piernas, y latidos cardíacos irregulares. Estos
