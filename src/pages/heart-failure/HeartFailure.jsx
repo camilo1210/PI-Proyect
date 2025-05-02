@@ -45,30 +45,50 @@ const HeartFailure = () => {
       
 
       <div className="info-section">
-        <div className="card-center">
+        <div className="card-left">
         <div className="info-title">¿Qué es?</div>
         <p>
-          La insuficiencia cardíaca es una condición en la que el corazón no puede
-          bombear sangre de manera eficiente para satisfacer las necesidades del cuerpo.
-          Puede deberse a debilidad del músculo cardíaco, rigidez o problemas estructurales.
+        La Insuficiencia Cardíaca (IC) es un enfermedad crónica y degenerativa del corazón que impide que éste tenga capacidad suficiente
+        para bombear la sangre y por lo tanto de hacer llegar suficiente oxígeno y nutrientes al resto de los órganos. Puede manifestarse a cualquier edad,
+        aunque la probabilidad de sufrirla aumenta con los años. Según su forma de manifestarse, se clasifica en:
+
+        Insuficiencia Cardíaca Crónica:
+        La enfermedad se va manifestando gradualmente, pero los síntomas se intensifican con el paso del tiempo. Es la más frecuente.
+
+        Insuficiencia Cardíaca Aguda:
+        Los síntomas aparecen de forma repentina y son graves desde el principio. Con un tratamiento adecuado, los pacientes pueden mejorar rápidamente.
         </p>
         </div>
         
-        <div className="card-left">
+        <div className="card-right">
         <div className="info-tittle">¿Cuales son sus síntomas?</div>
         <p>
-          Proximamente...   
+        Los síntomas predominantes son:
+        <br />
+            °Cansancio anormal por esfuerzos que antes no lo causaban.
+            <br />
+            °Respiración fatigosa incluso al estar acostado, haciendo que duermas sentado.
+            <br />
+            °Sensación de plenitud del abdomen, anorexia (falta de apetito).
+            <br />
+            °Tos seca y persistente.
+            <br />
+            °Sensaciones de mareo, confusión, mente en blanco y breves pérdidas de conciencia.
+            <br />
+            °Hinchazón en las piernas, tobillos o abdomen causado por retención de líquidos.
+            <br />
+            °Falta de aire (disnea) con el esfuerzo y mala tolerancia al ejercicio por fatiga 
         </p>
         </div>
 
-        <div className="card-right">
+        <div className="card-left">
         <div className="info-tittle">¿Qué lo causa?</div>
         <p>
           Proximamente...   
         </p>
         </div>
 
-        <div className="card-left">
+        <div className="card-right">
         <div className="info-tittle">¿Cómo tratarlo?</div>
         <p>
           Proximamente...   

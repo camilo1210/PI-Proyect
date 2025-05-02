@@ -77,7 +77,7 @@ button {
   padding: 0.8em 1.5em;
   font-size: 1.1em;
   font-weight: bold;
-  color: var(--color-claro);
+  color: white;
   background-color: var(--color-rojo-vibrante);
   border: none;
   border-radius: 8px;
@@ -166,12 +166,12 @@ button:hover {
   }
 }
 
-/* Estilo de la tarjeta */
+/* Estilo de la tarjeta 
 .diseases-grid {
   display: flex;
-  flex-direction: column; /* una debajo de la otra */
-  align-items: center;     /* centra horizontalmente las cards */
-  gap: 2rem;               /* espacio entre ellas */
+  flex-direction: column; /* una debajo de la otra 
+  align-items: center;     /* centra horizontalmente las cards 
+  gap: 2rem;               /* espacio entre ellas 
   margin-top: 3rem;
 }
 
@@ -180,7 +180,7 @@ button:hover {
   padding: 2rem;
   border-radius: 1rem;
   max-width: 600px;
-  width: 100%;              /* se adapta al ancho máximo */
+  width: 100%;              /* se adapta al ancho máximo 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
@@ -195,11 +195,10 @@ button:hover {
 .card-description {
   color: #402218;
   margin-bottom: 1.5rem;
-}
+}*/
 
-.card-button {
+.button-tarjets {
   display: inline-block;
-  background-color: #721010;
   color: white;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
@@ -207,7 +206,7 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
-.card-button:hover {
+.button-tarjets:hover {
   background-color: var(--color-rojo-oscuro);
   color: white;
 }
@@ -242,13 +241,16 @@ button:hover {
   
   .left {
     text-align: left;
-    margin-left: auto;
+    margin-right: auto;
+    margin-left: 2rem;
+    align-self: flex-start;
   }
   
   .right {
     text-align: right;
     margin-left: auto;
     margin-right: 2rem;
+    align-self: flex-end;
   }
   
   .title {
@@ -260,4 +262,5 @@ button:hover {
     margin-bottom: 1rem;
     display: inline-block;
   }
+
   
