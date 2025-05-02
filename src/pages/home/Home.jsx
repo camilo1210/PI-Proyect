@@ -65,28 +65,67 @@ const Home = () => {
             </NavLink>*/}
       {/* nuevo codigo tarjetas  */}
 
+      
       <div className="card left">
-        <div className="title">¿QUE ES?</div>
+        <div className="title">Síndrome del corazón roto</div>
         <p>
-          La miocardiopatía dilatada (MCD) es una enfermedad del músculo
-          cardíaco en la cual el ventrículo izquierdo, que es la principal
-          cámara de bombeo del corazón, se agranda (dilata) y pierde fuerza para
-          contraerse y bombear sangre de forma eficiente al resto del cuerpo.
-          Con el tiempo, esto puede afectar a otras cámaras del corazón y causar
-          insuficiencia cardíaca.
+          Cuando el estrés o una emoción intensa afectan tu corazón como si fuera un ataque, pero sin serlo. ¿Puede el corazón realmente romperse?
         </p>
+        <button className="button-tarjets">
+          <NavLink to="/Broken_heart_syndrome" end>
+              Saber más
+          </NavLink>
+        </button>
       </div>
 
       <div className="card right">
-        <div className="title">¿CUALES SON SUS SINTOMAS?</div>
+        <div className="title">Hipertensión Arterial</div>
         <p>
-          La causa puede variar, desde enfermedades del corazón hasta
-          condiciones crónicas como la hipertensión. Un diagnóstico adecuado es
-          esencial.
+          Una amenaza silenciosa que obliga al corazón a trabajar sin descanso, sin mostrar señales evidentes… hasta que es demasiado tarde.
         </p>
+        <button className="button-tarjets">
+          <NavLink to="/Cardiac_hypertension" end>
+              Saber más
+          </NavLink>
+        </button>
+      </div>
+
+      <div className="card left">
+        <div className="title">Insuficiencia Cardíaca</div>
+        <p>
+          Cuando el corazón pierde la capacidad de bombear con fuerza, cada actividad se vuelve un reto. ¿Es el final… o hay esperanza?
+        </p>
+        <button className="button-tarjets">
+          <NavLink to="/Heart_failure" end>
+              Saber más
+          </NavLink>
+        </button>
+      </div>
+
+      <div className="card right">
+        <div className="title">Miocardiopatía Dilatada</div>
+        <p>
+          El corazón se agranda tratando de compensar su debilidad, pero en el proceso pierde su fuerza. ¿Qué lo causa y cómo afecta tu vida?
+        </p>
+        <button className="button-tarjets">
+          <NavLink to="/Dilated-cardiomyopathy" end>
+              Saber más
+          </NavLink>
+        </button>
+      </div>
+
+      <div className="card left">
+        <div className="title">Estenosis Aórtica</div>
+        <p>
+          Cuando la principal salida del corazón se estrecha, cada latido se convierte en un esfuerzo mayor. ¿Cómo puede un simple ‘bloqueo’ cambiarlo todo?
+        </p>
+        <button className="button-tarjets">
+          <NavLink to="/Aortic_stenosis" end>
+              Saber más
+          </NavLink>
+        </button>
       </div>
     </div>
-    
   );
 };
 

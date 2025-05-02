@@ -6,12 +6,13 @@
     font-family: 'Raleway', sans-serif;
     background-color: var(--color-claro);
     color: var(--color-rojo-oscuro);
-    padding: 2rem;
-    text-align: center; /* Centra el contenido */
+    padding: 0rem;
+    text-align: left; /* Centra el contenido */
     overflow-x: hidden;
   }
   
   .heart-failure h1 {
+    text-align: left;
     font-size: 2.8rem;
     margin-bottom: 1rem;
     color: black;
@@ -37,30 +38,27 @@
     color: var(--color-rojo-oscuro);
     margin-top: 0.5rem;
   }
-  
+
   .info-section {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem;
     margin-top: 2rem;
-    max-width: 900px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 16px;
     line-height: 1.6;
   }
   
-  .card-center, .card-left, .card-right {
+  .card-left, .card-right {
     background-color: var(--color-arena); /* Fondo crema en cada tarjeta */
     padding: 1.5rem;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 600px;
-  }
-  
-  .card-center {
-    align-self: center;
+    width: 50%; /* Ocupa la mitad del contenedor padre */
+    max-width: none; /* Quita el límite que tenías */
   }
   
   .card-left {
@@ -71,13 +69,13 @@
     align-self: flex-end;
   }
   
-  .info-title, .info-tittle, .info-tittletwo {
+  .info-title, .info-tittle {
     background-color: transparent;
-    color: var(--color-rojo-vibrante);
+    color: red;
     font-weight: bold;
     font-size: 1.1rem;
     padding: 0.6rem 1.2rem;
-    border: 2px solid var(--color-rojo-vibrante);
+    border: 2px solid red;
     border-radius: 30px;
     margin-bottom: 1rem;
     text-align: center;
