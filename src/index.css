@@ -3,13 +3,14 @@
 /* hover significa on-mouse-over */
 
 /* Configuración de fuentes y accesibilidad */
+/* ????????*/
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: var(--color-rojo-oscuro);
+  color: black;
   background-color: var(--color-claro);
 
   font-synthesis: none;
@@ -21,13 +22,13 @@
 /* Estilo para enlaces */
 a {
   font-weight: 500;
-  color: var(--color-rojo-vibrante);
+  color: white;
   text-decoration: none;
   transition: color 0.3s;
 }
 /* El mouse al pasar por encima de un hover o una lista con dirección se coloque una línea blanca abajo de la opción que quiere seleccionar*/
 a:hover {
-  color: var(--color-claro);
+  color: white;
   text-decoration: underline;
 }
 
@@ -39,8 +40,8 @@ body {
   align-items: stretch;
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--color-claro);
-  color: var(--color-rojo-oscuro);
+  background-color: black;
+  color: black;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -48,11 +49,12 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  color: var(--color-rojo-oscuro);
+  color: black;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para botones */
+/* ESTO ESTÁ MAL PORQUE NO ESTÁ AFECTANDO A NINGÚN BOTÓN */
 button {
   border-radius: 12px;
   border: 1px solid transparent;
@@ -69,9 +71,9 @@ button {
 
 /* Hover de los botones en general*/
 button:hover {
-  border-color: var(--color-rojo-vibrante);
-  background-color: var(--color-rojo-vibrante);
-  color: var(--color-rojo-vibrante);
+  border-color: white;
+  background-color: var(--color-rojo-oscuro);
+  color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

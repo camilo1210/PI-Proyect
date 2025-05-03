@@ -45,6 +45,7 @@ header {
     font-weight: bold;
     display: inline-block;
     padding: 0 4px;
+    
   }
   
   .btnClose {
@@ -59,6 +60,8 @@ header {
   .btnClose:hover {
     background-color: rgba(0, 0, 0, 0.8);
     transition: background-color 0.3s;
+    color: white;
+    font-weight: bold;
   }
   
 
@@ -66,6 +69,12 @@ header {
   .btnClose a {
     color: white;
     text-decoration: none;
+  }
+
+  .btnClose a:hover {
+    color: white;
+    font-weight: 600;
+
   }
   
   .nav-item {
@@ -87,9 +96,7 @@ header {
     list-style: none;
   }
   
-  .nav-item:hover .sub-menu {
-    /* display: flex; */
-  }
+
   
   .sub-menu li {
     padding: 0;
@@ -107,6 +114,9 @@ header {
   
   .sub-menu a:hover {
     background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-weight: bold;
+    transform: translateY(-2px);
   }
 
   .nav-link {
@@ -123,4 +133,8 @@ header {
     font-weight: bold;
   }
   
-  
+.nav-item a:hover{
+  color: white;
+  font-weight: bold;
+  transform: translateY(-2px);
+}

@@ -34,7 +34,7 @@ const Header = () => {
       </div>
       <nav>
         <ul className="nav-list">
-          <li>
+          <li className="nav-item">
             <NavLink to="/" end>
               Inicio
             </NavLink>
@@ -45,9 +45,6 @@ const Header = () => {
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
           >
-            {/* <NavLink end>
-              Enfermedades
-            </NavLink> */}
             <span
               className={`nav-link ${isEnfermedadesActive ? "active" : ""}`}
             >
@@ -59,17 +56,17 @@ const Header = () => {
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
               >
-                <li>
+                <li >
                   <NavLink to="/Broken_heart_syndrome">
                     Sindrome Del Corazon Roto
                   </NavLink>
                 </li>
-                <li>
+                <li >
                   <NavLink to="/Cardiac_hypertension">
                     Hipertensión Arterial
                   </NavLink>
                 </li>
-                <li>
+                <li className="nav-item">
                   <NavLink to="/Heart_failure">Insuficiencia Cardíaca</NavLink>
                 </li>
                 <li>
@@ -77,24 +74,24 @@ const Header = () => {
                     Miocardiopatía Dilatada
                   </NavLink>
                 </li>
-                <li>
+                <li >
                   <NavLink to="/Aortic_stenosis">Estenosis aórtica</NavLink>
                 </li>
               </ul>
             )}
           </li>
 
-          <li>
+          <li className="nav-item">
             <NavLink to="/quiz" end>
               Quiz
             </NavLink>
           </li>
-          <li>
+          <li className="nav-item">
             <NavLink to="/About_us" end>
               Sobre nosotros
             </NavLink>
           </li>
-          <li>
+          <li className="nav-item">
             <button className="btnClose">
               <NavLink to="/login" end>
                 Cerrar sesión
