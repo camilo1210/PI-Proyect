@@ -1,42 +1,52 @@
 import "./HeartFailure.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import React from "react";
-import Heartfailure from "./model-3d/HeartFailureModel";
+import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
+import HeartFailureModel from "./model-3d/HeartFailureModel";
+import * as THREE from 'three';
+import HeartFailureLights from "./lights/HeartFailureLights";
+import HeartModelOne from "./model-3d/HeartModelOne";
+import React, { Suspense } from "react";
 
 const HeartFailure = () => {
   return (
-    <div className="heart-failure">
+    <div className="heart-failure-container">
       <h1>Insuficiencia cardíaca</h1>
 
+     <div className="model-container">
       <Canvas
-          className="heart-canvas"
           shadows
+          gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
           camera={{ position: [0, 2, 8], fov: 60 }}
-          style={{ width: "100%", height: "100%" }}
         >
-          <ambientLight intensity={1.8} />
-          <directionalLight
-            castShadow
-            position={[5, 10, 5]}
-            intensity={2}
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-          />
-         <pointLight position={[-5, 5, -5]} intensity={1.5} />
-          <Heartfailure position={[0, 0, 0]} scale={2.0} />
-          {/* Suelo para recibir sombra */}
-          <mesh
-            receiveShadow
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -1, 0]}
-          >
-            <planeGeometry args={[20, 20]} />
-            <shadowMaterial opacity={0.3} />
-          </mesh>
-          {/* Controles para girar la cámara */}
-          <OrbitControls enableZoom enablePan />
+          <SoftShadows
+                      frustum={3.75}
+                      size={10}
+                      samples={16}
+                      focus={1}
+                    />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight
+                      // Cambia estos valores para modificar la dirección de las sombras
+                      position={[-4, 6, 5]}
+                      intensity={1}
+                      castShadow
+                      shadow-mapSize-width={1024}
+                      shadow-mapSize-height={1024}
+                      shadow-radius={3}
+                    />
+                    <OrbitControls target={[0, 0, 0]} />
+                    <HeartFailureModel scale={2} castShadow rotation={[0, 0, 0]} />
+                    {/* Piso para recibir sombras */}
+                    <Circle
+                      rotation={[-Math.PI / 2, 0, 0]}
+                      position={[0, -3.2, 0]}
+                      args={[10, 10]}
+                      receiveShadow
+                    >
+                      <meshStandardMaterial color="grey" />
+                    </Circle>
         </Canvas>
+        </div>
 
         <div className="labels">
           <p>Corazón normal</p>
@@ -60,12 +70,28 @@ const HeartFailure = () => {
         </p>
         </div>
         
+        <div className="symptom-container">
+           <div className="model-symptom-outside">
+             <Canvas
+               shadows
+               camera={{ position: [0, 1.5, 3], fov: 50 }}
+               style={{ height: "160%", width: "120%" }}
+             >
+             <ambientLight intensity={0.4} />
+             <directionalLight position={[2, 2, 2]} intensity={1} />
+             <Suspense fallback={null}>
+               <HeartModelOne scale={0.6} position={[-0.6, 0, 0]} />
+             </Suspense>
+             <OrbitControls enableZoom={false} />
+             </Canvas>
+           </div>
+
         <div className="card-right">
         <div className="info-tittle">¿Cuales son sus síntomas?</div>
         <p>
         Los síntomas predominantes son:
         <br />
-            °Cansancio anormal por esfuerzos que antes no lo causaban.
+            °Latidos más rápidos de lo normal.
             <br />
             °Respiración fatigosa incluso al estar acostado, haciendo que duermas sentado.
             <br />
@@ -79,6 +105,7 @@ const HeartFailure = () => {
             <br />
             °Falta de aire (disnea) con el esfuerzo y mala tolerancia al ejercicio por fatiga 
         </p>
+        </div>
         </div>
 
         <div className="card-left">
