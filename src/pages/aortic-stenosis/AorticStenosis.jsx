@@ -1,26 +1,23 @@
 import "./AorticStenosis.css";
 import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import FullHeartModel from "./models-3d/AorticStenisusModel";
+import FullHeartModel from "./models-3d/fullHeart";
 import AorticLights from "./lights/AorticLights";
 import * as THREE from "three";
+import MaleHumanModel from "./models-3d/maleHuman";
 
 const AorticStenosis = () => {
   return (
     <div className="aortic-stenosis">
       <h1>Estenosis aortica</h1>
+
       <div className="model-container">
         <Canvas
           shadows
           gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
           camera={{ position: [0, 0, -0.3] }}
         >
-          <SoftShadows
-            frustum={3.75}
-            size={10}
-            samples={16}
-            focus={1}
-          />
+          <SoftShadows frustum={3.75} size={10} samples={16} focus={1} />
           <ambientLight intensity={0.5} />
           <directionalLight
             // Cambia estos valores para modificar la dirección de las sombras
@@ -44,7 +41,7 @@ const AorticStenosis = () => {
           </Circle>
         </Canvas>
       </div>
-
+      {/* =============================================================== */}
       <div className="card left">
         <div className="title">Qué es la enfermedad Estenosis aórtica?</div>
         <p>
@@ -54,7 +51,25 @@ const AorticStenosis = () => {
           para vencer la obstrucción, provocando hipertrofia ventricular y, a
           largo plazo, disfunción sistólica
         </p>
+        <p className="male-cointainer">
+          <Canvas
+            shadows
+            gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
+            style={{ height: "260px", width: "480px" }}
+          >
+            <MaleHumanModel scale={1} position={[0, 0, 0]} castShadow />
+            <Circle
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[0, -0.3, 0]}
+              args={[10, 10]}
+              receiveShadow
+            >
+              <meshStandardMaterial color="grey" />
+            </Circle>
+          </Canvas>
+        </p>
       </div>
+      {/* =============================================================== */}
       <div className="card right">
         <div className="title">Sintomas</div>
         <p>
