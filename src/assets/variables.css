@@ -55,9 +55,9 @@ h1 {
 /*============================
   CONTENEDORES GENERALES
 =============================*/
-.container, .broken-heart-container, .cardiac-hypertension-container {
+.container, .broken-heart-container, .cardiac-hypertension-container, .heart-failure-container {
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   font-family: 'Raleway', sans-serif;
   color: var(--color-rojo-oscuro);
@@ -161,7 +161,7 @@ canvas,
   CARDS
 =============================*/
 .card, .card-left, .card-right {
-  background-color: #fff7f9;
+  background-color: var(--color-arena);
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -199,3 +199,5 @@ canvas,
   color: var(--color-rojo-oscuro);
   margin-top: 0.5rem;
 }
+
+
