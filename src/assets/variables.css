@@ -1,24 +1,201 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+/*============================
+  VARIABLES GLOBALES Y ROOT
+=============================*/
 :root {
-    /* Configuración de fuentes y accesibilidad */
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-  
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  
-    /* Paleta de colores */
-    --color-claro: #FEF9E1;
-    --color-arena: #E5D0AC;
-    --color-rojo-vibrante: #A31D1D;
-    --color-rojo-oscuro: #6D2323;
-    
-    /* Esquema de colores */
-    color-scheme: light dark;
-    color: var(--color-rojo-oscuro);
-    background-color: var(--color-claro);
-  }
-  
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-claro: #FEF9E1;
+  --color-arena: #E5D0AC;
+  --color-rojo-vibrante: #A31D1D;
+  --color-rojo-oscuro: #6D2323;
+
+  color-scheme: light dark;
+  color: var(--color-rojo-oscuro);
+  background-color: var(--color-claro);
+}
+
+/*============================
+  TIPOGRAFÍA GENERAL
+=============================*/
+h1 {
+  font-size: 2.8rem;
+  color: black;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-family: 'Raleway', sans-serif;
+}
+
+.section-title, .info-title, .info-tittle, .title {
+  font-weight: bold;
+  color: red;
+  border: 2px solid red;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  max-width: 180px;
+}
+
+/* ================ 
+  HOME STYLES 
+=================== */
+
+
+/*============================
+  CONTENEDORES GENERALES
+=============================*/
+.container, .broken-heart-container, .cardiac-hypertension-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Raleway', sans-serif;
+  color: var(--color-rojo-oscuro);
+}
+
+.section {
+  margin-bottom: 80px;
+  padding: 10px;
+}
+
+/*============================
+  BURBUJAS
+=============================*/
+.bubble,
+.broken-heart-bubble,
+.cardiac-hypertension-bubble {
+  background-color: var(--color-rojo-vibrante);
+  color: var(--color-claro);
+  padding: 0.8rem 1.2rem;
+  font-weight: bold;
+  max-width: 200px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.bubble:hover {
+  transform: scale(1.05);
+}
+
+.bubble.left {
+  border-radius: 50px 0 0 50px;
+  justify-content: flex-start;
+}
+
+.bubble.right {
+  border-radius: 0 50px 50px 0;
+  justify-content: flex-end;
+}
+
+/*============================
+  SECCIONES FLEXIBLES
+=============================*/
+.section-flex,
+.broken-heart-section,
+.cardiac-hypertension-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+}
+
+.section-flex.reverse {
+  flex-direction: row-reverse;
+}
+
+/*============================
+  TEXTO
+=============================*/
+.text,
+.broken-heart-text,
+.cardiac-hypertension-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #5a3a3a;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/*============================
+  CANVAS Y MODELOS
+=============================*/
+.model-container,
+canvas,
+.heart-canvas,
+.healthyHeart-canvas {
+  width: 100%;
+  margin: 0 auto 2rem;
+  border-radius: 12px;
+  display: block;
+}
+
+canvas,
+.heart-canvas,
+.healthyHeart-canvas {
+  background-color: #ddd;
+  border: 2px dashed var(--color-arena);
+  aspect-ratio: 16/9;
+  min-height: 10vh;
+}
+
+.heart-canvas {
+  height: 1200px;
+  max-width: 800px;
+}
+
+/*============================
+  CARDS
+=============================*/
+.card, .card-left, .card-right {
+  background-color: #fff7f9;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 45%;
+  margin: 2rem;
+}
+
+.card-left {
+  align-self: flex-start;
+}
+
+.card-right {
+  align-self: flex-end;
+}
+
+/*============================
+  CLASES AUXILIARES
+=============================*/
+.left {
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.right {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 2rem;
+}
+
+.labels {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  font-size: 1.5rem;
+  color: var(--color-rojo-oscuro);
+  margin-top: 0.5rem;
+}
