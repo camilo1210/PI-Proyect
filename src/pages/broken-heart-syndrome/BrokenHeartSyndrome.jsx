@@ -1,8 +1,11 @@
+/* eslint-disable react/no-unknown-property */
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { ContactShadows, OrbitControls } from "@react-three/drei";
+import {OrbitControls } from "@react-three/drei";
 import Lights from "./lights/Lights";
 import { Model } from "./models-3d/BrokenHeartModel";
+import { Circle } from "@react-three/drei";
+import "./BrokenHeartSyndrome.css";
 
 const BrokenHeartSyndrome = () => {
   return (
@@ -12,35 +15,41 @@ const BrokenHeartSyndrome = () => {
       <div className="model-container">
         <Canvas
           shadows
-          // Selecciona el tipo de shadowMap:
-          gl={{
-            antialias: true,
-            // Para SOMBRAS SUAVES:
-            shadowMap: { type: THREE.PCFSoftShadowMap },
-            // Para SOMBRAS DURAS, reemplaza por THREE.BasicShadowMap
-          }}
+          camera={{ position: [0, 1, 8], fov: 50 }}
           style={{
             width: "100%",
             height: 300,
-            background: "transparent",
+            background: "#f0f0f0",
+            borderRadius: "12px",
+          }}
+          gl={{
+            antialias: true,
+            shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
           }}
         >
-          {/* Opción: plano invisible que solo recibe sombras */}
-          <ContactShadows
-            position={[0, -0.75, 0]} // justo debajo del modelo
-            rotation-x={-Math.PI / 2} // acostado horizontal
-            width={10}
-            height={10}
-            far={1} // distancia máxima del drop
-            resolution={512}
-            // blur = 0 → sombra dura
-            // blur > 0 → sombra más suave
-            blur={2}
-            opacity={0.5}
+          <ambientLight intensity={0.4} />
+
+          <directionalLight
+            castShadow
+            position={[2, 4, 5]}
+            intensity={1}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-radius={3}
           />
 
-          <Lights />
-          <Model scale={3} position={[0, 0, 0]} />
+          {/* Piso para proyectar sombra visible */}
+          <Circle
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0, -0.5, 0]}
+            args={[10, 10]}
+            receiveShadow
+          >
+            <meshStandardMaterial color="#f0f0f0" />
+          </Circle>
+
+          
+          <Model scale={2} position={[0, 1.5, 0]} castShadow />
 
           <OrbitControls
             enableZoom
