@@ -122,8 +122,11 @@ canvas {
 }
 
 .card-model {
-  flex: 1;
+  flex: 0 0 auto;
+  width: 300px;
+  max-width: 100%;
 }
+
 
 /* Responsividad */
 @media (max-width: 768px) {
