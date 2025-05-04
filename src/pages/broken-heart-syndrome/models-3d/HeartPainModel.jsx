@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Model(props) {
-    const { nodes, materials } = useGLTF('/heart-pain.glb')
+export function HeartPainModel(props) {
+    const { nodes, materials } = useGLTF('/models-3d/broken-heart-sysdrome/heart-pain.glb')
     return (
     <group {...props} dispose={null}>
         <mesh
