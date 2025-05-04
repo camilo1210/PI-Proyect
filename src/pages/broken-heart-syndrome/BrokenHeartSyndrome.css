@@ -121,6 +121,10 @@ canvas {
   align-self: flex-end;
 }
 
+.card-model {
+  flex: 1;
+}
+
 /* Responsividad */
 @media (max-width: 768px) {
   .broken-heart-section,

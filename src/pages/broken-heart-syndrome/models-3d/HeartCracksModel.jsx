@@ -2,8 +2,8 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Model(props) {
-    const { nodes, materials } = useGLTF('/heart-cracks.glb')
+export function HeartCracksModel(props) {
+    const { nodes, materials } = useGLTF("/models-3d/broken-heart-sysdrome/heart-cracks.glb");
     return (
         <group {...props} dispose={null}>
         <mesh
