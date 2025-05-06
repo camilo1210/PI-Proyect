@@ -14,5 +14,26 @@
   
     /* opcional: quita márgenes si quieres que empiece justo en el borde */
     margin: 0;
+
   }
-  
+
+  .aortic-stenosis{
+
+    max-width: 1064px;
+  }
+
+
+  .model-container{
+    max-width: 1004px;
+    width: 100%;
+  }
+
+.card left{
+  max-height: 100px;
+}
+/* 
+.male-cointainer{
+  height: auto;
+  max-width: 1000px;
+  max-height: 1000px;
+} */
