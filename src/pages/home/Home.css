@@ -157,8 +157,8 @@ button:hover,
   display: inline-block;
   background-color: #fff;
   color: #b10000;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  /* box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; */
 }
 
 .bubble:hover {
@@ -204,7 +204,7 @@ button:hover,
 /* ---------------------------------- */
 .card.left p,
 .card.left .title {
-  text-align: right;
+  text-align: left;
 }
 
 .card.right p,
@@ -213,41 +213,3 @@ button:hover,
 }
 
 
-/* ---------------------------------- */
-/* COMENTADOS: ANTIGUOS/INACTIVOS */
-/* ---------------------------------- */
-/*
-.diseases-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.card-title {
-  color: #5f1a13;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.card-description {
-  color: #402218;
-  margin-bottom: 1.5rem;
-}
-
-.button-tarjets {
-  display: inline-block;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.button-tarjets:hover {
-  background-color: var(--color-rojo-oscuro);
-  color: white;
-}
-*/

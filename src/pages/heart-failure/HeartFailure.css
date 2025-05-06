@@ -1,7 +1,7 @@
 @import "@/assets/variables.css"; 
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
-.info-section {
+/* .info-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -12,20 +12,89 @@
   margin-right: auto;
   border-radius: 16px;
   line-height: 1.6;
+} */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: var(--font-main);
 }
 
-  .model-symptom-outside {
-    flex-shrink: 0;
-    width: 300px;
-    height: 300px;
-    margin-right: auto; /* lo empuja al borde izquierdo */
-    margin-left: 0vh;
+.heart-failure-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.model-container {
+  margin-bottom: 3rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.section.reverse {
+  flex-direction: row-reverse;
+}
+
+.card {
+  flex: 1;
+  min-width: 280px;
+  background: var(--color-card);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.card.left,
+.card.right {
+  text-align: left;
+}
+
+.card .title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-title);
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.card-model {
+  flex: 1;
+  min-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .section,
+  .section.reverse {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .symptom-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 110%;
-    box-sizing: border-box;
+
+  .card,
+  .card-model {
+    width: 100%;
   }
+
+  .card-model canvas {
+    height: 250px !important;
+  }
+}

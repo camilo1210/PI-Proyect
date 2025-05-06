@@ -1,41 +1,57 @@
-
+/* ================================
+   IMPORTACIÓN DE FUENTES
+   ================================ */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-/*============================
-  VARIABLES GLOBALES Y ROOT
-=============================*/
+/* ================================
+      VARIABLES Y ESTILOS GLOBALES
+      ================================ */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --color-claro: #fef9e1; /* Color de fondo principal */
+  --color-arena: #e5d0ac; /* Color decorativo (arena) */
+  --color-rojo-vibrante: #a31d1d; /* Rojo vibrante para acentos */
+  --color-rojo-oscuro: #6d2323; /* Rojo oscuro para textos principales */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-fondo-principal: #fff9e5;
+  --color-card: #fef6f6;
+  --color-burbuja: #f0f0f0;
+  --color-rojo-oscuro: #b22222;
+  --color-rojo-vibrante: #e63946;
+  --color-claro: #ffffff;
 
-  --color-claro: #FEF9E1;
-  --color-arena: #E5D0AC;
-  --color-rojo-vibrante: #A31D1D;
-  --color-rojo-oscuro: #6D2323;
-
-  color-scheme: light dark;
-  color: var(--color-rojo-oscuro);
-  background-color: var(--color-claro);
+  font-family: "Raleway", "Poppins", sans-serif; /* Tipografia base */
+  background-color: var(--color-claro); /* Fondo global */
+  color: var(--color-rojo-oscuro); /* Color de texto global */
 }
 
-/*============================
-  TIPOGRAFÍA GENERAL
-=============================*/
+/* ================================
+      ESTILO GLOBAL DEL BODY
+      ================================ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff9e5;
+  color: #333;
+}
+
+/* ================================
+      TÍTULOS PRINCIPALES
+      ================================ */
 h1 {
   font-size: 2.8rem;
   color: black;
   margin-bottom: 1rem;
   text-align: left;
-  font-family: 'Raleway', sans-serif;
 }
 
-.section-title, .info-title, .info-tittle, .title {
+/* ================================
+      TÍTULOS DECORATIVOS REUTILIZABLES
+      ================================ */
+.section-title,
+.info-title,
+.title {
   font-weight: bold;
   color: red;
   border: 2px solid red;
@@ -47,50 +63,59 @@ h1 {
   max-width: 180px;
 }
 
-/* ================ 
-  HOME STYLES 
-=================== */
-
-
-/*============================
-  CONTENEDORES GENERALES
-=============================*/
-.container, .broken-heart-container, .cardiac-hypertension-container, .heart-failure-container {
+/* ================================
+      CONTENEDOR GENERAL
+      ================================ */
+.container {
   padding: 2rem;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Raleway', sans-serif;
-  color: var(--color-rojo-oscuro);
 }
 
+/* ================================
+      SECCIONES FLEXIBLES Y CON SOMBRA
+      ================================ */
 .section {
-  margin-bottom: 80px;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  background-color: #fef6f6;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
 }
 
-/*============================
-  BURBUJAS
-=============================*/
-.bubble,
-.broken-heart-bubble,
-.cardiac-hypertension-bubble {
+/* Efecto al pasar el mouse */
+.section:hover {
+  transform: translateY(-3px);
+}
+
+/* Variante que invierte el orden de los elementos */
+.section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ================================
+      BURBUJAS INFORMATIVAS
+      ================================ */
+.bubble {
   background-color: var(--color-rojo-vibrante);
   color: var(--color-claro);
   padding: 0.8rem 1.2rem;
   font-weight: bold;
-  max-width: 200px;
   font-size: 1.1rem;
   border-radius: 25px;
-  display: inline-block;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.bubble:hover {
-  transform: scale(1.05);
-}
-
+/* Variantes de alineación para burbujas */
 .bubble.left {
   border-radius: 50px 0 0 50px;
   justify-content: flex-start;
@@ -101,28 +126,15 @@ h1 {
   justify-content: flex-end;
 }
 
-/*============================
-  SECCIONES FLEXIBLES
-=============================*/
-.section-flex,
-.broken-heart-section,
-.cardiac-hypertension-section {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  gap: 1.5rem;
+/* Efecto hover para resaltar la burbuja */
+.bubble:hover {
+  transform: scale(1.05);
 }
 
-.section-flex.reverse {
-  flex-direction: row-reverse;
-}
-
-/*============================
-  TEXTO
-=============================*/
-.text,
-.broken-heart-text,
-.cardiac-hypertension-text {
+/* ================================
+      ESTILOS PARA TEXTO EN SECCIONES
+      ================================ */
+.text {
   flex: 1;
   font-size: 1rem;
   color: #5a3a3a;
@@ -130,56 +142,70 @@ h1 {
   text-align: justify;
 }
 
-/*============================
-  CANVAS Y MODELOS
-=============================*/
-.model-container,
-canvas,
-.heart-canvas,
-.healthyHeart-canvas {
+/* ================================
+      CONTENEDOR DE MODELOS 3D O CANVAS
+      ================================ */
+.canvas {
   width: 100%;
   margin: 0 auto 2rem;
   border-radius: 12px;
   display: block;
-}
-
-canvas,
-.heart-canvas,
-.healthyHeart-canvas {
   background-color: #ddd;
   border: 2px dashed var(--color-arena);
   aspect-ratio: 16/9;
   min-height: 10vh;
 }
 
-.heart-canvas {
-  height: 1200px;
-  max-width: 800px;
+.model-container {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 2rem;
 }
 
-/*============================
-  CARDS
-=============================*/
-.card, .card-left, .card-right {
-  background-color: var(--color-arena);
+/* ================================
+      TARJETAS DE INFORMACIÓN
+      ================================ */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Estilo base de tarjeta */
+.card {
+  background-color: #fef6f6;
+  border-radius: 16px;
   padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  width: 45%;
-  margin: 2rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
 }
 
-.card-left {
+/* Alineación opcional para tarjetas */
+.card.left {
   align-self: flex-start;
 }
 
-.card-right {
+.card.right {
   align-self: flex-end;
 }
 
-/*============================
-  CLASES AUXILIARES
-=============================*/
+/* Estilo del título dentro de la tarjeta */
+.card .title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--color-rojo-oscuro);
+  margin-bottom: 0.8rem;
+}
+
+.card-model {
+  flex: 0 0 auto;
+  width: 300px;
+  max-width: 100%;
+}
+
+/* ================================
+      CLASES DE POSICIONAMIENTO PERSONALIZADO
+      ================================ */
 .left {
   text-align: left;
   margin-left: 2rem;
@@ -191,6 +217,7 @@ canvas,
   margin-right: 2rem;
 }
 
+/* Etiquetas decorativas (por ejemplo: antes y después) */
 .labels {
   display: flex;
   justify-content: center;
@@ -200,4 +227,22 @@ canvas,
   margin-top: 0.5rem;
 }
 
+/* ================================
+      ESTILOS RESPONSIVOS PARA MÓVILES
+      ================================ */
+@media (max-width: 768px) {
+  .section,
+  .section.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
 
+  .bubble {
+    margin: 0 auto 1rem auto;
+  }
+
+  .card.left,
+  .card.right {
+    align-self: center;
+  }
+}
