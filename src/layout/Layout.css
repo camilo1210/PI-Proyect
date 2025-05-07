@@ -1,45 +1,6 @@
 @import "@/assets/variables.css";
 
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-  background-color: var(--color-claro);
-  color: var(--color-rojo-oscuro);
-  overflow-x: hidden;
-}
 
-/* Contenedor para el contenido central con ancho limitado */
-.layout-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100vw;
-  flex: 1;
-  padding: 2rem;
-  box-sizing: border-box;
-  transition: all 0.3s;
-}
 
-/* Contenedor fullwidth: ocupa el 100vw sin afectar el centrado */
-.fullwidth {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-}
 
-/* Ajustes de responsividad */
-@media (max-width: 768px) {
-  .layout-content {
-    padding: 1rem;
-  }
-}
 
-@media (min-width: 1024px) {
-  .layout-content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}

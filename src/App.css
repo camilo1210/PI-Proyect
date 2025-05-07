@@ -1,59 +1,11 @@
 @import "@/assets/variables.css";
 
-/* Estilo general del contenedor principal */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  text-align: center;
-  background-color: #FEF9E1;
-  /* color: var(--color-rojo-oscuro); */
-  border-radius: 12px;
-}
-
-/* Estilo para el logo */
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms, transform 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em var(--color-rojo-vibrante));
-  transform: scale(1.05);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em var(--color-arena));
-}
-
-
-
 /* Estilo para las tarjetas */
 .card {
-  padding: 2em;
+  /* padding: 2em;
   background-color: var(--color-arena);
   color: var(--color-rojo-oscuro);
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 300ms;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-}
-
-/* Estilo para enlaces de documentación */
-.read-the-docs {
-  color: var(--color-rojo-oscuro);
-  text-decoration: none;
-  transition: color 300ms;
-}
-
-.read-the-docs:hover {
-  color: var(--color-rojo-vibrante);
+  transition: transform 300ms; */
 }

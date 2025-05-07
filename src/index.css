@@ -1,75 +1,9 @@
 @import "@/assets/variables.css";
 
-/* hover significa on-mouse-over */
-
-/* Configuración de fuentes y accesibilidad */
-/* ????????*/
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Estilo para enlaces */
-a {
-  font-weight: 500;
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
 
 /* Estilo para el cuerpo de la página */
-body {
-  margin-top: 0;
-  display: flex;
-  justify-content: column;
-  align-items: stretch;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: black;
-  color: black;
-  transition: background-color 0.3s, color 0.3s;
-}
 
-/* Estilo para encabezados */
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: black;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
 
-/* Estilo para botones */
-/* ESTO ESTÁ MAL PORQUE NO ESTÁ AFECTANDO A NINGÚN BOTÓN */
-button {
-  border-radius: 12px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.5em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--color-arena);
-  color: var(--color-rojo-oscuro);
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-/* Hover de los botones en general*/
-button:hover {
-  border-color: white;
-  background-color: var(--color-rojo-oscuro);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-  outline-offset: 2px;
-}
 
 
