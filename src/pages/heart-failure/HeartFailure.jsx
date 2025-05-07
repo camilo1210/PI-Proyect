@@ -1,16 +1,16 @@
-import "./HeartFailure.css";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
 import HeartFailureModel from "./model-3d/HeartFailureModel";
-import * as THREE from "three";
-import HeartFailureLights from "./lights/HeartFailureLights";
 import HeartModelOne from "./model-3d/HeartModelOne";
-import React, { Suspense } from "react";
+
+import React from "react";
+import "./HeartFailure.css";
 
 const HeartFailure = () => {
   return (
     <div className="heart-failure-container">
-      <h1 className="heart-failure-tittle">Insuficiencia cardíaca</h1>
+      <h1 className="heart-failure-title">Insuficiencia cardíaca</h1>
 
       <div className="model-container">
         <Canvas
@@ -38,7 +38,7 @@ const HeartFailure = () => {
             args={[10, 10]}
             receiveShadow
           >
-            <meshStandardMaterial color="grey" />
+            <meshStandardMaterial color="var(--canvas-bg)" />
           </Circle>
         </Canvas>
       </div>
@@ -49,7 +49,7 @@ const HeartFailure = () => {
       </div>
 
       <div className="cards-container">
-        <div className="section">
+      <div className="section">
           <div className="card-left">
             <div className="title">¿Qué es?</div>
             <p>
@@ -67,6 +67,7 @@ const HeartFailure = () => {
               mejorar rápidamente.
             </p>
           </div>
+        </div>  
 
           <div className="section reverse">
             <div className="card-right">
@@ -93,6 +94,7 @@ const HeartFailure = () => {
                 ejercicio por fatiga
               </p>
             </div>
+
             <div className="card-model">
               <Canvas
                 shadows
@@ -100,7 +102,7 @@ const HeartFailure = () => {
                 style={{
                   width: "100%",
                   height: "300px",
-                  background: "#f0f0f0",
+                  background: "var(--canvas-bg)",
                   borderRadius: "12px",
                 }}
                 gl={{
@@ -117,19 +119,18 @@ const HeartFailure = () => {
                 {/* Piso para proyectar sombra visible */}
                 <Circle
                   rotation={[-Math.PI / 2, 0, 0]}
-                  position={[0, -0.5, 0]}
+                  position={[0, -3, 0]}
                   args={[10, 10]}
                   receiveShadow
                 >
-                  <meshStandardMaterial color="#f0f0f0" />
+                  <meshStandardMaterial color="grey" />
                 </Circle>
                 <HeartModelOne
-                  scale={8}
-                  position={[0, 1.5, 0]}
+                  scale={2}
+                  position={[-2, 0, 0]}
                   castShadow
-                  rotation={[0, 4, 0]}
                 />
-                <HeartFailureLights />
+                
                 <OrbitControls
                   autoRotate
                   enableZoom
@@ -145,6 +146,7 @@ const HeartFailure = () => {
               <div className="title">¿Qué lo causa?</div>
               <p>Proximamente...</p>
             </div>
+          </div>
 
             <div className="section reverse">
               <div className="card-right">
@@ -152,11 +154,10 @@ const HeartFailure = () => {
                 <p>Proximamente...</p>
               </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
   );
 };
+
 
 export default HeartFailure;
