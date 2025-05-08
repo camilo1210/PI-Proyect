@@ -3,12 +3,11 @@
 /* Estilo general del footer */
 footer {
   background-color: var(--color-rojo-oscuro);
-
   padding: 1.5rem 2rem;
   text-align: left;
   /* Puedes usar left, center o lo que prefieras */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-top: 4px solid var(--color-rojo-vibrante);
+  border-top: 4px solid var(--color-rojo-oscuro);
   font-family: raleway, sans-serif; /* Cambia a tu tipografía */
   /* Ajusta a tu tipografía */
 }
@@ -27,7 +26,7 @@ footer {
   justify-content: center; /* Centra horizontalmente la lista */
   align-items: center;
   margin-bottom: 1rem;
-  background-color: var(--color-rojo-vibrante);
+  background-color: var(--color-rojo-oscuro);
   color: white;
   padding: 1.5rem 2rem;
   text-align: left;
@@ -58,7 +57,7 @@ footer {
 footer hr {
   border: none;
   height: 1px;
-  background-color: var(--color-rojo-vibrante);
+  background-color: var(--color-rojo-oscuro);
   width: 80%;
   margin: 0 auto;
 }
@@ -72,7 +71,7 @@ footer hr {
   align-items: center;
   margin-top: 1rem;
   flex-wrap: wrap; /* Para que en pantallas pequeñas se acomode abajo */
-  background-color: var(--color-rojo-vibrante);
+  background-color: var(--color-rojo-oscuro);
   color: white;
   padding: 1.5rem 2rem;
   text-align: left;
@@ -90,7 +89,7 @@ footer hr {
   display: flex;
   gap: 1rem;
   font-size: 1.2rem; /* Ajusta tamaño si usas react-icons */
-  background-color: var(--color-rojo-vibrante);
+  background-color: var(--color-rojo-oscuro);
   color: white;
   padding: 1.5rem 2rem;
   text-align: left;
@@ -122,7 +121,7 @@ footer hr {
 /* Modo oscuro */
 @media (prefers-color-scheme: dark) {
   footer {
-    background-color: var(--color-rojo-vibrante);
+    background-color: var(--color-rojo-oscuro);
     color: white;
   }
 

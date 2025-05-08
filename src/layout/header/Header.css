@@ -1,8 +1,11 @@
 @import "@/assets/variables.css";
 
 header {
-  /* Esté header afecta a todos los div que sean header */
-    background-color: #941c1c; 
+    /* Esté header afecta a todos los div que sean header */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    background-color: var(--color-rojo-oscuro); 
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,7 +16,7 @@ header {
 
 
   .logo-container {
-    background-color: #941c1c; /* Fondo rojo oscuro */
+    background-color: var(--color-rojo-oscuro); /* Fondo rojo oscuro */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -95,9 +98,7 @@ header {
     flex-direction: column;
     list-style: none;
   }
-  
-
-  
+   
   .sub-menu li {
     padding: 0;
     margin: 0;
