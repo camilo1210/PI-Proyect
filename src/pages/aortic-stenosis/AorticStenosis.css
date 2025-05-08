@@ -4,7 +4,7 @@
 
 .aortic-stenosis h1 {
     /* alinea el texto a la izquierda */
-    text-align: left;
+    text-align: center;
   
     /* color negro puro */
     color: #000;
@@ -31,9 +31,3 @@
 .card left{
   max-height: 100px;
 }
-/* 
-.male-cointainer{
-  height: auto;
-  max-width: 1000px;
-  max-height: 1000px;
-} */
