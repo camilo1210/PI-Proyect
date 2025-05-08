@@ -2,17 +2,24 @@ import "./DilatedCardiomyopathy.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import HeartDilatedModel from "./models-3d/DilatedCardiomiopathyModel";
-import Staging from "./staging/Staging";
+import HeartDilatedModel1 from "./models-3d/DilatedCardiomiopathyModel1";
+import HeartDilatedModel2 from "./models-3d/DilatedCardiomioPathyModel2";
+import HeartDilatedModel3 from "./models-3d/DilatedCardiomiopathyModel3";
 import Lights from "../dilated-cardiomyopathy/lights/Lights";
 import { Circle } from "@react-three/drei";
+import * as THREE from "three";
 
 const DilatedCardiomyopathy = () => {
   return (
-    <div className="dilated-cardiomyopathy">
-      <h1>Miocardiopatía Dilatada</h1>
+    <div className="container">
+      <h1 className="dilated-cardiomiopathy-title">Miocardiopatia Dilatada</h1>
 
       <div className="model-container">
-        <Canvas shadows camera={{ position: [0.3, 0, -0.7] }}>
+        <Canvas shadows camera={{ position: [0.3, 0, -0.7] }}
+          style={{
+            width: "100%",
+            height: 300,
+          }}>
           <OrbitControls target={[0, 0, 0]} />
           <HeartDilatedModel scale={50} />
           <Lights />
@@ -38,47 +45,82 @@ const DilatedCardiomyopathy = () => {
         </Canvas>
       </div>
 
-      <div className="card left">
-        <div className="title">¿QUE ES?</div>
-        <p>
-          La miocardiopatía dilatada (MCD) es una enfermedad del músculo
-          cardíaco en la cual el ventrículo izquierdo, que es la principal
-          cámara de bombeo del corazón, se agranda (dilata) y pierde fuerza para
-          contraerse y bombear sangre de forma eficiente al resto del cuerpo.
-          Con el tiempo, esto puede afectar a otras cámaras del corazón y causar
-          insuficiencia cardíaca.
-        </p>
-      </div>
+      {/* Secciones informativas */}
+      <div className="cards-container">
 
-      <div className="card right">
-        <div className="title">¿CUALES SON SUS SINTOMAS?</div>
-        <p>
-          La causa puede variar, desde enfermedades del corazón hasta
-          condiciones crónicas como la hipertensión. Un diagnóstico adecuado es
-          esencial.
-        </p>
-      </div>
+        {/* ¿Qué es? */}
+        <Section
+          title="¿Qué es?"
+          text="La miocardiopatía dilatada (MCD) es una enfermedad del corazón en la cual el músculo cardíaco se debilita y se agranda, lo que dificulta su capacidad para bombear sangre de manera eficiente. Esta condición puede afectar a cualquier parte del corazón, aunque generalmente involucra los ventrículos, las cavidades principales que bombean sangre al resto del cuerpo."
+          Model={HeartDilatedModel1}
+        />
 
-      <div className="card left">
-        <div className="title">¿Cuáles son?</div>
-        <p>
-          Los síntomas más comunes incluyen dificultad para respirar, fatiga,
-          hinchazón en las piernas, y latidos cardíacos irregulares. Estos
-          signos suelen empeorar con el tiempo si no se recibe tratamiento
-          adecuado.
-        </p>
-      </div>
+        {/* ¿Cuáles son sus síntomas? */}
+        <Section
+          title="¿Cuáles son sus síntomas?"
+          text="Los síntomas de la miocardiopatía dilatada incluyen fatiga, dificultad para respirar (especialmente al hacer ejercicio o acostarse), hinchazón en piernas o abdomen, palpitaciones, mareos y tos persistente, especialmente al estar acostado. Estos síntomas indican que el corazón no está bombeando sangre de manera eficiente."
+          Model={HeartDilatedModel2}
+          //arreglar modelo no escala bien
+          camera={{ position: [-1000, 1, 1], fov: 45 }}
+          scale={[-1,-1,-1]}
+          modelRotation={[Math.PI / 2, 0, 0]}
+          reverse
+        />
 
-      <div className="card right">
-        <div className="title">¿Cuál es la causa?</div>
-        <p>
-          La causa puede variar, desde enfermedades del corazón hasta
-          condiciones crónicas como la hipertensión. Un diagnóstico adecuado es
-          esencial.
-        </p>
+        {/* ¿Qué lo causa? */}
+        <Section
+          title="¿Qué lo causa?"
+          text="La miocardiopatía dilatada puede ser causada por factores genéticos, infecciones virales que afectan el corazón (miocarditis), consumo excesivo de alcohol, trastornos metabólicos como diabetes e hipertensión, enfermedades autoinmunes que atacan al corazón y ciertos medicamentos, como los de quimioterapia, que dañan el músculo cardíaco."
+          Model={HeartDilatedModel3}
+        />
+
+        {/* ¿Cómo tratarlo? */}
+        <Section
+          title="¿Cómo tratarlo?"
+          text="El tratamiento de la miocardiopatía dilatada incluye medicamentos como inhibidores de la ECA y betabloqueadores, dispositivos como marcapasos, y cambios en el estilo de vida, como dieta saludable y evitar alcohol y tabaco. En casos graves, se puede considerar un trasplante cardíaco."
+          Model={HeartDilatedModel1}
+
+          reverse
+        />
       </div>
     </div>
   );
 };
+
+// Componente de sección reutilizable
+const Section = ({ title, text, Model, reverse }) => (
+  <div className={`section ${reverse ? "reverse" : ""}`}>
+    <div className={`card ${reverse ? "right" : "left"}`}>
+      <div className="title">{title}</div>
+      <p>{text}</p>
+    </div>
+    <div className="card-model">
+      <Canvas
+        shadows
+        camera={{ position: [20, 10, 20], fov: 50 }}
+        style={{
+          width: "100%",
+          height: "300px",
+          background: "var(--canvas-bg)",
+          borderRadius: "var(--border-radius)",
+        }}
+        >
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[2, 4, 5]}  intensity={1} />
+        <Circle
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -0.5, 0]}
+          args={[10, 10]}
+          receiveShadow
+        >
+          <meshStandardMaterial/>
+        </Circle>
+        <Model scale={8} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
+        <Lights />
+        <OrbitControls autoRotate enableZoom minDistance={0} maxDistance={10} />
+      </Canvas>
+    </div>
+  </div>
+);
 
 export default DilatedCardiomyopathy;
