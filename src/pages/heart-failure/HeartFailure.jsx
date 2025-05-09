@@ -18,7 +18,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
       audioRef.current.pause(); // Detiene el audio anterior
       audioRef.current.currentTime = 0; // Reestablece el tiempo del audio anterior
     }
-    const newAudio = new Audio("/public/sounds/heart-beating-normal.mp3"); // Ruta al archivo de latido normal
+    const newAudio = new Audio("/sounds/heart-beating-normal.mp3"); // Ruta al archivo de latido normal
     newAudio.play();
     setAudio(newAudio); // Guardamos la referencia al audio
     audioRef.current = newAudio;
@@ -35,7 +35,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
       audioRef.current.pause(); // Detiene el audio anterior
       audioRef.current.currentTime = 0; // Reestablece el tiempo del audio anterior
     }
-    const newAudio = new Audio("/public/sounds/heart-beating-fast.mp3"); // Ruta al archivo de latido rápido
+    const newAudio = new Audio("/sounds/heart-beating-fast.mp3"); // Ruta al archivo de latido rápido
     newAudio.play();
     setAudio(newAudio); // Guardamos la referencia al audio
     audioRef.current = newAudio;
