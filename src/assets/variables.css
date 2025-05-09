@@ -142,6 +142,7 @@ h1 {
   height: 300px;
   margin-bottom: 2rem;
 }
+
 .cards-container {
   display: flex;
   flex-direction: column;

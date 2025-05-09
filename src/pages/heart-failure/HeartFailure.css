@@ -8,19 +8,14 @@
   color: var(--color-primary);
 }
 
-@media (max-width: 768px) {
-  .section,
-  .section.reverse {
-    flex-direction: column;
-    align-items: stretch;
-  }
+.card-right p {
+  text-align: left;
+}
 
-  .card,
-  .card-model {
-    width: 100%;
-  }
+.card-left p {
+  text-align: left;
+}
 
-  .card-model canvas {
-    height: 250px !important;
-  }
+.labelsTwo {
+  text-align: center;
 }

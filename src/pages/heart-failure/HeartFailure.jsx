@@ -3,11 +3,49 @@ import { Canvas } from "@react-three/fiber";
 import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
 import HeartFailureModel from "./model-3d/HeartFailureModel";
 import HeartModelOne from "./model-3d/HeartModelOne";
-
-import React from "react";
+import Staging from "./staging/Staging";
+import React, {useState, useRef} from "react";
 import "./HeartFailure.css";
 
+
 const HeartFailure = () => {
+const [audio, setAudio] = useState(null); // Estado para almacenar el audio actual
+  const audioRef = useRef(null); // Referencia para el audio, así podemos detenerlo
+
+  // Función para reproducir el sonido de latido normal
+  const heartBeatingNormal = () => {
+    if (audioRef.current) {
+      audioRef.current.pause(); // Detiene el audio anterior
+      audioRef.current.currentTime = 0; // Reestablece el tiempo del audio anterior
+    }
+    const newAudio = new Audio("/public/sounds/heart-beating-normal.mp3"); // Ruta al archivo de latido normal
+    newAudio.play();
+    setAudio(newAudio); // Guardamos la referencia al audio
+    audioRef.current = newAudio;
+
+    // Detener el audio después de 10 segundos
+    setTimeout(() => {
+      newAudio.pause();
+    }, 10000);
+  };
+
+  // Función para reproducir el sonido de latido rápido
+  const heartBeatingFast = () => {
+    if (audioRef.current) {
+      audioRef.current.pause(); // Detiene el audio anterior
+      audioRef.current.currentTime = 0; // Reestablece el tiempo del audio anterior
+    }
+    const newAudio = new Audio("/public/sounds/heart-beating-fast.mp3"); // Ruta al archivo de latido rápido
+    newAudio.play();
+    setAudio(newAudio); // Guardamos la referencia al audio
+    audioRef.current = newAudio;
+
+    // Detener el audio después de 10 segundos
+    setTimeout(() => {
+      newAudio.pause();
+    }, 10000);
+  };
+
   return (
     <div className="heart-failure-container">
       <h1 className="heart-failure-title">Insuficiencia cardíaca</h1>
@@ -44,9 +82,17 @@ const HeartFailure = () => {
       </div>
 
       <div className="labels">
-        <p>Corazón normal</p>
-        <p>Corazón con insuficiencia</p>
+        <p onClick={heartBeatingNormal} style={{ color: "var(--color-rojo-vibrante)", cursor: "pointer" }}>
+          Corazón normal
+        </p>
+        <p onClick={heartBeatingFast} style={{ color: "var(--color-rojo-vibrante)", cursor: "pointer" }}>
+          Corazón con insuficiencia
+        </p>
       </div>
+
+      <div className="labelsTwo">
+          <p>Haz Click sobre los textos de arriba....</p>
+        </div>
 
       <div className="cards-container">
       <div className="section">
@@ -59,9 +105,15 @@ const HeartFailure = () => {
               suficiente oxígeno y nutrientes al resto de los órganos. Puede
               manifestarse a cualquier edad, aunque la probabilidad de sufrirla
               aumenta con los años. Según su forma de manifestarse, se clasifica
-              en: Insuficiencia Cardíaca Crónica: La enfermedad se va
+              en:
+              <br />
+              <br />
+              °Insuficiencia Cardíaca Crónica: La enfermedad se va
               manifestando gradualmente, pero los síntomas se intensifican con
-              el paso del tiempo. Es la más frecuente. Insuficiencia Cardíaca
+              el paso del tiempo. Es la más frecuente. 
+              <br />
+              <br />
+              °Insuficiencia Cardíaca
               Aguda: Los síntomas aparecen de forma repentina y son graves desde
               el principio. Con un tratamiento adecuado, los pacientes pueden
               mejorar rápidamente.
@@ -73,7 +125,8 @@ const HeartFailure = () => {
             <div className="card-right">
               <div className="title">¿Cuales son sus síntomas?</div>
               <p>
-                Los síntomas predominantes son:
+                Los síntomas predominantes de la insuficiencia cardíaca son:
+                <br />
                 <br />
                 °Latidos más rápidos de lo normal.
                 <br />
@@ -102,19 +155,21 @@ const HeartFailure = () => {
                 style={{
                   width: "100%",
                   height: "300px",
-                  background: "var(--canvas-bg)",
                   borderRadius: "12px",
+                  background: "transparent",
                 }}
                 gl={{
+                  alpha: true,
                   antialias: true,
                   shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
                 }}
               >
+                <Staging />
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   castShadow
                   position={[2, 4, 5]}
-                  intensity={1}
+                  intensity={2}
                 />
                 {/* Piso para proyectar sombra visible */}
                 <Circle
@@ -130,7 +185,6 @@ const HeartFailure = () => {
                   position={[-2, 0, 0]}
                   castShadow
                 />
-                
                 <OrbitControls
                   autoRotate
                   enableZoom
