@@ -5,6 +5,8 @@ import HeartDilatedModel from "./models-3d/DilatedCardiomiopathyModel";
 import HeartDilatedModel1 from "./models-3d/DilatedCardiomiopathyModel1";
 import HeartDilatedModel2 from "./models-3d/DilatedCardiomioPathyModel2";
 import HeartDilatedModel3 from "./models-3d/DilatedCardiomiopathyModel3";
+import ModelDizzy from "./models-3d/ManDizzyAnimation";
+import Button from "./buttom/Button"
 import Lights from "../dilated-cardiomyopathy/lights/Lights";
 import { Circle } from "@react-three/drei";
 import * as THREE from "three";
@@ -50,21 +52,21 @@ const DilatedCardiomyopathy = () => {
 
         {/* ¿Qué es? */}
         <Section
+        
           title="¿Qué es?"
           text="La miocardiopatía dilatada (MCD) es una enfermedad del corazón en la cual el músculo cardíaco se debilita y se agranda, lo que dificulta su capacidad para bombear sangre de manera eficiente. Esta condición puede afectar a cualquier parte del corazón, aunque generalmente involucra los ventrículos, las cavidades principales que bombean sangre al resto del cuerpo."
-          Model={HeartDilatedModel1}
+          Model={HeartDilatedModel2}
+          Circle
         />
 
         {/* ¿Cuáles son sus síntomas? */}
         <Section
           title="¿Cuáles son sus síntomas?"
           text="Los síntomas de la miocardiopatía dilatada incluyen fatiga, dificultad para respirar (especialmente al hacer ejercicio o acostarse), hinchazón en piernas o abdomen, palpitaciones, mareos y tos persistente, especialmente al estar acostado. Estos síntomas indican que el corazón no está bombeando sangre de manera eficiente."
-          Model={HeartDilatedModel2}
-          //arreglar modelo no escala bien
-          camera={{ position: [-1000, 1, 1], fov: 45 }}
-          scale={[-1,-1,-1]}
-          modelRotation={[Math.PI / 2, 0, 0]}
+          Model={ModelDizzy}
+          Button={Button}
           reverse
+          showButton={true}
         />
 
         {/* ¿Qué lo causa? */}
@@ -88,11 +90,12 @@ const DilatedCardiomyopathy = () => {
 };
 
 // Componente de sección reutilizable
-const Section = ({ title, text, Model, reverse }) => (
+const Section = ({ title, text, Model, reverse, Button, showButton = false }) => (
   <div className={`section ${reverse ? "reverse" : ""}`}>
     <div className={`card ${reverse ? "right" : "left"}`}>
       <div className="title">{title}</div>
       <p>{text}</p>
+      {showButton && <Button />}
     </div>
     <div className="card-model">
       <Canvas
@@ -104,20 +107,20 @@ const Section = ({ title, text, Model, reverse }) => (
           background: "var(--canvas-bg)",
           borderRadius: "var(--border-radius)",
         }}
-        >
+      >
         <ambientLight intensity={0.4} />
-        <directionalLight position={[2, 4, 5]}  intensity={1} />
+        <directionalLight position={[2, 4, 5]} intensity={1} />
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, -0.5, 0]}
           args={[10, 10]}
           receiveShadow
         >
-          <meshStandardMaterial/>
+          <meshStandardMaterial />
         </Circle>
-        <Model scale={8} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
+        <Model scale={10} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
         <Lights />
-        <OrbitControls autoRotate enableZoom minDistance={0} maxDistance={10} />
+        <OrbitControls enableZoom minDistance={0} maxDistance={10} />
       </Canvas>
     </div>
   </div>

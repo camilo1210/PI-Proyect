@@ -92,6 +92,28 @@
   min-width: 280px;
 }
 
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.symptoms-button,
+.reset-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.symptoms-button:hover,
+.reset-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
 @media (max-width: 768px) {
   .section,
   .section.reverse {

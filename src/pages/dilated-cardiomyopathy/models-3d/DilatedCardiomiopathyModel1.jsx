@@ -37,7 +37,7 @@ const HeartDilatedModel1 = () => {
   });
   */
   return (
-    <group ref={meshRef} castShadow>
+    <group ref={meshRef} castShadow scale={5} position={[0,1,0]}>
       <primitive object={HeartC.scene} />
     </group>
   );
