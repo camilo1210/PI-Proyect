@@ -48,12 +48,12 @@ const CardiacHypertension = () => {
             </div>
 
             <div className="cards-container">
-                <div className="card left">
+                <div className="card-center">
                     <div className="title">¿Qué es?</div>
                     <p>La hipertensión cardíaca se refiere al engrosamiento del músculo del corazón, especialmente del ventrículo izquierdo, como respuesta al esfuerzo adicional que el corazón debe hacer para bombear sangre contra una presión arterial elevada.</p>
                 </div>
 
-                <div className="card right">
+                <div className="card-right-1">
                     <div className="title">¿Cuáles son sus sintomas?</div>
                     <p>Entre los sintomas mas comunes se encuentran: </p>
                     <p>1. Dificultad para respirar</p>
@@ -63,7 +63,7 @@ const CardiacHypertension = () => {
                     <p>5. Mareos o desmayos</p>
                 </div>
 
-                <div className="card left">
+                <div className="card-left">
                     <div className="title">¿Qué lo causa?</div>
                     <p>Los factores que lo provocan son: </p>
                     <p>1. Genetica</p>
@@ -76,7 +76,7 @@ const CardiacHypertension = () => {
                     <p>8. Falta de sueño o mala calidad del sueño</p>
                 </div>
 
-                <div className="card right">
+                <div className="card-right-2">
                     <div className="title">¿Cómo tratarlo?</div>
                     <p>Existe un tratamiento en el cual se usan medicamentos, se realiza una dieta y se hace ejercicio, pero lo mejor que puedes hacer, es hacer un cambio a tu estilo devida, en el cual consumas menos sal, tengas mas actividad fisica, dejes de consumir tabaco, intentar estar con menos estres y en general que cuides mas de tu salud </p>
                 </div>
