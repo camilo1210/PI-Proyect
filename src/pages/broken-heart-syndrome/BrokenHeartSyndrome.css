@@ -23,8 +23,6 @@ h1.broken-heart-title {
 
 /* Contenedor de todas las secciones de tarjetas */
 .cards-container {
-  display: flex;
-  flex-direction: column;
   gap: 3rem;
 }
 

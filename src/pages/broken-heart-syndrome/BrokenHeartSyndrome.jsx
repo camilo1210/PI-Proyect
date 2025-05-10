@@ -1,22 +1,29 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
+
+// Importación de librerías y componentes necesarios
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Circle, OrbitControls } from "@react-three/drei";
+
+// Importación de modelos 3D personalizados
 import { BrokenHeartModel } from "./models-3d/BrokenHeartModel";
 import { HeartCracksModel } from "./models-3d/HeartCracksModel";
 import { HeartEGCModel } from "./models-3d/HeartEGCModel";
 import { HeartPainModel } from "./models-3d/HeartPainModel";
 import { ManModel } from "./models-3d/ManModel";
+
+// Importación de luces y estilos
 import Lights from "./lights/Lights";
 import "./BrokenHeartSyndrome.css";
 
+// Componente principal de la sección del Síndrome del Corazón Roto
 const BrokenHeartSyndrome = () => {
   return (
     <div className="container">
       <h1 className="broken-heart-title">Síndrome del corazón roto</h1>
 
-      {/* Modelo central */}
+      {/* Modelo principal central animado (corazón roto) */}
       <div className="model-container">
         <Canvas
           shadows
@@ -32,8 +39,11 @@ const BrokenHeartSyndrome = () => {
             shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
           }}
         >
+          {/* Luz ambiental y direccional */}
           <ambientLight intensity={0.4} />
           <directionalLight position={[2, 4, 5]} castShadow intensity={1} />
+
+          {/* Suelo (círculo) */}
           <Circle
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -0.5, 0]}
@@ -42,7 +52,11 @@ const BrokenHeartSyndrome = () => {
           >
             <meshStandardMaterial color="var(--canvas-bg)" />
           </Circle>
+
+          {/* Modelo 3D del corazón roto */}
           <BrokenHeartModel scale={2} position={[0, 1.5, 0]} castShadow />
+
+          {/* Controles de cámara: permite rotar y hacer zoom */}
           <OrbitControls
             enableZoom
             autoRotate
@@ -53,9 +67,9 @@ const BrokenHeartSyndrome = () => {
         </Canvas>
       </div>
 
-      {/* Secciones informativas */}
+      {/* Contenedor de secciones informativas */}
       <div className="cards-container">
-        {/* ¿Qué es? */}
+        {/* Sección 1: ¿Qué es? */}
         <Section
           title="¿Qué es?"
           text="El síndrome del corazón roto es una afección cardíaca que a menudo
@@ -66,7 +80,7 @@ const BrokenHeartSyndrome = () => {
           Model={HeartCracksModel}
         />
 
-        {/* ¿Cuáles son sus síntomas? */}
+        {/* Sección 2: Síntomas */}
         <Section
           title="¿Cuáles son sus síntomas?"
           text={
@@ -84,59 +98,52 @@ const BrokenHeartSyndrome = () => {
               </ul>
             </>
           }
-              
           Model={HeartPainModel}
           reverse
         />
 
-        {/* ¿Qué lo causa? */}
+        {/* Sección 3: Causas */}
         <Section
           title="¿Qué lo causa?"
           text={
             <>
               <p>
-              Se cree que un aumento repentino de hormonas del estrés, como la
-              adrenalina, puede dañar temporalmente el corazón. Los
-              desencadenantes incluyen:
+                Se cree que un aumento repentino de hormonas del estrés, como la
+                adrenalina, puede dañar temporalmente el corazón. Los
+                desencadenantes incluyen:
               </p>
               <p>1. Muerte de un ser querido.</p>
               <p>2. Diagnóstico grave.</p>
               <p>3. Ruptura o separación.</p>
               <p>4. Estrés emocional o físico intenso.</p>
-              
             </>
           }
           Model={ManModel}
         />
 
-        {/* ¿Cómo tratarlo? */}
+        {/* Sección 4: Tratamiento */}
         <Section
           title="¿Cómo tratarlo?"
           text={
             <>
               <p>
-              El tratamiento depende de la gravedad de los síntomas y es similar
-              al de un ataque cardíaco. Puede incluir:
+                El tratamiento depende de la gravedad de los síntomas y es similar
+                al de un ataque cardíaco. Puede incluir:
               </p>
-              
               <ul>
                 <li>Analgésicos para aliviar el dolor.</li>
                 <li>Betabloqueadores para reducir la frecuencia cardíaca.</li>
                 <li>Aspirina para mejorar la circulación y prevenir coágulos.</li>
-                <li>Inhibidores de la ECA o bloqueadores de los receptores de
-                angiotensina para reducir la presión arterial.</li>
+                <li>Inhibidores de la ECA o bloqueadores de los receptores de angiotensina para reducir la presión arterial.</li>
                 <li>Diuréticos para disminuir la acumulación de líquidos.</li>
-                <li>Fármacos inotrópicos para mejorar la contractilidad en casos
-                graves.</li>
-                <li>Dispositivos de asistencia ventricular en casos de shock
-                cardiogénico.</li>
+                <li>Fármacos inotrópicos para mejorar la contractilidad en casos graves.</li>
+                <li>Dispositivos de asistencia ventricular en casos de shock cardiogénico.</li>
               </ul>
-
               <p>
-              Recuperación: La mayoría de las personas se recuperan por completo
-              en aproximadamente un mes, realizando un ecocardiograma para
-              asegurar el buen funcionamiento del corazón. A veces, el síndrome
-              puede reaparecer después del tratamiento.
+                Recuperación: La mayoría de las personas se recuperan por completo
+                en aproximadamente un mes, realizando un ecocardiograma para
+                asegurar el buen funcionamiento del corazón. A veces, el síndrome
+                puede reaparecer después del tratamiento.
               </p>
             </>
           }
@@ -148,13 +155,16 @@ const BrokenHeartSyndrome = () => {
   );
 };
 
-// Componente de sección reutilizable
+// Componente reutilizable de sección con texto y modelo 3D
 const Section = ({ title, text, Model, reverse }) => (
   <div className={`section ${reverse ? "reverse" : ""}`}>
+    {/* Tarjeta de texto */}
     <div className={`card ${reverse ? "right" : "left"}`}>
       <div className="title">{title}</div>
       <p>{text}</p>
     </div>
+
+    {/* Tarjeta con modelo 3D */}
     <div className="card-model">
       <Canvas
         shadows
@@ -170,6 +180,7 @@ const Section = ({ title, text, Model, reverse }) => (
           shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
         }}
       >
+        {/* Suelo circular para sombra */}
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, -0.5, 0]}
@@ -178,12 +189,16 @@ const Section = ({ title, text, Model, reverse }) => (
         >
           <meshStandardMaterial color="var(--canvas-bg)" />
         </Circle>
+
+        {/* Modelo 3D correspondiente a la sección */}
         <Model
           scale={2.5}
           position={[0, 2, 0]}
           castShadow
           rotation={[0, 4, 0]}
         />
+
+        {/* Luces personalizadas y controles */}
         <Lights />
         <OrbitControls autoRotate enableZoom minDistance={2} maxDistance={10} />
       </Canvas>
