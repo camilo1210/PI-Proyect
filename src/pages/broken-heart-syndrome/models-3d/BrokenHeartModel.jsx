@@ -6,6 +6,7 @@ import { useFrame } from '@react-three/fiber';
 export function BrokenHeartModel(props) {
   const { nodes, materials } = useGLTF('/models-3d/broken-heart-sysdrome/broken-heart.glb');
   const meshRef = useRef();
+  
 
   // Función para simular la animación del latido (pum pum ___)
   const heartbeat = (time) => {

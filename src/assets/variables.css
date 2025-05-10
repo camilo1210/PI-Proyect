@@ -14,6 +14,10 @@
   --color-rojo-oscuro: #6d2323; /* Rojo oscuro para textos principales */
   --color-card: #fef6f6;
   --color-burbuja: #f0f0f0;
+  --canvas-bg: #222;
+  --border-radius: 8px;
+  --shadow-soft: 0 5px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
 
   /* Solo vamos a usar Raleway. no? */
   font-family: "Raleway", "Poppins", sans-serif; /* Tipografia base */
