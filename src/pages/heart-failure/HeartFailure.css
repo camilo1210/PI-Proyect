@@ -1,0 +1,21 @@
+@import "@/assets/variables.css"; 
+
+/* Título exclusivo de esta sección */
+.heart-failure-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.card-right p {
+  text-align: left;
+}
+
+.card-left p {
+  text-align: left;
+}
+
+.labelsTwo {
+  text-align: center;
+}

@@ -1,97 +1,9 @@
 @import "@/assets/variables.css";
 
 
-
-/* Configuración de fuentes y accesibilidad */
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: var(--color-rojo-oscuro);
-  background-color: var(--color-claro);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Estilo para enlaces */
-a {
-  font-weight: 500;
-  color: var(--color-rojo-vibrante);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-a:hover {
-  color: var(--color-rojo-oscuro);
-  text-decoration: underline;
-}
-
 /* Estilo para el cuerpo de la página */
-body {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: var(--color-claro);
-  color: var(--color-rojo-oscuro);
-  transition: background-color 0.3s, color 0.3s;
-}
 
-/* Estilo para encabezados */
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: var(--color-rojo-oscuro);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
 
-/* Estilo para botones */
-button {
-  border-radius: 12px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.5em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--color-arena);
-  color: var(--color-rojo-oscuro);
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-button:hover {
-  border-color: var(--color-rojo-vibrante);
-  background-color: var(--color-rojo-vibrante);
-  color: var(--color-claro);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-  outline-offset: 2px;
-}
 
-/* Modo claro */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--color-rojo-oscuro);
-    background-color: var(--color-claro);
-  }
-
-  a:hover {
-    color: var(--color-rojo-vibrante);
-  }
-
-  button {
-    background-color: var(--color-arena);
-  }
-}

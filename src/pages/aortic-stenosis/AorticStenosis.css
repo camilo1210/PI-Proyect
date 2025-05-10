@@ -4,7 +4,7 @@
 
 .aortic-stenosis h1 {
     /* alinea el texto a la izquierda */
-    text-align: left;
+    text-align: center;
   
     /* color negro puro */
     color: #000;
@@ -14,5 +14,20 @@
   
     /* opcional: quita márgenes si quieres que empiece justo en el borde */
     margin: 0;
+
   }
-  
+
+  .aortic-stenosis{
+
+    max-width: 1064px;
+  }
+
+
+  .model-container{
+    max-width: 1004px;
+    width: 100%;
+  }
+
+.card left{
+  max-height: 100px;
+}

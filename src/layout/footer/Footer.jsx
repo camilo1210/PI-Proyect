@@ -16,7 +16,7 @@ const Footer = () => {
           </li>
           <li>
             {/* Para un enlace mailto o texto */}
-            <a href="mailto:soporteNe9@gmail.com">soporteNe9@gmail.com</a>
+            <a href="mailto:soporteNe9@gmail.com" className="mail">soporteNe9@gmail.com</a>
           </li>
           <li>
             <Link to="/politica-privacidad">Política de privacidad</Link>

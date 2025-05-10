@@ -1,23 +1,28 @@
 @import "@/assets/variables.css";
 
-
 header {
-  /* Esté header afecta a todos los div que sean header */
-    background-color: #941c1c; 
+    /* Esté header afecta a todos los div que sean header */
+    position: fixed;
+    top: 0;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    background-color: var(--color-rojo-oscuro); 
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
     margin-left: 1px;
+    
+    height: 50px;
+    width: 97%;
   }
 
 
   .logo-container {
-    background-color: #941c1c; /* Fondo rojo oscuro */
+    background-color: var(--color-rojo-oscuro); /* Fondo rojo oscuro */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 0rem 2rem;
   }
   
   nav {
@@ -29,6 +34,7 @@ header {
     display: flex;
     align-items: center;
     gap: 2rem;
+    list-style: none;
   }
 
   nav a {
@@ -42,20 +48,38 @@ header {
   nav a.active {
     border-bottom: 2px solid white;
     font-weight: bold;
+    display: inline-block;
+    padding: 0 4px;
+    
   }
   
   .btnClose {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
   }
+
+  .btnClose:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s;
+    color: white;
+    font-weight: bold;
+  }
   
+
+
   .btnClose a {
     color: white;
     text-decoration: none;
+  }
+
+  .btnClose a:hover {
+    color: white;
+    font-weight: 600;
+
   }
   
   .nav-item {
@@ -74,12 +98,9 @@ header {
     min-width: 180px;
     z-index: 10;
     flex-direction: column;
+    list-style: none;
   }
-  
-  .nav-item:hover .sub-menu {
-    /* display: flex; */
-  }
-  
+   
   .sub-menu li {
     padding: 0;
     margin: 0;
@@ -96,5 +117,27 @@ header {
   
   .sub-menu a:hover {
     background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-weight: bold;
+    transform: translateY(-2px);
+  }
+
+  .nav-link {
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: border-bottom 0.3s;
+    cursor: pointer;
   }
   
+  .nav-link.active {
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  }
+  
+.nav-item a:hover{
+  color: white;
+  font-weight: bold;
+  transform: translateY(-2px);
+}

@@ -8,97 +8,125 @@
     color: #2e2e2e;
   }
   
-  /* Título principal */
-  .dilated-cardiomyopathy h1 {
-    text-align: left;
-    font-size: 2.8rem;
-    color: #000000;
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Secciones generales */
-  .section {
-    margin-bottom: 80px;
-    padding: 10px;
-  }
-  
-  /* Sección que se alinea a la derecha */
-  .sintomas-section {
-    align-self: flex-end;
-    background-color: #fff6f6;
-    padding: 25px;
-    border-radius: 16px;
-    max-width: 65%;
-    margin-left: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  }
-  
-  /* Nueva sección alineada a la derecha */
-  .dilated-cardiomyopathy {
-    background-color: #fefced;
-    padding: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-    font-family: "Segoe UI", sans-serif;
-    color: #2e2e2e;
-    
-    display: flex;
+
+ 
+/*css con concordancia*/
+
+
+
+
+
+
+.dilated-cardiomiopathy-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: var(--font-main);
+}
+
+.dilated-cardiomiopathy-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.model-container {
+  margin-bottom: 3rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.section.reverse {
+  flex-direction: row-reverse;
+}
+
+.card {
+  flex: 1;
+  min-width: 280px;
+  background: var(--color-card);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.card.left,
+.card.right {
+  text-align: left;
+}
+
+.card .title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-title);
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.card-model {
+  flex: 1;
+  min-width: 280px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.symptoms-button,
+.reset-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.symptoms-button:hover,
+.reset-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+@media (max-width: 768px) {
+  .section,
+  .section.reverse {
     flex-direction: column;
+    align-items: stretch;
   }
-  
-  
-  /* Títulos burbuja */
-  .section-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 15px;
+
+  .card,
+  .card-model {
+    width: 100%;
   }
-  
-  /* Burbuja visual con borde rojo */
-  .bubble {
-    border: 4px solid #b10000;
-    border-radius: 25px;
-    padding: 10px 20px;
-    display: inline-block;
-    background-color: #fff;
-    color: #b10000;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+
+  .card-model canvas {
+    height: 250px !important;
   }
-  
-  /* Efecto hover opcional */
-  .bubble:hover {
-    transform: scale(1.05);
-  }
-  
-  .card {
-    background-color: #fff7f9;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    width: 45%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin: 2rem;
-  }
-  
-  .left {
-    text-align: left;
-    margin-left: 2rem;
-  }
-  
-  .right {
-    text-align: right;
-    margin-left: auto;
-    margin-right: 2rem;
-  }
-  
-  .title {
-    border: 3px solid red;
-    color: red;
-    border-radius: 2rem;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    display: inline-block;
-  }
-  
+}

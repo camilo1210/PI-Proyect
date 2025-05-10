@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "@/assets/logo.png";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -18,6 +19,14 @@ const Header = () => {
       setIsHovered(false); // se ejecuta 1 s después
     }, 100);
   };
+
+  const location = useLocation();
+  const isEnfermedadesActive =
+    location.pathname.includes("/Broken_heart_syndrome") ||
+    location.pathname.includes("/Heart_failure") ||
+    location.pathname.includes("/Dilated-cardiomyopathy") ||
+    location.pathname.includes("/Aortic_stenosis");
+
   return (
     <header>
       <div className="logo-container">
@@ -25,7 +34,7 @@ const Header = () => {
       </div>
       <nav>
         <ul className="nav-list">
-          <li>
+          <li className="nav-item">
             <NavLink to="/" end>
               Inicio
             </NavLink>
@@ -36,52 +45,53 @@ const Header = () => {
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
           >
-            <NavLink end>
+            <span
+              className={`nav-link ${isEnfermedadesActive ? "active" : ""}`}
+            >
               Enfermedades
-            </NavLink>
+            </span>
             {isHovered && (
               <ul
                 className="sub-menu"
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
               >
-                <li>
+                <li >
                   <NavLink to="/Broken_heart_syndrome">
                     Sindrome Del Corazon Roto
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/Aqui va el link">Hipertensión Arterial</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/Aqui va el link">
-                    {" "}
-                    Insuficiencia Cardíaca
+                <li >
+                  <NavLink to="/Cardiac_hypertension">
+                    Hipertensión Arterial
                   </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/Heart_failure">Insuficiencia Cardíaca</NavLink>
                 </li>
                 <li>
                   <NavLink to="/Dilated-cardiomyopathy">
                     Miocardiopatía Dilatada
                   </NavLink>
                 </li>
-                <li>
+                <li >
                   <NavLink to="/Aortic_stenosis">Estenosis aórtica</NavLink>
                 </li>
               </ul>
             )}
           </li>
 
-          <li>
+          <li className="nav-item">
             <NavLink to="/quiz" end>
               Quiz
             </NavLink>
           </li>
-          <li>
+          <li className="nav-item">
             <NavLink to="/About_us" end>
               Sobre nosotros
             </NavLink>
           </li>
-          <li>
+          <li className="nav-item">
             <button className="btnClose">
               <NavLink to="/login" end>
                 Cerrar sesión
