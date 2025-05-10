@@ -1,6 +1,6 @@
 import "./DilatedCardiomyopathy.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Html } from "@react-three/drei";
 import HeartDilatedModel from "./models-3d/DilatedCardiomiopathyModel";
 import HeartDilatedModel1 from "./models-3d/DilatedCardiomiopathyModel1";
 import HeartDilatedModel2 from "./models-3d/DilatedCardiomioPathyModel2";
@@ -14,12 +14,11 @@ import * as THREE from "three";
 const DilatedCardiomyopathy = () => {
   return (
     <div className="container">
-      <h1 className="dilated-cardiomiopathy-title">Miocardiopatia Dilatada</h1>
 
       <div className="model-container">
-        <Canvas shadows camera={{ position: [0.3, 0, -0.7] }}
+        <Canvas shadows camera={{ position: [0.3, -0.2, -1] }}
           style={{
-            width: "100%",
+            width: "116%",
             height: 300,
           }}>
           <OrbitControls target={[0, 0, 0]} />
@@ -30,11 +29,18 @@ const DilatedCardiomyopathy = () => {
           <Circle
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -0.5, 0]}
-            args={[10, 10]}
+            args={[5, 5]}
             receiveShadow
           >
             <meshStandardMaterial color="grey" />
           </Circle>
+
+          {/* Elemento HTML 3D */}
+          <Html position={[0, 1, 0]} style={{ pointerEvents: "none" }}>
+            <h1 style={{ color: "black", fontSize: "1.5rem", textAlign: "center" }}>
+              Miocardiopatía Dilatada
+            </h1>
+          </Html>
 
           {/* Controles de cámara */}
           <OrbitControls target={[0, 0, 0]} />
@@ -100,7 +106,7 @@ const Section = ({ title, text, Model, reverse, Button, showButton = false }) =>
     <div className="card-model">
       <Canvas
         shadows
-        camera={{ position: [20, 10, 20], fov: 50 }}
+        camera={{ position: [20, 15, 20], fov: 75 }}
         style={{
           width: "100%",
           height: "300px",
