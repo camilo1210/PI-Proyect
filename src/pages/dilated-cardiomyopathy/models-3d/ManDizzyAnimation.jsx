@@ -27,7 +27,7 @@ const ModelDizzy = (props) => {
         <group
           name="Armature"
           rotation={[Math.PI / 2, 0, 3]}
-          scale={0.0021}
+          scale={0.0023}
           position={[0, -0.19, 0]}
         >
           <skinnedMesh

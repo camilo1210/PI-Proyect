@@ -16,8 +16,9 @@
   border-radius: var(--border-radius);
   cursor: pointer;
   background-color: var(--color-primary);
-  color: white;
+  color: rgb(151, 22, 22);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 2px solid black; /* Margen negro */
 }
 
 /* Hover y focus */
