@@ -63,67 +63,62 @@ const AorticStenosis = () => {
       </div>
 
       {/* Secciones informativas */}
-      <div className="cards-container">
-        <div className="section">
-          <div className="cards">
-            <div className="card left">
-              <div className="title">Qué es</div>
-              <p>
-                La EA es una enfermedad valvular en la que la válvula aórtica se
-                calcifica o engrosa y su orificio efectivo. Formas graves impide
-                el flujo adecuado de sangre. El corazón debe generar presiones
-                más altas para vencer la obstrucción, provocando hipertrofia
-                ventricular y, a largo plazo, disfunción sistólica
-              </p>
-            </div>
-            <div className="card-model">
-              <Canvas
-                shadows
-                camera={{ position: [-0.1, 0.13, -0.1] }}
-                style={{
-                  width: "100%",
-                  height: "300px",
-                  background: "var(--canvas-bg)",
-                  borderRadius: "var(--border-radius)",
-                }}
-                gl={{
-                  antialias: true,
-                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
-                }}
-                raycaster={{ enabled: true }}
-              >
-                <ambientLight intensity={0.4} />
-                <directionalLight
-                  position={[-4, 4, -4]}
-                  castShadow
-                  intensity={1}
-                />
-                <Circle
-                  rotation={[-Math.PI / 2, 0, 0]}
-                  position={[0, 0, 0]}
-                  args={[10, 10]}
-                  receiveShadow
-                >
-                  <meshStandardMaterial color="grey" />
-                </Circle>
-                <HalfHeart
-                  scale={1}
-                  position={[0, 0, 0]}
-                  castShadow
-                  rotation={[0, 4, 0]}
-                />
-                {/* <Lights /> */}
-                <OrbitControls enableZoom minDistance={3} maxDistance={10} />
-              </Canvas>
-            </div>
-          </div>
+      <div className="section ">
+        <div className="card left">
+          <div className="title">Qué es</div>
+          <p>
+            La EA es una enfermedad valvular en la que la válvula aórtica se
+            calcifica o engrosa y su orificio efectivo. Formas graves impide el
+            flujo adecuado de sangre. El corazón debe generar presiones más
+            altas para vencer la obstrucción, provocando hipertrofia ventricular
+            y, a largo plazo, disfunción sistólica
+          </p>
         </div>
+        <div className="card-model">
+          <></>
+          <Canvas
+            shadows
+            camera={{ position: [-0.1, 0.13, -0.1] }}
+            style={{
+              width: "100%",
+              height: "300px",
+              background: "var(--canvas-bg)",
+              borderRadius: "var(--border-radius)",
+            }}
+            gl={{
+              antialias: true,
+              shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+            }}
+            raycaster={{ enabled: true }}
+          >
+            <ambientLight intensity={0.4} />
+            <directionalLight position={[-4, 4, -4]} castShadow intensity={1} />
+            <Circle
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[0, 0, 0]}
+              args={[10, 10]}
+              receiveShadow
+            >
+              <meshStandardMaterial color="grey" />
+            </Circle>
+            <HalfHeart
+              scale={1}
+              position={[0, 0, 0]}
+              castShadow
+              rotation={[0, 4, 0]}
+            />
+            {/* <Lights /> */}
+            <OrbitControls enableZoom minDistance={3} maxDistance={10} />
+          </Canvas>
+        </div>
+      </div>
+      <div className="cards-container">
         {/* ¿Qué es? */}
-        <SectionWhatIs
+        {/* <SectionWhatIs
           title="¿Qué es?"
           text="La EA es una enfermedad valvular en la que la válvula aórtica se calcifica o engrosa y su orificio efectivo. Formas graves impide el flujo adecuado de sangre. El corazón debe generar presiones más altas para vencer la obstrucción, provocando hipertrofia ventricular y, a largo plazo, disfunción sistólica"
           Model={HalfHeart}
-        />
+        /> */}
 
         {/* ¿Cuáles son sus síntomas? */}
         <Section

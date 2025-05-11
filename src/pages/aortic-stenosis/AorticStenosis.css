@@ -68,6 +68,7 @@ container {
 .card-model {
   flex: 1;
   min-width: 280px;
+  align-content: right;
 }
 
 @media (max-width: 768px) {
