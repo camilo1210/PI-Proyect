@@ -1,14 +1,26 @@
-import React, { useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useGLTF, useAnimations, useKeyboardControls} from "@react-three/drei";
 
 export function MaleHumanFull(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF(
-    "/models-3d/aortic-stenosis-models/male-human.glb"
-  );
+  const { nodes, materials, animations } = useGLTF("/models-3d/aortic-stenosis-models/male-human.glb");
   const { actions } = useAnimations(animations, group);
+  const [currentAction, setCurrentAction] = useState("Idle");
+
+  useEffect(() => {
+    actions[currentAction].fadeIn(0.5).play();
+    return () => {
+      actions[currentAction].fadeOut(0.5).stop();
+    };
+  }, [actions, currentAction]);
+
+  const handleMale = useCallback((e) => {
+    console.log(e);
+    setCurrentAction("Walking");
+  }, []);
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} onClick={handleMale}>
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <group name="MaleHuman">
@@ -100,5 +112,17 @@ export function MaleHumanFull(props) {
   );
 }
 
+/* Animaciones disponibles del modelo: 
+'Breathless'
+
+'Fatigue'
+
+'Idle'
+
+'Tired'
+
+'Walking'
+
+*/
 export default MaleHumanFull;
 useGLTF.preload("/models-3d/aortic-stenosis-models/male-human.glb");

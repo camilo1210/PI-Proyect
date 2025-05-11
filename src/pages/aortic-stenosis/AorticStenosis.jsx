@@ -6,45 +6,118 @@ import * as THREE from "three";
 import MaleHumanModel from "./models-3d/maleHuman";
 import HalfHeart from "./models-3d/halfHeart";
 import Lights from "./lights/AorticLights";
+import { useMemo } from "react";
+import { KeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useEffect } from "react";
 
 const AorticStenosis = () => {
+  const map = useMemo(
+    () => [
+      { name: "left", keys: ["a", "ArrowLeft"] },
+      { name: "right", keys: ["d", "ArrowRight"] },
+      { name: "up", keys: ["w", "ArrowUp"] },
+      { name: "down", keys: ["s", "ArrowDown"] },
+      { name: "one", keys: ["1"] },
+      { name: "two", keys: ["2"] },
+      { name: "three", keys: ["3"] },
+      { name: "four", keys: ["4"] },
+    ],
+    []
+  );
   return (
     <div className="container">
       <h1 className="stenosis-title">Síndrome del corazón roto</h1>
       {/* Modelo central */}
       <div className="model-container">
-        <Canvas
-          shadows
-          gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
-          camera={{ position: [0, 0, -0.3] }}
-        >
-          <SoftShadows frustum={3.75} size={10} samples={16} focus={1} />
-          <ambientLight intensity={0.5} />
-          <directionalLight
-            // Cambia estos valores para modificar la dirección de las sombras
-            position={[4, 4, -5]}
-            intensity={1}
-            castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-radius={3}
-          />
-          <OrbitControls target={[0, 0, 0]} />
-          <FullHeartModel scale={2} castShadow rotation={[0, 0, 0]} />
-          {/* Piso para recibir sombras */}
-          <Circle
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -0.3, 0]}
-            args={[10, 10]}
-            receiveShadow
+        <KeyboardControls map={map}>
+          <Canvas
+            shadows
+            gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
+            camera={{ position: [0, 0, -0.3] }}
           >
-            <meshStandardMaterial color="grey" />
-          </Circle>
-        </Canvas>
+            <SoftShadows frustum={3.75} size={10} samples={16} focus={1} />
+            <ambientLight intensity={0.5} />
+            <directionalLight
+              // Cambia estos valores para modificar la dirección de las sombras
+              position={[4, 4, -5]}
+              intensity={1}
+              castShadow
+              shadow-mapSize-width={1024}
+              shadow-mapSize-height={1024}
+              shadow-radius={3}
+            />
+            <OrbitControls target={[0, 0, 0]} />
+            <FullHeartModel scale={2} castShadow rotation={[0, 0, 0]} />
+            {/* Piso para recibir sombras */}
+            <Circle
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[0, -0.3, 0]}
+              args={[10, 10]}
+              receiveShadow
+            >
+              <meshStandardMaterial color="grey" />
+            </Circle>
+          </Canvas>
+        </KeyboardControls>
       </div>
 
       {/* Secciones informativas */}
       <div className="cards-container">
+        <div className="section">
+          <div className="cards">
+            <div className="card left">
+              <div className="title">Qué es</div>
+              <p>
+                La EA es una enfermedad valvular en la que la válvula aórtica se
+                calcifica o engrosa y su orificio efectivo. Formas graves impide
+                el flujo adecuado de sangre. El corazón debe generar presiones
+                más altas para vencer la obstrucción, provocando hipertrofia
+                ventricular y, a largo plazo, disfunción sistólica
+              </p>
+            </div>
+            <div className="card-model">
+              <Canvas
+                shadows
+                camera={{ position: [-0.1, 0.13, -0.1] }}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  background: "var(--canvas-bg)",
+                  borderRadius: "var(--border-radius)",
+                }}
+                gl={{
+                  antialias: true,
+                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+                }}
+                raycaster={{ enabled: true }}
+              >
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  position={[-4, 4, -4]}
+                  castShadow
+                  intensity={1}
+                />
+                <Circle
+                  rotation={[-Math.PI / 2, 0, 0]}
+                  position={[0, 0, 0]}
+                  args={[10, 10]}
+                  receiveShadow
+                >
+                  <meshStandardMaterial color="grey" />
+                </Circle>
+                <HalfHeart
+                  scale={1}
+                  position={[0, 0, 0]}
+                  castShadow
+                  rotation={[0, 4, 0]}
+                />
+                {/* <Lights /> */}
+                <OrbitControls enableZoom minDistance={3} maxDistance={10} />
+              </Canvas>
+            </div>
+          </div>
+        </div>
         {/* ¿Qué es? */}
         <SectionWhatIs
           title="¿Qué es?"
@@ -100,6 +173,7 @@ const Section = ({ title, text, Model, reverse }) => (
           antialias: true,
           shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
         }}
+        raycaster={{ enabled: true }}
       >
         <ambientLight intensity={0.4} />
         <directionalLight position={[-4, 4, -4]} castShadow intensity={1} />
@@ -113,7 +187,7 @@ const Section = ({ title, text, Model, reverse }) => (
         </Circle>
         <Model scale={1} position={[0, 0, 0]} castShadow rotation={[0, 4, 0]} />
         {/* <Lights /> */}
-        <OrbitControls  enableZoom minDistance={3} maxDistance={10} />
+        <OrbitControls enableZoom minDistance={3} maxDistance={10} />
       </Canvas>
     </div>
   </div>
@@ -143,12 +217,14 @@ const SectionWhatIs = ({ title, text, Model, reverse }) => (
       >
         {/* <SoftShadows frustum={3.75} size={10} samples={16} focus={1} /> */}
         <ambientLight intensity={0.5} />
-        <directionalLight             position={[4, 4, -5]}
-            intensity={1}
-            castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-radius={3} />
+        <directionalLight
+          position={[4, 4, -5]}
+          intensity={1}
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-radius={3}
+        />
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, 0, 0]}
@@ -157,9 +233,14 @@ const SectionWhatIs = ({ title, text, Model, reverse }) => (
         >
           <meshStandardMaterial color="grey" />
         </Circle>
-        <Model scale={1} position={[0, 0, 0]} castShadow rotation={[0, 0.4, 0]} />
+        <Model
+          scale={1}
+          position={[0, 0, 0]}
+          castShadow
+          rotation={[0, 0.4, 0]}
+        />
         {/* <Lights /> */}
-        <OrbitControls  enableZoom minDistance={0.38} maxDistance={10} />
+        <OrbitControls enableZoom minDistance={0.38} maxDistance={10} />
       </Canvas>
     </div>
   </div>
