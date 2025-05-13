@@ -1,5 +1,10 @@
 import "./AorticStenosis.css";
-import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
+import {
+  Circle,
+  OrbitControls,
+  SoftShadows,
+  SpotLight,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import FullHeartModel from "./models-3d/fullHeart";
 import * as THREE from "three";
@@ -10,6 +15,8 @@ import { useMemo } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
+import { DirectionalLightHelper } from "three";
+import Recipient from "./models-3d/Recipient";
 
 const AorticStenosis = () => {
   const map = useMemo(
@@ -63,6 +70,7 @@ const AorticStenosis = () => {
       </div>
 
       {/* Secciones informativas */}
+      {/* QUE ES */}
       <div className="section ">
         <div className="card left">
           <div className="title">Qué es</div>
@@ -77,71 +85,57 @@ const AorticStenosis = () => {
         <div className="card-model">
           <></>
           <Canvas
-            shadows
-            camera={{ position: [-0.1, 0.13, -0.1] }}
+            camera={{ position: [0, 2, 0] }}
+            shadows = {true}
             style={{
               width: "100%",
               height: "300px",
               background: "var(--canvas-bg)",
               borderRadius: "var(--border-radius)",
             }}
-            gl={{
-              antialias: true,
-              shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
-            }}
-            raycaster={{ enabled: true }}
           >
             <ambientLight intensity={0.4} />
-            <directionalLight position={[-4, 4, -4]} castShadow intensity={1} />
-            <Circle
-              rotation={[-Math.PI / 2, 0, 0]}
-              position={[0, 0, 0]}
-              args={[10, 10]}
-              receiveShadow
-            >
-              <meshStandardMaterial color="grey" />
-            </Circle>
+            <directionalLight
+              position={[0, 5, 5]}
+              intensity={1}
+              castShadow = {true}
+              shadow-mapSize-width={1024}
+              shadow-mapSize-height={1024}
+              shadow-radius={3}
+            />
+            <Recipient/>
             <HalfHeart
-              scale={1}
+              scale={5}
               position={[0, 0, 0]}
-              castShadow
               rotation={[0, 4, 0]}
             />
-            {/* <Lights /> */}
-            <OrbitControls enableZoom minDistance={3} maxDistance={10} />
+            <OrbitControls />
           </Canvas>
         </div>
       </div>
       <div className="cards-container">
-        {/* ¿Qué es? */}
-        {/* <SectionWhatIs
-          title="¿Qué es?"
-          text="La EA es una enfermedad valvular en la que la válvula aórtica se calcifica o engrosa y su orificio efectivo. Formas graves impide el flujo adecuado de sangre. El corazón debe generar presiones más altas para vencer la obstrucción, provocando hipertrofia ventricular y, a largo plazo, disfunción sistólica"
-          Model={HalfHeart}
-        /> */}
-
         {/* ¿Cuáles son sus síntomas? */}
-        <Section
+        {/* <Section
           title="¿Cuáles son sus síntomas?"
           text="Los pacientes permanecen asintomáticos años, pero cuando aparecen los síntomas, son típicos: disnea de esfuerzo, angina y síncope. La disnea es el síntoma más frecuente y puede aparecer en reposo o al realizar esfuerzos mínimos."
           Model={MaleHumanModel}
           reverse
-        />
+        /> */}
 
         {/* ¿Qué lo causa? */}
-        <Section
+        {/* <Section
           title="¿Qué lo causa?"
           text="Tiene muchas causas, pero la más frecuente es la calcificación, anomalías geneticas, infecciones que cicatrizan la válvula."
           Model={MaleHumanModel}
-        />
+        /> */}
 
         {/* ¿Cómo tratarlo? */}
-        <Section
+        {/* <Section
           title="¿Cómo tratarlo?"
           text="No existen medicamentos que detengan la estrechez; se usan diuréticos betabloqueadores o IECAs solo para aliviar congestión o controlar hipertensión y arritmias. La única opción es la cirugía, que puede ser una sustitución de la válvula o una valvuloplastia con balón."
           Model={MaleHumanModel}
           reverse
-        />
+        /> */}
       </div>
     </div>
   );
