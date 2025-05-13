@@ -7,7 +7,7 @@ const HeartDilatedModel2 = () => {
   const meshRef = useRef();
 
   return (
-    <group ref={meshRef} castShadow rotation={[Math.PI / -2, 0, 0]}>
+    <group ref={meshRef} castShadow rotation={[Math.PI / -2, 0, 0]} scale={70}>
       <primitive object={HeartC.scene} />
     </group>
   );

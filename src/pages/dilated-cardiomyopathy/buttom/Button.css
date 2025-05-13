@@ -1,0 +1,52 @@
+/* Contenedor de botones */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Botón general */
+.symptoms-button,
+.reset-button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: rgb(151, 22, 22);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 2px solid black; /* Margen negro */
+}
+
+/* Hover y focus */
+.symptoms-button:hover,
+.reset-button:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.symptoms-button:focus,
+.reset-button:focus {
+  outline: 2px solid var(--color-primary-dark);
+}
+
+/* Botón específico para síntomas */
+.symptoms-button {
+  background-color: var(--color-secondary);
+}
+
+.symptoms-button:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+/* Botón específico para reiniciar */
+.reset-button {
+  background-color: var(--color-accent);
+}
+
+.reset-button:hover {
+  background-color: var(--color-accent-dark);
+}

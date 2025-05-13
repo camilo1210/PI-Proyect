@@ -40,6 +40,7 @@
 
 .model-container {
   margin-bottom: 3rem;
+  overflow: hidden; /* Evita que el contenido del Canvas se desborde */
 }
 
 .cards-container {
@@ -90,6 +91,28 @@
 .card-model {
   flex: 1;
   min-width: 280px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.symptoms-button,
+.reset-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.symptoms-button:hover,
+.reset-button:hover {
+  background-color: var(--color-primary-dark);
 }
 
 @media (max-width: 768px) {
