@@ -6,14 +6,16 @@ import * as THREE from "three";
 
 // Estados del latido
 const BeatStages = {
-  OFF: 0,     // Sin latido
-  SOFT: 1,    // Latido suave
-  STRONG: 2,  // Latido fuerte
+  OFF: 0, // Sin latido
+  SOFT: 1, // Latido suave
+  STRONG: 2, // Latido fuerte
 };
 
 export function BrokenHeartModel(props) {
   // Cargamos el modelo GLTF y extraemos sus nodos y materiales
-  const { nodes, materials } = useGLTF("/models-3d/broken-heart-sysdrome/broken-heart.glb");
+  const { nodes, materials } = useGLTF(
+    "/models-3d/broken-heart-sysdrome/broken-heart.glb"
+  );
 
   // Referencias a mesh y sonidos
   const meshRef = useRef();
@@ -56,15 +58,30 @@ export function BrokenHeartModel(props) {
 
     // Limpieza: detener sonidos y quitar listener
     return () => {
-      if (soft.isPlaying) {soft.stop()}
-      if (strong.isPlaying) {strong.stop()}
+      if (soft.isPlaying) {
+        soft.stop();
+      }
+      if (strong.isPlaying) {
+        strong.stop();
+      }
       camera.remove(listener);
     };
   }, [camera]);
 
+  useEffect(() => {
+    const handleKeyDown = () => {
+      setClickStage((prev) => (prev + 1) % 3);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   // Función que calcula el latido y devuelve escala e intensidad del brillo
   const heartbeat = (time) => {
-    if (clickStage === BeatStages.OFF){ return { scale: 1, intensity: 0 }}
+    if (clickStage === BeatStages.OFF) {
+      return { scale: 1, intensity: 0 };
+    }
 
     // Ciclo de latido (simulado)
     const cycle = time % 0.85;
@@ -81,7 +98,9 @@ export function BrokenHeartModel(props) {
           : heartbeatStrongRef.current;
 
       if (sound) {
-        if (sound.isPlaying) {sound.stop()} // Detiene si estaba sonando aún
+        if (sound.isPlaying) {
+          sound.stop();
+        } // Detiene si estaba sonando aún
         sound.play();
       }
     }
@@ -91,13 +110,11 @@ export function BrokenHeartModel(props) {
     const intensityFactor = clickStage === BeatStages.SOFT ? 0.3 : 0.6;
 
     // Valor oscilatorio del latido
-    const value = isBeat
-      ? Math.sin((cycle % 0.15) * Math.PI)
-      : 0;
+    const value = isBeat ? Math.sin((cycle % 0.15) * Math.PI) : 0;
 
     return {
-      scale: 1 + value * scaleFactor,       // tamaño del corazón
-      intensity: value * intensityFactor,   // brillo del material
+      scale: 1 + value * scaleFactor, // tamaño del corazón
+      intensity: value * intensityFactor, // brillo del material
     };
   };
 
@@ -105,7 +122,8 @@ export function BrokenHeartModel(props) {
   useEffect(() => {
     if (clickStage === BeatStages.OFF) {
       heartbeatSoftRef.current?.isPlaying && heartbeatSoftRef.current.stop();
-      heartbeatStrongRef.current?.isPlaying && heartbeatStrongRef.current.stop();
+      heartbeatStrongRef.current?.isPlaying &&
+        heartbeatStrongRef.current.stop();
     }
   }, [clickStage]);
 

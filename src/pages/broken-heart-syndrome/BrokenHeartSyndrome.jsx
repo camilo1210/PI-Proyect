@@ -1,35 +1,40 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-
-// Importación de librerías y componentes necesarios
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Circle, OrbitControls } from "@react-three/drei";
+import { Circle, Html, OrbitControls } from "@react-three/drei";
+import { useEffect, useState } from "react";
 
-// Importación de modelos 3D personalizados
+// Modelos
 import { BrokenHeartModel } from "./models-3d/BrokenHeartModel";
 import { HeartCracksModel } from "./models-3d/HeartCracksModel";
 import { HeartEGCModel } from "./models-3d/HeartEGCModel";
 import { HeartPainModel } from "./models-3d/HeartPainModel";
 import { ManModel } from "./models-3d/ManModel";
 
-// Importación de luces y estilos
+// Luces y estilos
 import Lights from "./lights/Lights";
 import "./BrokenHeartSyndrome.css";
 
-// Componente principal de la sección del Síndrome del Corazón Roto
 const BrokenHeartSyndrome = () => {
+  const [showHint, setShowHint] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowHint(true);
+      setTimeout(() => setShowHint(false), 4000);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="container">
-      <h1 className="broken-heart-title">Síndrome del corazón roto</h1>
-
-      {/* Modelo principal central animado (corazón roto) */}
       <div className="model-container">
         <Canvas
           shadows
           camera={{ position: [0, 1, 8], fov: 50 }}
           style={{
-            width: "116%",
+            width: "112%",
             height: 300,
             background: "var(--canvas-bg)",
             borderRadius: "var(--border-radius)",
@@ -39,11 +44,9 @@ const BrokenHeartSyndrome = () => {
             shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
           }}
         >
-          {/* Luz ambiental y direccional */}
           <ambientLight intensity={0.4} />
           <directionalLight position={[2, 4, 5]} castShadow intensity={1} />
 
-          {/* Suelo (círculo) */}
           <Circle
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -0.5, 0]}
@@ -53,10 +56,8 @@ const BrokenHeartSyndrome = () => {
             <meshStandardMaterial color="var(--canvas-bg)" />
           </Circle>
 
-          {/* Modelo 3D del corazón roto */}
           <BrokenHeartModel scale={2} position={[0, 1.5, 0]} castShadow />
 
-          {/* Controles de cámara: permite rotar y hacer zoom */}
           <OrbitControls
             enableZoom
             autoRotate
@@ -64,34 +65,37 @@ const BrokenHeartSyndrome = () => {
             minDistance={2}
             maxDistance={10}
           />
+
+          <Html position={[3, 4, -1]}>
+            <div className="heart-title-container">
+              <h1 className="heart-title">Síndrome del Corazón Roto</h1>
+            </div>
+          </Html>
+
+        
         </Canvas>
+
+        {/* Mensaje de guía */}
+        {showHint && (
+          <div className="interaction-hint">
+            💡 Haz clic en el corazón para interactuar, o presiona una tecla 
+          </div>
+        )}
       </div>
 
-      {/* Contenedor de secciones informativas */}
+      {/* Secciones informativas */}
       <div className="cards-container">
-        {/* Sección 1: ¿Qué es? */}
         <Section
           title="¿Qué es?"
-          text="El síndrome del corazón roto es una afección cardíaca que a menudo
-              se debe a situaciones estresantes y emociones extremas. También
-              puede ocasionarse por una enfermedad física grave o una cirugía.
-              Suele ser temporal, pero algunas personas pueden seguir
-              sintiéndose mal después de que el corazón se cure."
+          text="El síndrome del corazón roto es una afección cardíaca que a menudo se debe a situaciones estresantes y emociones extremas..."
           Model={HeartCracksModel}
+          hasButton
         />
-
-        {/* Sección 2: Síntomas */}
         <Section
           title="¿Cuáles son sus síntomas?"
           text={
             <>
-              <p>
-                Las personas con este síndrome pueden experimentar dolor repentino en el pecho o pensar que están teniendo un ataque cardíaco.
-              </p>
-              <p>
-                Afecta solo una parte del corazón e interrumpe brevemente la forma en que bombea sangre, mientras el resto sigue funcionando.
-              </p>
-              <p>Síntomas más comunes:</p>
+              <p>Las personas con este síndrome pueden experimentar dolor...</p>
               <ul>
                 <li>Dolor en el pecho</li>
                 <li>Falta de aire</li>
@@ -100,55 +104,35 @@ const BrokenHeartSyndrome = () => {
           }
           Model={HeartPainModel}
           reverse
+          hasButton
         />
-
-        {/* Sección 3: Causas */}
         <Section
           title="¿Qué lo causa?"
           text={
             <>
-              <p>
-                Se cree que un aumento repentino de hormonas del estrés, como la
-                adrenalina, puede dañar temporalmente el corazón. Los
-                desencadenantes incluyen:
-              </p>
+              <p>Se cree que un aumento repentino de hormonas del estrés...</p>
               <p>1. Muerte de un ser querido.</p>
               <p>2. Diagnóstico grave.</p>
-              <p>3. Ruptura o separación.</p>
-              <p>4. Estrés emocional o físico intenso.</p>
             </>
           }
           Model={ManModel}
+          hasButton
         />
-
-        {/* Sección 4: Tratamiento */}
         <Section
           title="¿Cómo tratarlo?"
           text={
             <>
-              <p>
-                El tratamiento depende de la gravedad de los síntomas y es similar
-                al de un ataque cardíaco. Puede incluir:
-              </p>
+              <p>El tratamiento depende de la gravedad de los síntomas...</p>
               <ul>
-                <li>Analgésicos para aliviar el dolor.</li>
-                <li>Betabloqueadores para reducir la frecuencia cardíaca.</li>
-                <li>Aspirina para mejorar la circulación y prevenir coágulos.</li>
-                <li>Inhibidores de la ECA o bloqueadores de los receptores de angiotensina para reducir la presión arterial.</li>
-                <li>Diuréticos para disminuir la acumulación de líquidos.</li>
-                <li>Fármacos inotrópicos para mejorar la contractilidad en casos graves.</li>
-                <li>Dispositivos de asistencia ventricular en casos de shock cardiogénico.</li>
+                <li>Analgésicos</li>
+                <li>Betabloqueadores</li>
+                <li>Aspirina</li>
               </ul>
-              <p>
-                Recuperación: La mayoría de las personas se recuperan por completo
-                en aproximadamente un mes, realizando un ecocardiograma para
-                asegurar el buen funcionamiento del corazón. A veces, el síndrome
-                puede reaparecer después del tratamiento.
-              </p>
             </>
           }
           Model={HeartEGCModel}
           reverse
+          hasButton
         />
       </div>
     </div>
@@ -156,15 +140,12 @@ const BrokenHeartSyndrome = () => {
 };
 
 // Componente reutilizable de sección con texto y modelo 3D
-const Section = ({ title, text, Model, reverse }) => (
+const Section = ({ title, text, Model, reverse, hasButton }) => (
   <div className={`section ${reverse ? "reverse" : ""}`}>
-    {/* Tarjeta de texto */}
     <div className={`card ${reverse ? "right" : "left"}`}>
       <div className="title">{title}</div>
       <p>{text}</p>
     </div>
-
-    {/* Tarjeta con modelo 3D */}
     <div className="card-model">
       <Canvas
         shadows
@@ -180,17 +161,16 @@ const Section = ({ title, text, Model, reverse }) => (
           shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
         }}
       >
-        {/* Suelo circular para sombra */}
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, -0.5, 0]}
           args={[10, 10]}
-          receiveShadow={true}
+          receiveShadow
         >
           <meshStandardMaterial color="var(--canvas-bg)" />
         </Circle>
 
-        {/* Modelo 3D correspondiente a la sección */}
+        {/* Modelo 3D */}
         <Model
           scale={2.5}
           position={[0, 2, 0]}
@@ -198,7 +178,28 @@ const Section = ({ title, text, Model, reverse }) => (
           rotation={[0, 4, 0]}
         />
 
-        {/* Luces personalizadas y controles */}
+        {/* Botón HTML 3D */}
+        {hasButton && (
+          <Html position={[0, -1, 4]}>
+            <button
+              style={{
+                padding: "12px 20px",
+                fontSize: "16px",
+                borderRadius: "10px",
+                backgroundColor: "#800000",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+                transform: "rotateY(-10deg)",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
+              }}
+              onClick={() => alert("¡Gracias por interactuar!")}
+            >
+              Participar
+            </button>
+          </Html>
+        )}
+
         <Lights />
         <OrbitControls autoRotate enableZoom minDistance={2} maxDistance={10} />
       </Canvas>
