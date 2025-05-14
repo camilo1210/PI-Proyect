@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from "@react-three/fiber";
 
@@ -25,8 +25,13 @@ export function FullHeart(props) {
     }
   });
 
+  const handleHeart = useCallback((e) => {
+    console.log(e);
+    // Aquí puedes agregar la lógica para manejar el clic en el corazón
+  }, []);
+
   return (
-    <group {...props} dispose={null} ref={meshRef}>
+    <group {...props} dispose={null} ref={meshRef} onClick={handleHeart}>
       <mesh
         geometry={nodes.FullHeart.geometry}
         material={materials.FullHeartMaterial}

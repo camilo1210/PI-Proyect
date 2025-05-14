@@ -2,32 +2,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 
-.aortic-stenosis h1 {
-    /* alinea el texto a la izquierda */
-    text-align: center;
-  
-    /* color negro puro */
-    color: #000;
-  
-    /* usa la fuente Raleway, con sans‑serif de respaldo */
-    font-family: 'Raleway', sans-serif;
-  
-    /* opcional: quita márgenes si quieres que empiece justo en el borde */
-    margin: 0;
+container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: var(--font-main);
+}
 
+.stenosis-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.model-container {
+  margin-bottom: 3rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.section.reverse {
+  flex-direction: row-reverse;
+}
+
+.card {
+  flex: 1;
+  min-width: 280px;
+  background: var(--color-card);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.card.left,
+.card.right {
+  text-align: left;
+}
+
+.card .title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-title);
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.card-model {
+  flex: 1;
+  min-width: 280px;
+  align-content: right;
+}
+
+@media (max-width: 768px) {
+  .section,
+  .section.reverse {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .aortic-stenosis{
-
-    max-width: 1064px;
-  }
-
-
-  .model-container{
-    max-width: 1004px;
+  .card,
+  .card-model {
     width: 100%;
   }
 
-.card left{
-  max-height: 100px;
+  .card-model canvas {
+    height: 250px !important;
+  }
 }
