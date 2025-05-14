@@ -35,6 +35,7 @@ const AorticStenosis = () => {
     []
   );
   return (
+    <>
     <div className="container">
       <h1 className="stenosis-title">Síndrome del corazón roto</h1>
       {/* Modelo central */}
@@ -159,6 +160,7 @@ const AorticStenosis = () => {
               background: "var(--canvas-bg)",
               borderRadius: "var(--border-radius)",
             }}
+            raycaster={{ enabled: true }}
           >
             <ambientLight intensity={0.4} />
             <directionalLight
@@ -192,6 +194,7 @@ const AorticStenosis = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
@@ -288,7 +291,6 @@ const AorticStenosis = () => {
 //     </div>
 //   </div>
 // );
-
 
 {
   /* <p>
