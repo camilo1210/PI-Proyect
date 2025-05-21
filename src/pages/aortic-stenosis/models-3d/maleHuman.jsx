@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useGLTF, useAnimations, useKeyboardControls } from "@react-three/drei";
+import {
+  useGLTF,
+  useAnimations,
+  useKeyboardControls,
+  Html,
+} from "@react-three/drei";
 
 export function MaleHumanFull(props) {
   const group = useRef();
@@ -17,16 +22,35 @@ export function MaleHumanFull(props) {
     };
   }, [actions, currentAction]);
 
-  const handleMale = useCallback((e) => {
+  const handleMaleWalking = useCallback((e) => {
     console.log(e);
     setCurrentAction("Walking");
+  }, []);
+
+  const handleMaleBreathless = useCallback((e) => {
+    console.log(e);
+    setCurrentAction("Breathless");
+  }, []);
+  const handleMaleFatigue = useCallback((e) => {
+    console.log(e);
+    setCurrentAction("Fatigue");
+  }, []);
+
+  const handleMaleTired = useCallback((e) => {
+    console.log(e);
+    setCurrentAction("Tired");
+  }, []);
+
+  const handleMaleIdle = useCallback((e) => {
+    console.log(e);
+    setCurrentAction("Idle");
   }, []);
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <group name="MaleHuman" onClick={handleMale}>
+          <group name="MaleHuman" onClick={handleMaleWalking}>
             <skinnedMesh
               castShadow
               receiveShadow
@@ -107,6 +131,15 @@ export function MaleHumanFull(props) {
               morphTargetDictionary={nodes.MaleHuman_8.morphTargetDictionary}
               morphTargetInfluences={nodes.MaleHuman_8.morphTargetInfluences}
             />
+            <Html
+            position={[180, -150, 0]}
+            >
+              <button className="btn-3D" onClick={handleMaleWalking}>1.</button>
+              <button className="btn-3D" onClick={handleMaleFatigue}>2.</button>
+              <button className="btn-3D" onClick={handleMaleTired}>3.</button>
+              <button className="btn-3D" onClick={handleMaleIdle}>4.</button>
+              <button className="btn-3D" onClick={handleMaleBreathless}>5.</button>
+            </Html>
           </group>
           <primitive object={nodes.mixamorigHips} />
         </group>
@@ -120,9 +153,9 @@ export function MaleHumanFull(props) {
 
 'Fatigue'
 
-'Idle'
-
 'Tired'
+
+'Idle'
 
 'Walking'
 

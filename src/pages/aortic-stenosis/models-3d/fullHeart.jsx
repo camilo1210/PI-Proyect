@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { useGLTF } from '@react-three/drei';
+import { Html, useGLTF } from '@react-three/drei';
 import { useFrame } from "@react-three/fiber";
 
 export function FullHeart(props) {

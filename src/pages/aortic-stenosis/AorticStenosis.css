@@ -87,3 +87,11 @@ container {
     height: 250px !important;
   }
 }
+
+
+.btn-3D{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1rem;
+}
