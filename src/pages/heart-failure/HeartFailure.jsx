@@ -6,6 +6,7 @@ import HeartModelOne from "./model-3d/HeartModelOne";
 import Staging from "./staging/Staging";
 import React, {useState, useRef} from "react";
 import "./HeartFailure.css";
+import CigarettesModel from "./model-3d/CigarettesModel";
 
 
 const HeartFailure = () => {
@@ -57,16 +58,17 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
           camera={{ position: [0, 2, 8], fov: 60 }}
         >
           <SoftShadows frustum={3.75} size={10} samples={16} focus={1} />
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.4} />
           <directionalLight
             // Cambia estos valores para modificar la dirección de las sombras
-            position={[-4, 6, 5]}
-            intensity={1}
+            position={[-2, 5, 7]}
+            intensity={2}
             castShadow
             shadow-mapSize-width={1024}
             shadow-mapSize-height={1024}
             shadow-radius={3}
           />
+          <Staging />
           <OrbitControls target={[0, 0, 0]} />
           <HeartFailureModel scale={2} castShadow rotation={[0, 0, 0]} />
           {/* Piso para recibir sombras */}
@@ -164,7 +166,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                   shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
                 }}
               >
-                <Staging />
+            
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   castShadow
@@ -198,13 +200,66 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
           <div className="section">
             <div className="card-left">
               <div className="title">¿Qué lo causa?</div>
-              <p>Proximamente...</p>
+              <p>La insuficiencia cardíaca se puede producir a causa de un corazón debilitado, dañado o rígido.
+                 <br />
+                 °Si el corazón está dañado o debilitado, las cavidades cardíacas pueden estirarse y aumentar de tamaño. El corazón no puede bombear la cantidad de sangre necesaria.
+                 <br />
+                 °Si las principales cavidades de bombeo del corazón, denominadas ventrículos, están rígidas, no pueden llenarse con suficiente sangre entre latidos.
+                 <br />
+                 °Ciertas infecciones, el consumo excesivo de alcohol, el consumo de drogas ilícitas y algunos medicamentos de quimioterapia pueden dañar el músculo cardíaco. Los genes también pueden influir.
+                 </p>
+            </div>
+
+            <div className="card-model">
+              <Canvas
+                shadows
+                camera={{ position: [20, 10, 20], fov: 50 }}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "12px",
+                  background: "transparent",
+                }}
+                gl={{
+                  alpha: true,
+                  antialias: true,
+                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+                }}
+              >
+            
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  castShadow
+                  position={[2, 4, 5]}
+                  intensity={2}
+                />
+                {/* Piso para proyectar sombra visible */}
+                <Circle
+                  rotation={[-Math.PI / 2, 0, 0]}
+                  position={[0, 0, 0]}
+                  args={[10, 10]}
+                  receiveShadow
+                >
+                  <meshStandardMaterial color="grey" />
+                </Circle>
+                <CigarettesModel
+                  scale={40}
+                  position={[0, 0, 0]}
+                  castShadow
+                />
+                <OrbitControls
+                  autoRotate
+                  enableZoom
+                  minDistance={2}
+                  maxDistance={10}
+                />
+              </Canvas>
             </div>
           </div>
 
             <div className="section reverse">
               <div className="card-right">
-                <div className="info-title">¿Cómo tratarlo?</div>
+                <div className="title">¿Cómo tratarlo?</div>
                 <p>Proximamente...</p>
               </div>
             </div>

@@ -71,14 +71,12 @@ const BrokenHeartSyndrome = () => {
               <h1 className="heart-title">Síndrome del Corazón Roto</h1>
             </div>
           </Html>
-
-        
         </Canvas>
 
         {/* Mensaje de guía */}
         {showHint && (
           <div className="interaction-hint">
-            💡 Haz clic en el corazón para interactuar, o presiona una tecla 
+            💡 Haz clic en el corazón para interactuar, o presiona una tecla
           </div>
         )}
       </div>
@@ -87,7 +85,11 @@ const BrokenHeartSyndrome = () => {
       <div className="cards-container">
         <Section
           title="¿Qué es?"
-          text="El síndrome del corazón roto es una afección cardíaca que a menudo se debe a situaciones estresantes y emociones extremas..."
+          text="El síndrome del corazón roto es una afección cardíaca que a menudo
+              se debe a situaciones estresantes y emociones extremas. También
+              puede ocasionarse por una enfermedad física grave o una cirugía.
+              Suele ser temporal, pero algunas personas pueden seguir
+              sintiéndose mal después de que el corazón se cure."
           Model={HeartCracksModel}
           hasButton
         />
@@ -95,10 +97,23 @@ const BrokenHeartSyndrome = () => {
           title="¿Cuáles son sus síntomas?"
           text={
             <>
-              <p>Las personas con este síndrome pueden experimentar dolor...</p>
+              <p>
+                Las personas con este síndrome pueden experimentar dolor
+                repentino en el pecho o pensar que están teniendo un ataque
+                cardíaco.
+              </p>
+
+              <p>
+                Afecta solo una parte del corazón e interrumpe brevemente la
+                forma en que bombea sangre, mientras el resto sigue funcionando.
+              </p>
+
+              <p>Síntomas más comunes:</p>
               <ul>
                 <li>Dolor en el pecho</li>
                 <li>Falta de aire</li>
+                <li>Palpitaciones</li>
+                <li>Desmayos</li>
               </ul>
             </>
           }
@@ -110,9 +125,17 @@ const BrokenHeartSyndrome = () => {
           title="¿Qué lo causa?"
           text={
             <>
+              <p>
+                Se cree que un aumento repentino de hormonas del estrés, como la
+                adrenalina, puede dañar temporalmente el corazón. Los
+                desencadenantes incluyen:
+              </p>
+
               <p>Se cree que un aumento repentino de hormonas del estrés...</p>
               <p>1. Muerte de un ser querido.</p>
               <p>2. Diagnóstico grave.</p>
+              <p>3. Ruptura o separación.</p>
+              <p>4. Estrés emocional o físico intenso.</p>
             </>
           }
           Model={ManModel}
@@ -122,8 +145,16 @@ const BrokenHeartSyndrome = () => {
           title="¿Cómo tratarlo?"
           text={
             <>
-              <p>El tratamiento depende de la gravedad de los síntomas...</p>
+              <p>El tratamiento depende de la gravedad de los síntomas y es similar
+                al de un ataque cardíaco. Puede incluir:</p>
               <ul>
+                <li>Analgésicos para aliviar el dolor.</li>
+                <li>Betabloqueadores para reducir la frecuencia cardíaca.</li>
+                <li>Aspirina para mejorar la circulación y prevenir coágulos.</li>
+                <li>Inhibidores de la ECA o bloqueadores de los receptores de angiotensina para reducir la presión arterial.</li>
+                <li>Diuréticos para disminuir la acumulación de líquidos.</li>
+                <li>Fármacos inotrópicos para mejorar la contractilidad en casos graves.</li>
+                <li>Dispositivos de asistencia ventricular en casos de shock cardiogénico.</li>
                 <li>Analgésicos</li>
                 <li>Betabloqueadores</li>
                 <li>Aspirina</li>
