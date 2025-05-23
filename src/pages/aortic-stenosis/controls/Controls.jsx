@@ -12,13 +12,7 @@ const Controls = () => {
   }, [sub]);
 
   
-/*   useFrame(() => {
-    const { left, right, up, down } = get();
-    if (up || down || left || right) {
-      console.log("Keybord pressed");
-    }
-    const pressed = get().back;
-  }); */
+
 };
 
 export default Controls;
