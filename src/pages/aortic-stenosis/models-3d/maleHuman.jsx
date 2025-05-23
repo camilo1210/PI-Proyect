@@ -5,15 +5,16 @@ import {
   useKeyboardControls,
   Html,
 } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 export function MaleHumanFull(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/models-3d/aortic-stenosis-models/male-human.glb"
   );
+  const [, get] = useKeyboardControls();
   const { actions } = useAnimations(animations, group);
   const [currentAction, setCurrentAction] = useState("Idle");
-  // const [, get] = useKeyboardControls();
 
   useEffect(() => {
     actions[currentAction].fadeIn(0.5).play();
@@ -46,11 +47,27 @@ export function MaleHumanFull(props) {
     setCurrentAction("Idle");
   }, []);
 
+  useFrame(() => {
+    const { one, two, three, four, five } = get();
+    if (one) {
+      handleMaleWalking();
+    } else if (two) {
+      handleMaleBreathless();
+    }
+    if (three) {
+      handleMaleFatigue();
+    } else if (four) {
+      handleMaleTired();
+    } else if (five) {
+      handleMaleIdle();
+    }
+  });
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null} onClick={handleMaleWalking}>
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <group name="MaleHuman" onClick={handleMaleWalking}>
+          <group name="MaleHuman">
             <skinnedMesh
               castShadow
               receiveShadow
@@ -131,14 +148,22 @@ export function MaleHumanFull(props) {
               morphTargetDictionary={nodes.MaleHuman_8.morphTargetDictionary}
               morphTargetInfluences={nodes.MaleHuman_8.morphTargetInfluences}
             />
-            <Html
-            position={[180, -150, 0]}
-            >
-              <button className="btn-3D" onClick={handleMaleWalking}>1.</button>
-              <button className="btn-3D" onClick={handleMaleFatigue}>2.</button>
-              <button className="btn-3D" onClick={handleMaleTired}>3.</button>
-              <button className="btn-3D" onClick={handleMaleIdle}>4.</button>
-              <button className="btn-3D" onClick={handleMaleBreathless}>5.</button>
+            <Html position={[180, -150, 0]}>
+              <button className="btn-3D" onClick={handleMaleWalking}>
+                1.
+              </button>
+              <button className="btn-3D" onClick={handleMaleFatigue}>
+                2.
+              </button>
+              <button className="btn-3D" onClick={handleMaleTired}>
+                3.
+              </button>
+              <button className="btn-3D" onClick={handleMaleIdle}>
+                4.
+              </button>
+              <button className="btn-3D" onClick={handleMaleBreathless}>
+                5.
+              </button>
             </Html>
           </group>
           <primitive object={nodes.mixamorigHips} />

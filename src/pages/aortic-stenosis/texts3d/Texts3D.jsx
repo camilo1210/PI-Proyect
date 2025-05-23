@@ -1,21 +1,25 @@
-import { Text3D } from "@react-three/drei";
+import { Center, Text3D } from "@react-three/drei";
 import "./Texts3D.css";
 
-const Text3D = () =>{
-    return(
-        <Text3D
-            // font="/fonts/helvetiker_regular.typeface.json"
-            size={0.5}
-            height={0.1}
-            curveSegments={12}
-            bevelEnabled
-            bevelThickness={0.03}
-            bevelSize={0.02}
-            bevelOffset={0}
-            bevelSegments={5}
-        >
-            Qué es?
-            <meshStandardMaterial color="#00ff00" />
-        </Text3D>
-    )
-}
+const Text3d = ({ title }) => {
+  return (
+    <Center position={[-0.3, 0.5, 0.6]}>
+      <Text3D
+        position={[0, 0, 0]}
+        font="/public/Fonts/Arial.json"
+        bevelEnabled
+        bevelSize={0.01}
+        bevelThickness={0.02}
+        height={0.01}
+        lineHeight={0.8}
+        letterSpacing={0.02}
+        size={0.3}
+      >
+        {`${title} `}
+        <meshStandardMaterial />
+      </Text3D>
+    </Center>
+  );
+};
+
+export default Text3d;

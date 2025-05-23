@@ -26,7 +26,7 @@ export function FullHeart(props) {
   });
 
   const handleHeart = useCallback((e) => {
-    console.log(e);
+    // console.log(e);
     // Aquí puedes agregar la lógica para manejar el clic en el corazón
   }, []);
 

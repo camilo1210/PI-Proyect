@@ -20,6 +20,7 @@ import Staging from "./staging/Staging";
 import StagingMale from "./staging/StagingMale";
 import Controls from "./controls/Controls";
 import Title2D from "./texts/Title";
+import Texts3d from "./texts3d/Texts3D";
 
 const AorticStenosis = () => {
   const map = useMemo(
@@ -32,26 +33,12 @@ const AorticStenosis = () => {
       { name: "two", keys: ["2"] },
       { name: "three", keys: ["3"] },
       { name: "four", keys: ["4"] },
+      { name: "five", keys: ["5"] },
     ],
     []
   );
 
-  const Controls = () => {
-    useEffect(() => {
-      return sub(
-        (state) => state.down,
-        (pressed) => console.log("Jump", pressed)
-      );
-    }, [sub]);
 
-    useFrame(() => {
-      const { left, right, up, down } = get();
-      if (up || down || left || right) {
-        console.log("Keybord pressed");
-      }
-      const pressed = get().back;
-    });
-  };
   return (
     <>
       <div className="container">
@@ -154,8 +141,6 @@ const AorticStenosis = () => {
               />
               <HalfHeart scale={1} position={[0, 0, 0]} rotation={[0, 0, 0]} />
               <OrbitControls />
-              {/* <Staging /> */}
-              {/* lUCES ADICIONALES */}
               <Lights2 />
             </Canvas>
           </div>
@@ -174,50 +159,53 @@ const AorticStenosis = () => {
             </p>
           </div>
           <div className="card-model">
-            <></>
-            <Canvas
-              camera={{ position: [0, 1.8, 2] }}
-              gl={{
-                shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
-              }}
-              shadows={true}
-              style={{
-                width: "100%",
-                height: "300px",
-                background: "var(--canvas-bg)",
-                borderRadius: "var(--border-radius)",
-              }}
-              raycaster={{ enabled: true }}
-            >
-              <ambientLight intensity={0.4} />
-              <directionalLight
-                position={[-3, 4, 4]}
-                intensity={1}
-                castShadow={true}
-                shadow-mapSize-width={2048}
-                shadow-mapSize-height={2048}
-                shadow-radius={4}
-                shadow-bias={-0.001} // Ajuste para mejorar la definición de la sombra
-                shadow-camera-near={0.5}
-                shadow-camera-far={20}
-                shadow-camera-left={-5}
-                shadow-camera-right={5}
-                shadow-camera-top={5}
-                shadow-camera-bottom={-5}
-              />
-              <Recipient />
-              <MaleHumanModel
-                scale={1}
-                position={[0, 0, 0]}
-                rotation={[0, 0, 0]}
-              />
-              <OrbitControls
-                target={[0, 0, -0.8]}
-                enableZoom={true}
-                zoomSpeed={0.6}
-              />
-              <StagingMale />
-            </Canvas>
+            <KeyboardControls map={map}>
+              <Canvas
+                camera={{ position: [0, 1.8, 2] }}
+                gl={{
+                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+                }}
+                shadows={true}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  background: "var(--canvas-bg)",
+                  borderRadius: "var(--border-radius)",
+                }}
+                raycaster={{ enabled: true }}
+              >
+                <Texts3d title={"Síntomas"} />
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  position={[-3, 4, 4]}
+                  intensity={1}
+                  castShadow={true}
+                  shadow-mapSize-width={2048}
+                  shadow-mapSize-height={2048}
+                  shadow-radius={4}
+                  shadow-bias={-0.001} // Ajuste para mejorar la definición de la sombra
+                  shadow-camera-near={0.5}
+                  shadow-camera-far={20}
+                  shadow-camera-left={-5}
+                  shadow-camera-right={5}
+                  shadow-camera-top={5}
+                  shadow-camera-bottom={-5}
+                />
+                <Recipient />
+                <MaleHumanModel
+                  scale={1}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, 0]}
+                />
+                <OrbitControls
+                  target={[0, 0, -0.8]}
+                  enableZoom={true}
+                  zoomSpeed={0.6}
+                />
+                <Controls />
+                <StagingMale />
+              </Canvas>
+            </KeyboardControls>
           </div>
         </div>
       </div>
