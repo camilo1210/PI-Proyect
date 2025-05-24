@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
+/* eslint-disable no-unused-vars */
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Circle, Html, OrbitControls } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { Circle, Html, OrbitControls, Text } from "@react-three/drei";
+import { useEffect, useState, Suspense } from "react";
 
 // Modelos
 import { BrokenHeartModel } from "./models-3d/BrokenHeartModel";
@@ -16,8 +17,16 @@ import { ManModel } from "./models-3d/ManModel";
 import Lights from "./lights/Lights";
 import "./BrokenHeartSyndrome.css";
 
+// Color de fondo fijo
+const CANVAS_BACKGROUND_COLOR = "#e5d0ac";
+
 const BrokenHeartSyndrome = () => {
   const [showHint, setShowHint] = useState(false);
+  const [cracksVisible, setCracksVisible] = useState(false);
+  const [painTriggered, setPainTriggered] = useState(false);
+  const [thoughtVisible, setThoughtVisible] = useState(false);
+  const [ecgAnimationTriggered, setEcgAnimationTriggered] = useState(false);
+  const [soundPlaying, setSoundPlaying] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,7 +45,7 @@ const BrokenHeartSyndrome = () => {
           style={{
             width: "112%",
             height: 300,
-            background: "var(--canvas-bg)",
+            background: CANVAS_BACKGROUND_COLOR,
             borderRadius: "var(--border-radius)",
           }}
           gl={{
@@ -53,10 +62,12 @@ const BrokenHeartSyndrome = () => {
             args={[10, 10]}
             receiveShadow
           >
-            <meshStandardMaterial color="var(--canvas-bg)" />
+            <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
           </Circle>
 
-          <BrokenHeartModel scale={2} position={[0, 1.5, 0]} castShadow />
+          <Suspense fallback={null}>
+            <BrokenHeartModel scale={2} position={[0, 1.5, 0]} castShadow />
+          </Suspense>
 
           <OrbitControls
             enableZoom
@@ -66,6 +77,16 @@ const BrokenHeartSyndrome = () => {
             maxDistance={10}
           />
 
+          <Text
+            position={[0, 3.8, 0]}
+            fontSize={0.4}
+            color="#ff2e63"
+            anchorX="center"
+            anchorY="middle"
+          >
+            Haz clic o presiona la tecla "a" 💓
+          </Text>
+
           <Html position={[3, 4, -1]}>
             <div className="heart-title-container">
               <h1 className="heart-title">Síndrome del Corazón Roto</h1>
@@ -73,7 +94,6 @@ const BrokenHeartSyndrome = () => {
           </Html>
         </Canvas>
 
-        {/* Mensaje de guía */}
         {showHint && (
           <div className="interaction-hint">
             💡 Haz clic en el corazón para interactuar, o presiona una tecla
@@ -81,7 +101,6 @@ const BrokenHeartSyndrome = () => {
         )}
       </div>
 
-      {/* Secciones informativas */}
       <div className="cards-container">
         <Section
           title="¿Qué es?"
@@ -90,9 +109,18 @@ const BrokenHeartSyndrome = () => {
               puede ocasionarse por una enfermedad física grave o una cirugía.
               Suele ser temporal, pero algunas personas pueden seguir
               sintiéndose mal después de que el corazón se cure."
-          Model={HeartCracksModel}
-          hasButton
+          Model={(props) => (
+            <HeartCracksModel
+              {...props}
+              animate={cracksVisible}
+              onToggle={() => setCracksVisible((prev) => !prev)}
+            />
+          )}
+          onButtonClick={() => setCracksVisible((prev) => !prev)}
+          modelScale={[5, 5, 5]}
+          modelPosition={[0, 0, 0]}
         />
+
         <Section
           title="¿Cuáles son sus síntomas?"
           text={
@@ -119,8 +147,11 @@ const BrokenHeartSyndrome = () => {
           }
           Model={HeartPainModel}
           reverse
-          hasButton
+          onButtonClick={() => setPainTriggered((prev) => !prev)}
+          modelScale={[6, 6, 6]}
+          modelPosition={[0, 1.2, 0]}
         />
+
         <Section
           title="¿Qué lo causa?"
           text={
@@ -131,51 +162,77 @@ const BrokenHeartSyndrome = () => {
                 desencadenantes incluyen:
               </p>
 
-              <p>Se cree que un aumento repentino de hormonas del estrés...</p>
-              <p>1. Muerte de un ser querido.</p>
-              <p>2. Diagnóstico grave.</p>
-              <p>3. Ruptura o separación.</p>
-              <p>4. Estrés emocional o físico intenso.</p>
+              <ul>
+                <li>Muerte de un ser querido.</li>
+                <li>Diagnóstico grave.</li>
+                <li>Ruptura o separación.</li>
+                <li>Estrés emocional o físico intenso.</li>
+              </ul>
             </>
           }
           Model={ManModel}
-          hasButton
+          onButtonClick={() => setSoundPlaying((prev) => !prev)}
+          playSound={soundPlaying}
+          modelScale={[2.5, 2.5, 2.5]}
+          modelPosition={[0, 2, 0]}
         />
+
         <Section
           title="¿Cómo tratarlo?"
           text={
             <>
-              <p>El tratamiento depende de la gravedad de los síntomas y es similar
-                al de un ataque cardíaco. Puede incluir:</p>
+              <p>
+                El tratamiento depende de la gravedad de los síntomas y es
+                similar al de un ataque cardíaco. Puede incluir:
+              </p>
               <ul>
                 <li>Analgésicos para aliviar el dolor.</li>
                 <li>Betabloqueadores para reducir la frecuencia cardíaca.</li>
-                <li>Aspirina para mejorar la circulación y prevenir coágulos.</li>
-                <li>Inhibidores de la ECA o bloqueadores de los receptores de angiotensina para reducir la presión arterial.</li>
+                <li>
+                  Aspirina para mejorar la circulación y prevenir coágulos.
+                </li>
+                <li>
+                  Inhibidores de la ECA o bloqueadores de los receptores de
+                  angiotensina para reducir la presión arterial.
+                </li>
                 <li>Diuréticos para disminuir la acumulación de líquidos.</li>
-                <li>Fármacos inotrópicos para mejorar la contractilidad en casos graves.</li>
-                <li>Dispositivos de asistencia ventricular en casos de shock cardiogénico.</li>
-                <li>Analgésicos</li>
-                <li>Betabloqueadores</li>
-                <li>Aspirina</li>
+                <li>
+                  Fármacos inotrópicos para mejorar la contractilidad en casos
+                  graves.
+                </li>
+                <li>
+                  Dispostitleitivos de asistencia ventricular en casos de shock
+                  cardiogénico.
+                </li>
               </ul>
             </>
           }
           Model={HeartEGCModel}
           reverse
-          hasButton
+          onButtonClick={() => setEcgAnimationTriggered((prev) => !prev)}
+          modelScale={[6, 6, 6]}
+          modelPosition={[0, 1.2, 0]}
         />
       </div>
     </div>
   );
 };
 
-// Componente reutilizable de sección con texto y modelo 3D
-const Section = ({ title, text, Model, reverse, hasButton }) => (
+const Section = ({
+  title,
+  text,
+  Model,
+  reverse,
+  hasButton = false,
+  onButtonClick,
+  playSound,
+  modelScale,
+  modelPosition,
+}) => (
   <div className={`section ${reverse ? "reverse" : ""}`}>
     <div className={`card ${reverse ? "right" : "left"}`}>
       <div className="title">{title}</div>
-      <p>{text}</p>
+      <div className="section-text">{text}</div>
     </div>
     <div className="card-model">
       <Canvas
@@ -184,7 +241,7 @@ const Section = ({ title, text, Model, reverse, hasButton }) => (
         style={{
           width: "100%",
           height: "300px",
-          background: "var(--canvas-bg)",
+          background: CANVAS_BACKGROUND_COLOR,
           borderRadius: "var(--border-radius)",
         }}
         gl={{
@@ -194,25 +251,29 @@ const Section = ({ title, text, Model, reverse, hasButton }) => (
       >
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
-          position={[0, -0.5, 0]}
+          position={[0, -2, 0]}
           args={[10, 10]}
           receiveShadow
         >
-          <meshStandardMaterial color="var(--canvas-bg)" />
+          <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
         </Circle>
 
-        {/* Modelo 3D */}
-        <Model
-          scale={2.5}
-          position={[0, 2, 0]}
-          castShadow
-          rotation={[0, 4, 0]}
-        />
+        <Suspense fallback={null}>
+          <Model
+            scale={modelScale}
+            position={modelPosition}
+            castShadow
+            rotation={[0, 4, 0]}
+            playSound={playSound}
+          />
+        </Suspense>
 
-        {/* Botón HTML 3D */}
         {hasButton && (
           <Html position={[0, -1, 4]}>
             <button
+              onClick={
+                typeof onButtonClick === "function" ? onButtonClick : undefined
+              }
               style={{
                 padding: "12px 20px",
                 fontSize: "16px",
@@ -224,9 +285,8 @@ const Section = ({ title, text, Model, reverse, hasButton }) => (
                 transform: "rotateY(-10deg)",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
               }}
-              onClick={() => alert("¡Gracias por interactuar!")}
             >
-              Participar
+              Sonido de Agonía
             </button>
           </Html>
         )}
