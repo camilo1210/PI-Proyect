@@ -6,7 +6,7 @@ const Text3d = ({ title }) => {
     <Center position={[-0.3, 0.5, 0.6]}>
       <Text3D
         position={[0, 0, 0]}
-        font="/public/Fonts/Arial.json"
+        font="/Fonts/Arial.json"
         bevelEnabled
         bevelSize={0.01}
         bevelThickness={0.02}
