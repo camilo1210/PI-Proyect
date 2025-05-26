@@ -21,6 +21,7 @@ import StagingMale from "./staging/StagingMale";
 import Controls from "./controls/Controls";
 import Title2D from "./texts/Title";
 import Texts3d from "./texts3d/Texts3D";
+import Texts3dFullHeart from "./texts3d/Texts3DFullHeart";
 
 const AorticStenosis = () => {
   const map = useMemo(
@@ -51,10 +52,10 @@ const AorticStenosis = () => {
               gl={{
                 shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
               }}
-              camera={{ position: [0, 0.25, -0.3] }}
+              camera={{ position: [0, 0.2, -0.4] }}
             >
               {/* <SoftShadows frustum={3.75} size={10} samples={16} focus={1} /> */}
-              <Title2D title={"Estenosis Aortica"} />
+              <Texts3dFullHeart title={"Estenosis Aortica"}/>
               <ambientLight intensity={0.5} />
               <directionalLight
                 position={[4, 4, -5]}
