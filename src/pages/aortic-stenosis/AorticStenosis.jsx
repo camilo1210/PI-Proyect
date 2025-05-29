@@ -17,11 +17,11 @@ import { useEffect, useMemo } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import Recipient from "./models-3d/Recipient";
 import Staging from "./staging/Staging";
+import Texts3dFullHeart from "./texts3d/Texts3DFullHeart";
+import Texts3d from "./texts3d/Texts3D";
 import StagingMale from "./staging/StagingMale";
 import Controls from "./controls/Controls";
 import Title2D from "./texts/Title";
-import Texts3d from "./texts3d/Texts3D";
-import Texts3dFullHeart from "./texts3d/Texts3DFullHeart";
 
 const AorticStenosis = () => {
   const map = useMemo(
