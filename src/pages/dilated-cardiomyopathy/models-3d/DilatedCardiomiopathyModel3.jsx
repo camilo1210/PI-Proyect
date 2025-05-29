@@ -6,7 +6,7 @@ const HeartDilatedModel3 = () => {
   const HeartC = useGLTF("models-3d/dilated-cardiomyopathy-models/human-heart2.glb");
   const meshRef = useRef();
   return (
-    <group ref={meshRef} castShadow  scale={2} autorotate>
+    <group ref={meshRef} castShadow  scale={10} autorotate position={[0, 2, 0]}>
       <primitive object={HeartC.scene} />
     </group>
   );

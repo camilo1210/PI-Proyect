@@ -1,14 +1,13 @@
 import "./DilatedCardiomyopathy.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+import { OrbitControls, Html, Circle } from "@react-three/drei";
 import HeartDilatedModel from "./models-3d/DilatedCardiomiopathyModel";
 import HeartDilatedModel1 from "./models-3d/DilatedCardiomiopathyModel1";
 import HeartDilatedModel2 from "./models-3d/DilatedCardiomioPathyModel2";
 import HeartDilatedModel3 from "./models-3d/DilatedCardiomiopathyModel3";
 import ModelDizzy from "./models-3d/ManDizzyAnimation";
-import Button from "./buttom/Button"
+import Button from "./buttom/Button";
 import Lights from "../dilated-cardiomyopathy/lights/Lights";
-import { Circle } from "@react-three/drei";
 import * as THREE from "three";
 
 const DilatedCardiomyopathy = () => {
@@ -57,51 +56,106 @@ const DilatedCardiomyopathy = () => {
       <div className="cards-container">
 
         {/* ¿Qué es? */}
-        <Section
-        
-          title="¿Qué es?"
-          text="La miocardiopatía dilatada (MCD) es una enfermedad del corazón en la cual el músculo cardíaco se debilita y se agranda, lo que dificulta su capacidad para bombear sangre de manera eficiente. Esta condición puede afectar a cualquier parte del corazón, aunque generalmente involucra los ventrículos, las cavidades principales que bombean sangre al resto del cuerpo."
-          Model={HeartDilatedModel2}
-          Circle
-        />
+        <SectionQueEs />
 
         {/* ¿Cuáles son sus síntomas? */}
-        <Section
-          title="¿Cuáles son sus síntomas?"
-          text="Los síntomas de la miocardiopatía dilatada incluyen fatiga, dificultad para respirar (especialmente al hacer ejercicio o acostarse), hinchazón en piernas o abdomen, palpitaciones, mareos y tos persistente, especialmente al estar acostado. Estos síntomas indican que el corazón no está bombeando sangre de manera eficiente."
-          Model={ModelDizzy}
-          Button={Button}
-          reverse
-          showButton={true}
-        />
+        <SectionSintomas />
 
         {/* ¿Qué lo causa? */}
-        <Section
-          title="¿Qué lo causa?"
-          text="La miocardiopatía dilatada puede ser causada por factores genéticos, infecciones virales que afectan el corazón (miocarditis), consumo excesivo de alcohol, trastornos metabólicos como diabetes e hipertensión, enfermedades autoinmunes que atacan al corazón y ciertos medicamentos, como los de quimioterapia, que dañan el músculo cardíaco."
-          Model={HeartDilatedModel3}
-        />
+        <SectionCausas />
 
         {/* ¿Cómo tratarlo? */}
-        <Section
-          title="¿Cómo tratarlo?"
-          text="El tratamiento de la miocardiopatía dilatada incluye medicamentos como inhibidores de la ECA y betabloqueadores, dispositivos como marcapasos, y cambios en el estilo de vida, como dieta saludable y evitar alcohol y tabaco. En casos graves, se puede considerar un trasplante cardíaco."
-          Model={HeartDilatedModel1}
-
-          reverse
-        />
+        <SectionTratamiento />
       </div>
     </div>
   );
 };
 
-// Componente de sección reutilizable
-const Section = ({ title, text, Model, reverse, Button, showButton = false }) => (
-  <div className={`section ${reverse ? "reverse" : ""}`}>
-    <div className={`card ${reverse ? "right" : "left"}`}>
-      <div className="title">{title}</div>
-      <p>{text}</p>
-      {showButton && <Button />}
+// Sección: ¿Qué es?
+const SectionQueEs = () => (
+  <div className="section">
+    <div className="card left">
+      <div className="title">¿Qué es?</div>
+      <p>
+        La miocardiopatía dilatada (MCD) es una enfermedad del corazón en la cual el músculo cardíaco se debilita y se agranda, lo que dificulta su capacidad para bombear sangre de manera eficiente. Esta condición puede afectar a cualquier parte del corazón, aunque generalmente involucra los ventrículos, las cavidades principales que bombean sangre al resto del cuerpo.
+      </p>
+    </div>
+    <div className="card-model">
+      <Canvas
+        shadows
+        camera={{ position: [20, 15, 20], fov: 70 }}
+        style={{
+          width: "100%",
+          height: "300px",
+          background: "var(--canvas-bg)",
+          borderRadius: "var(--border-radius)",
+        }}
+      >
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[2, 4, 5]} intensity={1} />
+        <Circle
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -4, 0]}
+          args={[10, 10]}
+          receiveShadow
+        >
+          <meshStandardMaterial />
+        </Circle>
+        <HeartDilatedModel2 scale={10} position={[0, -100, 0]} rotation={[0, 4, 0]} />
+        <Lights />
+        <OrbitControls enableZoom minDistance={0} maxDistance={10} />
+      </Canvas>
+    </div>
+  </div>
+);
+
+// Sección: ¿Cuáles son sus síntomas?
+const SectionSintomas = () => (
+  <div className="section reverse">
+    <div className="card right">
+      <div className="title">¿Cuáles son sus síntomas?</div>
+      <p>
+        Los síntomas de la miocardiopatía dilatada incluyen fatiga, dificultad para respirar (especialmente al hacer ejercicio o acostarse), hinchazón en piernas o abdomen, palpitaciones, mareos y tos persistente, especialmente al estar acostado. Estos síntomas indican que el corazón no está bombeando sangre de manera eficiente.
+      </p>
+      <Button />
+    </div>
+    <div className="card-model">
+      <Canvas
+        shadows
+        camera={{ position: [20, 15, 20], fov: 65 }}
+        style={{
+          width: "100%",
+          height: "300px",
+          background: "var(--canvas-bg)",
+          borderRadius: "var(--border-radius)",
+        }}
+      >
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[2, 4, 5]} intensity={1} />
+        <Circle
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -0.5, 0]}
+          args={[10, 10]}
+          receiveShadow
+        >
+          <meshStandardMaterial />
+        </Circle>
+        <ModelDizzy scale={10} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
+        <Lights />
+        <OrbitControls enableZoom minDistance={0} maxDistance={10} />
+      </Canvas>
+    </div>
+  </div>
+);
+
+// Sección: ¿Qué lo causa?
+const SectionCausas = () => (
+  <div className="section">
+    <div className="card left">
+      <div className="title">¿Qué lo causa?</div>
+      <p>
+        La miocardiopatía dilatada puede ser causada por factores genéticos, infecciones virales que afectan el corazón (miocarditis), consumo excesivo de alcohol, trastornos metabólicos como diabetes e hipertensión, enfermedades autoinmunes que atacan al corazón y ciertos medicamentos, como los de quimioterapia, que dañan el músculo cardíaco.
+      </p>
     </div>
     <div className="card-model">
       <Canvas
@@ -124,7 +178,45 @@ const Section = ({ title, text, Model, reverse, Button, showButton = false }) =>
         >
           <meshStandardMaterial />
         </Circle>
-        <Model scale={10} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
+        <HeartDilatedModel3 scale={50} position={[0, 10, 0]} rotation={[0, 4, 0]} />
+        <Lights />
+        <OrbitControls enableZoom minDistance={0} maxDistance={10} />
+      </Canvas>
+    </div>
+  </div>
+);
+
+// Sección: ¿Cómo tratarlo?
+const SectionTratamiento = () => (
+  <div className="section reverse">
+    <div className="card right">
+      <div className="title">¿Cómo tratarlo?</div>
+      <p>
+        El tratamiento de la miocardiopatía dilatada incluye medicamentos como inhibidores de la ECA y betabloqueadores, dispositivos como marcapasos, y cambios en el estilo de vida, como dieta saludable y evitar alcohol y tabaco. En casos graves, se puede considerar un trasplante cardíaco.
+      </p>
+    </div>
+    <div className="card-model">
+      <Canvas
+        shadows
+        camera={{ position: [20, 15, 20], fov: 75 }}
+        style={{
+          width: "100%",
+          height: "300px",
+          background: "var(--canvas-bg)",
+          borderRadius: "var(--border-radius)",
+        }}
+      >
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[2, 4, 5]} intensity={1} />
+        <Circle
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -0.5, 0]}
+          args={[10, 10]}
+          receiveShadow
+        >
+          <meshStandardMaterial />
+        </Circle>
+        <HeartDilatedModel1 scale={10} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
         <Lights />
         <OrbitControls enableZoom minDistance={0} maxDistance={10} />
       </Canvas>
