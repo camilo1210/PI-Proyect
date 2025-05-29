@@ -1,12 +1,16 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "@/assets/logo.png";
 import { useLocation } from "react-router-dom";
+import useAuthStore from "../../stores/use-auth-store";
+import { useNavigate } from "react-router";
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const hideTimer = useRef(null);
+  const { loginGoogleWithPopup } = useAuthStore();
+  const navigate = useNavigate();
 
   // ----- manejadores comunes -----
   const handleEnter = () => {
@@ -26,6 +30,12 @@ const Header = () => {
     location.pathname.includes("/Heart_failure") ||
     location.pathname.includes("/Dilated-cardiomyopathy") ||
     location.pathname.includes("/Aortic_stenosis");
+
+    const handleLogin = useCallback (() => {
+      loginGoogleWithPopup()
+      .then(()=> navigate("login"))
+      .catch(()=> navigate("/"))
+    }, [loginGoogleWithPopup, navigate]);
 
   return (
     <header>
@@ -56,12 +66,12 @@ const Header = () => {
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
               >
-                <li >
+                <li>
                   <NavLink to="/Broken_heart_syndrome">
                     Sindrome Del Corazon Roto
                   </NavLink>
                 </li>
-                <li >
+                <li>
                   <NavLink to="/Cardiac_hypertension">
                     Hipertensión Arterial
                   </NavLink>
@@ -74,7 +84,7 @@ const Header = () => {
                     Miocardiopatía Dilatada
                   </NavLink>
                 </li>
-                <li >
+                <li>
                   <NavLink to="/Aortic_stenosis">Estenosis aórtica</NavLink>
                 </li>
               </ul>
@@ -94,10 +104,17 @@ const Header = () => {
           <li className="nav-item">
             <button className="btnClose">
               <NavLink to="/login" end>
-                Cerrar sesión
+                Iniciar sesión
               </NavLink>
             </button>
           </li>
+          {/* <li className="nav-item">
+            <button className="btnClose">
+              <NavLink to="/login" end>
+                Cerrar sesión
+              </NavLink>
+            </button>
+          </li> */}
         </ul>
       </nav>
     </header>
