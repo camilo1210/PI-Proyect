@@ -7,7 +7,7 @@ import Staging from "./staging/Staging";
 import React, {useState, useRef} from "react";
 import "./HeartFailure.css";
 import CigarettesModel from "./model-3d/CigarettesModel";
-
+import Text3DHeartFailure from "./texts3d/Text3DHeartFailure"
 
 const HeartFailure = () => {
 const [audio, setAudio] = useState(null); // Estado para almacenar el audio actual
@@ -20,6 +20,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
       audioRef.current.currentTime = 0; // Reestablece el tiempo del audio anterior
     }
     const newAudio = new Audio("/sounds/heart-beating-normal.mp3"); // Ruta al archivo de latido normal
+    newAudio.volume = 1.0;
     newAudio.play();
     setAudio(newAudio); // Guardamos la referencia al audio
     audioRef.current = newAudio;
@@ -37,6 +38,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
       audioRef.current.currentTime = 0; // Reestablece el tiempo del audio anterior
     }
     const newAudio = new Audio("/sounds/heart-beating-fast.mp3"); // Ruta al archivo de latido rápido
+    newAudio.volume = 1.0;
     newAudio.play();
     setAudio(newAudio); // Guardamos la referencia al audio
     audioRef.current = newAudio;
@@ -49,7 +51,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
 
   return (
     <div className="heart-failure-container">
-      <h1 className="heart-failure-title">Insuficiencia cardíaca</h1>
+      {/* <h1 className="heart-failure-title">Insuficiencia cardíaca</h1> */}
 
       <div className="model-container">
         <Canvas
@@ -57,6 +59,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
           gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
           camera={{ position: [0, 2, 8], fov: 60 }}
         >
+          <Text3DHeartFailure title={"Insuficiencia Cardíaca"} />
           <SoftShadows frustum={3.75} size={10} samples={16} focus={1} />
           <ambientLight intensity={0.4} />
           <directionalLight
@@ -69,8 +72,8 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
             shadow-radius={3}
           />
           <Staging />
-          <OrbitControls target={[0, 0, 0]} />
-          <HeartFailureModel scale={2} castShadow rotation={[0, 0, 0]} />
+          <OrbitControls enableZoom={true} />
+          <HeartFailureModel scale={2} castShadow rotation={[0, 0, 0]} onClickNormal={heartBeatingNormal} onClickFailure={heartBeatingFast}/>
           {/* Piso para recibir sombras */}
           <Circle
             rotation={[-Math.PI / 2, 0, 0]}
@@ -84,16 +87,12 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
       </div>
 
       <div className="labels">
-        <p onClick={heartBeatingNormal} style={{ color: "var(--color-rojo-vibrante)", cursor: "pointer" }}>
-          Corazón normal
-        </p>
-        <p onClick={heartBeatingFast} style={{ color: "var(--color-rojo-vibrante)", cursor: "pointer" }}>
-          Corazón con insuficiencia
-        </p>
+        <p> Corazón normal </p>
+        <p> Corazón con insuficiencia </p>
       </div>
 
       <div className="labelsTwo">
-          <p>Haz Click sobre los textos de arriba....</p>
+          <p>Prueba haciendo click en los corazones de arriba....</p>
         </div>
 
       <div className="cards-container">
@@ -150,7 +149,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
               </p>
             </div>
 
-            <div className="card-model">
+            <div className="card-models">
               <Canvas
                 shadows
                 camera={{ position: [20, 10, 20], fov: 50 }}
@@ -210,7 +209,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                  </p>
             </div>
 
-            <div className="card-model">
+            <div className="card-models">
               <Canvas
                 shadows
                 camera={{ position: [20, 10, 20], fov: 50 }}

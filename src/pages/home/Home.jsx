@@ -8,6 +8,8 @@ import Texts3dFullHeart from "../aortic-stenosis/texts3d/Texts3DFullHeart.jsx";
 import Recipient from "../aortic-stenosis/models-3d/Recipient.jsx";
 import Staging from "../aortic-stenosis/staging/Staging.jsx";
 
+import HeartFailureModel from "../heart-failure/model-3d/HeartFailureModel";
+
 import * as THREE from "three";
 import { Circle, Html, OrbitControls } from "@react-three/drei";
 
@@ -116,6 +118,7 @@ const Home = () => {
           </button>
         </div>
         {/* ===================================Recuadro Insuficiencia Cardíaca============================================================*/}
+        <div className="section">
         <div className="card left">
           <div className="title">Insuficiencia Cardíaca</div>
           <p>
@@ -127,6 +130,43 @@ const Home = () => {
               Saber más
             </NavLink>
           </button>
+        </div>
+        <div className="card-model">
+          <Canvas
+          shadows
+          style={{
+                width: "100%",
+                height: 300,
+                background: "var(--canvas-bg)",
+                borderRadius: "var(--border-radius)",
+              }}
+          gl={{ shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap } }}
+          camera={{ position: [0, 2, 8], fov: 60 }}
+        >
+          <ambientLight intensity={0.4} />
+          <directionalLight
+            // Cambia estos valores para modificar la dirección de las sombras
+            position={[-2, 5, 7]}
+            intensity={2}
+            castShadow
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-radius={3}
+          />
+          <Circle
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0, -3.2, 0]}
+            args={[10, 10]}
+            receiveShadow
+          >
+            <meshStandardMaterial color="var(--canvas-bg)" />
+          </Circle>
+          <OrbitControls enableZoom={true} />
+          <HeartFailureModel scale={2} castShadow rotation={[0, 0, 0]}/>
+          {/* Piso para recibir sombras */}
+          
+        </Canvas>
+        </div>
         </div>
         {/* ===========================Recuadro Miocardiopatía Dilatada==================================================================*/}
         <div className="section">

@@ -49,13 +49,14 @@
   text-align: left;
 }
 
-.card-model {     /* marco alrededor del modelo*/
+.card-models {     /* marco alrededor del modelo*/
   margin-top: 1rem;
   padding: 1rem;
   background-color: var(--color-arena);
   border: 2px solid var(--canvas-bg);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 300px;
 }
 
 .card-left {
