@@ -13,6 +13,7 @@ import { Circle, Html, OrbitControls } from "@react-three/drei";
 
 // Modelos
 import { BrokenHeartModel } from "../broken-heart-syndrome/models-3d/BrokenHeartModel.jsx";
+import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx"; // Corrected import
 
 // Luces y estilos
 import Lights from "../broken-heart-syndrome/lights/Lights.jsx";
@@ -128,17 +129,63 @@ const Home = () => {
           </button>
         </div>
         {/* ===========================Recuadro Miocardiopatía Dilatada==================================================================*/}
-        <div className="card right">
-          <div className="title">Miocardiopatía Dilatada</div>
-          <p>
-            El corazón se agranda tratando de compensar su debilidad, pero en el
-            proceso pierde su fuerza. ¿Qué lo causa y cómo afecta tu vida?
-          </p>
-          <button className="btnClose">
-            <NavLink to="/Dilated-cardiomyopathy" end>
-              Saber más
-            </NavLink>
-          </button>
+        <div className="section">
+          <div className="card-model">
+            <Canvas
+              shadows
+              camera={{ position: [0, 1, 8], fov: 50 }}
+              style={{
+                width: "100%",
+                height: 300,
+                background: "var(--canvas-bg)",
+                borderRadius: "var(--border-radius)",
+              }}
+              gl={{
+                antialias: true,
+                shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+              }}
+            >
+              <ambientLight intensity={0.4} />
+              <directionalLight position={[2, 4, 5]} castShadow intensity={1} />
+
+              <Circle
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -0.5, 0]}
+                args={[10, 10]}
+                receiveShadow
+              >
+                <meshStandardMaterial color="var(--canvas-bg)" />
+              </Circle>
+
+              <HeartDilatedModel scale={2} position={[0, 1.5, 0]} castShadow />
+
+              <OrbitControls
+                enableZoom
+                autoRotate
+                autoRotateSpeed={1}
+                minDistance={2}
+                maxDistance={10}
+              />
+
+              <Html position={[3, 4, -1]}>
+                <div className="heart-title-container">
+                  <h1 className="heart-title">Miocardiopatía Dilatada</h1>
+                </div>
+              </Html>
+            </Canvas>
+          </div>
+          <div className="card right">
+            <div className="title">Miocardiopatía Dilatada</div>
+            <p>
+              El corazón se agranda tratando de compensar su debilidad, pero en el
+              proceso pierde su fuerza. ¿Qué lo causa y cómo afecta tu vida?
+            </p>
+            <button className="btnClose">
+              <NavLink to="/Dilated-cardiomyopathy" end>
+                Saber más
+              </NavLink>
+            </button>
+          </div>
         </div>
         {/* ============================Recuadro Estenosis Aórtica==================================================================*/}
         <div className="section">
@@ -155,54 +202,54 @@ const Home = () => {
               </NavLink>
             </button>
           </div>
-            <div className="card-model">
-              <Canvas
-                shadows
-                gl={{
-                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
-                }}
-                camera={{ position: [0, 0.2, -0.4] }}
-                style={{
-                  width: "100%",
-                  height: 300,
-                  background: "var(--canvas-bg)",
-                  borderRadius: "var(--border-radius)",
-                }}
-              >
-                <Texts3dFullHeart title={"Estenosis Aortica"} />
-                <ambientLight intensity={0.5} />
-                <directionalLight
-                  position={[4, 4, -5]}
-                  intensity={1}
-                  castShadow
-                  shadow-mapSize-width={2048}
-                  shadow-mapSize-height={2048}
-                  shadow-radius={4}
-                  shadow-bias={-0.001} // Ajuste para mejorar la definición de la sombra
-                  shadow-camera-near={0.5}
-                  shadow-camera-far={20}
-                  shadow-camera-left={-5}
-                  shadow-camera-right={5}
-                  shadow-camera-top={5}
-                  shadow-camera-bottom={-5}
-                />
-                <OrbitControls
-                  target={[0, 0.16, 0]}
-                  enableZoom={true}
-                  zoomSpeed={0.6}
-                  maxZoom={4}
-                />
-                <FullHeartModel
-                  scale={2}
-                  castShadow
-                  rotation={[0, 0, 0]}
-                  position={[0, 0.16, 0]}
-                />
-                {/* Piso para recibir sombras */}
-                <Recipient />
-                <Staging />
-              </Canvas>
-            </div>
+          <div className="card-model">
+            <Canvas
+              shadows
+              gl={{
+                shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+              }}
+              camera={{ position: [0, 0.2, -0.4] }}
+              style={{
+                width: "100%",
+                height: 300,
+                background: "var(--canvas-bg)",
+                borderRadius: "var(--border-radius)",
+              }}
+            >
+              <Texts3dFullHeart title={"Estenosis Aortica"} />
+              <ambientLight intensity={0.5} />
+              <directionalLight
+                position={[4, 4, -5]}
+                intensity={1}
+                castShadow
+                shadow-mapSize-width={2048}
+                shadow-mapSize-height={2048}
+                shadow-radius={4}
+                shadow-bias={-0.001} // Ajuste para mejorar la definición de la sombra
+                shadow-camera-near={0.5}
+                shadow-camera-far={20}
+                shadow-camera-left={-5}
+                shadow-camera-right={5}
+                shadow-camera-top={5}
+                shadow-camera-bottom={-5}
+              />
+              <OrbitControls
+                target={[0, 0.16, 0]}
+                enableZoom={true}
+                zoomSpeed={0.6}
+                maxZoom={4}
+              />
+              <FullHeartModel
+                scale={2}
+                castShadow
+                rotation={[0, 0, 0]}
+                position={[0, 0.16, 0]}
+              />
+              {/* Piso para recibir sombras */}
+              <Recipient />
+              <Staging />
+            </Canvas>
+          </div>
         </div>
         {/* ===========================================================================================================================*/}
       </div>
