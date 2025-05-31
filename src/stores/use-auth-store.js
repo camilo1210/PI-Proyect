@@ -1,27 +1,39 @@
 import { create } from "zustand";
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut,  } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../../firebase.config";
 // Zustand store for authentication state management
 
+const provider = new GoogleAuthProvider();
+
 const useAuthStore = create((set) => {
-  const observerAuthState = () => {
+  const observeAuthState = () => {
     onAuthStateChanged(auth, (user) => {
-      user ? set({ userLooged: user }) : set({ userLooged: null });
+      user ? set({ userLogged: user }) : set({ userLogged: null });
     });
   };
-  observerAuthState();
+  observeAuthState();
+
   return {
-    userLooged: null,
-    loginWithPopup: async (provider) => {
+    userLogged: null,
+
+    loginGoogleWithPopUp: async () => {
       try {
-        return await signInWithPopup(auth, new GoogleAuthProvider());
+        return await signInWithPopup(auth, provider);
       } catch (error) {
-        console.error("Login failed:", error);
+        console.error("Error logging in:", error);
       }
     },
+
     logout: async () => {
-        signOut(auth).then(()=> set({ userLooged: null }))
-    }
+      return await signOut(auth)
+        .then(() => set({ userLogged: null }))
+        .catch((error) => console.error("Error logging out:", error));
+    },
   };
 });
 
