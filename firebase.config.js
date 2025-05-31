@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDtincaLZ6JNujUu80ZxcydcNBoJbQ9g0Y",
-  authDomain: "heartvisuals-fbcb4.firebaseapp.com",
-  projectId: "heartvisuals-fbcb4",
-  storageBucket: "heartvisuals-fbcb4.firebasestorage.app",
-  messagingSenderId: "692980784644",
-  appId: "1:692980784644:web:7f5f49e8f63063a83d9f51",
+  apiKey: "AIzaSyBnhhStXSJJP2CgQp3EuNst0glrBvE4gkc",
+  authDomain: "heartvisual-a69f2.firebaseapp.com",
+  projectId: "heartvisual-a69f2",
+  storageBucket: "heartvisual-a69f2.firebasestorage.app",
+  messagingSenderId: "455040273469",
+  appId: "1:455040273469:web:b8f1e69c2a7e6e0f6aee54"
 };
 
 // Initialize Firebase

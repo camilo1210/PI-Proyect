@@ -7,11 +7,10 @@ import useAuthStore from "../../stores/use-auth-store";
 //import { useNavigate } from "react-router";
 import { useNavigate } from "react-router-dom";
 
-
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const hideTimer = useRef(null);
-  const { loginGoogleWithPopUp } = useAuthStore();
+  const { userLogged, loginGoogleWithPopUp, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogin = useCallback(() => {
@@ -20,6 +19,13 @@ const Header = () => {
       .catch(() => navigate("/"));
   }, [loginGoogleWithPopUp, navigate]);
 
+  const handleLogout = useCallback(() => {
+    logout()
+      .then(() => {navigate("/"), alert("Se ha cerrado la sesión correctamente")} )
+      .catch((error) => console.error("Error al cerrar sesión:", error));
+  }, [logout, navigate]);
+
+  console.log("userlogged: ", userLogged);
 
   // ----- manejadores comunes -----
   const handleEnter = () => {
@@ -32,6 +38,7 @@ const Header = () => {
       setIsHovered(false); // se ejecuta 1 s después
     }, 100);
   };
+  // ----- ---------------------  -----
 
   const location = useLocation();
   const isEnfermedadesActive =
@@ -108,15 +115,35 @@ const Header = () => {
               </NavLink>
             </li>
             {/* ================================================ Botón de iniciar sesión con google ========================================================= */}
-            <li className="nav-item">
-              <button
-                type="btnClose"
-                title="Iniciar sesíón con Google"
-                onClick={handleLogin}
-              >
-                Iniciar sesión
-              </button>
-            </li>
+            {!userLogged ? (
+              <li className="nav-item">
+                <button
+                  className="btnClose"
+                  title="Iniciar sesión con Google"
+                  onClick={handleLogin}
+                >
+                  Iniciar sesión
+                </button>
+              </li>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <button className="btnClose" title="Perfil">
+                    <NavLink to="/Profile">Perfil</NavLink>
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="btnClose"
+                    title="Cerrar sesión"
+                    onClick={handleLogout}
+                  >
+                    Cerrar sesión
+                  </button>
+                </li>
+              </>
+            )}
+            {/* ================================================ Botón de iniciar sesión con google ========================================================= */}
           </ul>
         </nav>
       </header>
