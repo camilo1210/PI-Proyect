@@ -1,2 +1,59 @@
 @import "../../assets/variables.css";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+.about-container {
+  background-color: #FFF8E7;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  color: #000;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.team-section {
+  background-color: #8B0000;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.member-card {
+  background-color: white;
+  width: 160px;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.avatar {
+  background-color: black;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+}
+
+.section {
+  background-color: white;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+.section-title {
+  background-color: #8B0000;
+  color: white;
+  padding: 8px 16px;
+  display: inline-block;
+  border-radius: 20px;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
