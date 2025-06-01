@@ -15,7 +15,7 @@ import { ManModel } from "./models-3d/ManModel";
 // Luces y estilos
 import Lights from "./lights/Lights";
 import "./BrokenHeartSyndrome.css";
-import Text3d from "./texts3d/Texts3D";
+import Text3dBrokenHeart from "./texts3d/Texts3DBrokenHeart.jsx";
 
 const CANVAS_BACKGROUND_COLOR = "#e5d0ac";
 
@@ -63,7 +63,7 @@ const BrokenHeartSyndrome = () => {
             <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
           </Circle>
           <Suspense fallback={null}>
-            <Text3d title="Sindrome Del Corazon Roto" position={[0, 0, 0.3]} size={4} />
+            <Text3dBrokenHeart title="Sindrome Del Corazon Roto" position={[0, 0, 0.3]} size={4} />
             <BrokenHeartModel scale={2} position={[0, 1.5, 0]} castShadow />
           </Suspense>
           <OrbitControls
@@ -78,7 +78,7 @@ const BrokenHeartSyndrome = () => {
           </Text>
           <Html position={[3, 4, -1]}>
             <div className="heart-title-container">
-              <Text3d title="Síndrome del Corazón Roto" />
+              <Text3dBrokenHeart title="Síndrome del Corazón Roto" />
             </div>
           </Html>
         </Canvas>
@@ -95,7 +95,7 @@ const BrokenHeartSyndrome = () => {
           text="El síndrome del corazón roto es una afección cardíaca que a menudo se debe a situaciones estresantes y emociones extremas. También puede ocasionarse por una enfermedad física grave o una cirugía. Suele ser temporal, pero algunas personas pueden seguir sintiéndose mal después de que el corazón se cure."
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3d title="¿Qué es?" color="#a83234" position={[0, 2, 0]} size={0.25} />
+              <Text3dBrokenHeart title="¿Qué es?" color="#a83234" position={[0, 2, 0]} size={0.25} />
               <HeartCracksModel {...props} animate={cracksVisible} onToggle={() => setCracksVisible((prev) => !prev)} />
             </Suspense>
           )}
@@ -122,7 +122,7 @@ const BrokenHeartSyndrome = () => {
           }
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3d title="¿Cuáles son sus síntomas?" color="#a83232" position={[0, 2.8, 0]} size={0.25} />
+              <Text3dBrokenHeart title="¿Cuáles son sus síntomas?" color="#a83232" position={[0, 2.8, 0]} size={0.25} />
               <HeartPainModel {...props} />
             </Suspense>
           )}
@@ -149,7 +149,7 @@ const BrokenHeartSyndrome = () => {
           }
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3d title="¿Qué lo causa?" color="#a83232" position={[0, 1.5, 1]} size={0.25} />
+              <Text3dBrokenHeart title="¿Qué lo causa?" color="#a83232" position={[0, 1.5, 1]} size={0.25} />
               <ManModel {...props} />
             </Suspense>
           )}
@@ -179,7 +179,7 @@ const BrokenHeartSyndrome = () => {
           }
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3d title="¿Cómo tratarlo?" color="#a83232" position={[0, 2.8, 0]} size={0.25} />
+              <Text3dBrokenHeart title="¿Cómo tratarlo?" color="#a83232" position={[0, 2.8, 0]} size={0.25} />
               <HeartEGCModel {...props} />
             </Suspense>
           )}
