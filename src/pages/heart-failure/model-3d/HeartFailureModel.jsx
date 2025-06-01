@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useRef } from 'react'
 import { useFrame} from "@react-three/fiber";
 
-const HeartFailureModel = (props) => {
+const HeartFailureModel = ({ onClickFailure, onClickNormal, ...props }) => {
   const { nodes, materials} = useGLTF("models-3d/heart-failure-models/heart-failure.glb");
 
   const leftHeartRef = useRef(null);
@@ -41,6 +41,7 @@ const HeartFailureModel = (props) => {
       receiveShadow
       geometry={nodes.HeartFailure.geometry}
       material={materials.HeartFailureMaterial}
+      onClick={onClickFailure} // Click en el corazón izquierdo (enfermo)
     />
     <mesh
       ref={rightHeartRef}
@@ -48,6 +49,7 @@ const HeartFailureModel = (props) => {
       receiveShadow
       geometry={nodes.HeartFailure002.geometry}
       material={materials.HeartFailureMaterial}
+      onClick={onClickNormal} // Click en el corazón derecho (normal)
     />
   </group>
 );

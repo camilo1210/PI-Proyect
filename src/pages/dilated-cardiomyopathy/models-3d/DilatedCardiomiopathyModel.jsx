@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, Sky, Stars } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
@@ -37,9 +37,26 @@ const HeartDilatedModel = () => {
   });
 
   return (
-    <group ref={meshRef} castShadow>
-      <primitive object={HeartC.scene} />
-    </group>
+    <>
+      {/* Cielo */}
+      <Sky sunPosition={[100, 20, 100]} turbidity={8} rayleigh={6} />
+      
+      {/* Estrellas amarillas */}
+      <Stars
+        radius={100}
+        depth={1}
+        count={5000}
+        factor={6}
+        saturation={10}
+        fade
+        color="red" // Cambiar el color de las estrellas a amarillo
+      />
+
+      {/* Modelo del corazón */}
+      <group ref={meshRef} castShadow>
+        <primitive object={HeartC.scene} />
+      </group>
+    </>
   );
 };
 

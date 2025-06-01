@@ -11,7 +11,7 @@ const BeatStages = {
   STRONG: 2, // Latido fuerte
 };
 
-export function BrokenHeartModel(props) {
+export function BrokenHeartModelHome(props) {
   // Cargamos el modelo GLTF y extraemos sus nodos y materiales
   const { nodes, materials } = useGLTF(
     "/models-3d/broken-heart-sysdrome/broken-heart.glb"

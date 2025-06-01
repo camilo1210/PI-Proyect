@@ -1,12 +1,45 @@
 @import "@/assets/variables.css"; 
 
-/* Título exclusivo de esta sección */
-.heart-failure-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: var(--color-primary);
+.model-container {
+  margin-top: 3rem; /* o 48px, puedes ajustar el valor */
+  border-radius: 2%;
+  background-color: var(--canvas-bg);
 }
+
+.heart-failure-title {
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Raleway', sans-serif;
+  font-size: 3rem;
+  color: var(--color-rojo-vibrante);
+  animation: slideLeftRight 4s infinite alternate ease-in-out;
+  z-index: 10;
+  pointer-events: none; /* para que no bloquee clics en el canvas */
+
+  text-shadow:
+    -1px -1px 0 gray,
+     1px -1px 0 gray,
+    -1px  1px 0 white,
+     1px  1px 0 white,
+     0px  0px 10px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes slideLeftRight {
+  0% {
+    transform: translateX(-50%) translateX(-30px);
+  }
+  100% {
+    transform: translateX(-50%) translateX(30px);
+  }
+}
+
+.labelsTwo {
+  text-align: center;
+}
+
+/* Seccion de tarjetas*/
 
 .card-right p {
   text-align: left;
@@ -16,6 +49,89 @@
   text-align: left;
 }
 
-.labelsTwo {
-  text-align: center;
+.card-models {     /* marco alrededor del modelo*/
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--color-arena);
+  border: 2px solid var(--canvas-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 300px;
 }
+
+.card-left {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--color-arena);
+  border: 2px solid var(--canvas-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex: 1 1 45%;
+}
+
+.card-right {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--color-arena);
+  border: 2px solid var(--canvas-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Titulos de tarjetas*/
+
+.card-left .title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-rojo-oscuro);
+  padding: 0.7rem 1.5rem;
+  border: 2px solid #ff0000;
+  border-radius: 50px;
+  display: block;
+  background: linear-gradient(145deg, #f2d4b6, #eac19a);
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+  text-shadow:
+    1px 1px 1px rgba(255, 255, 255, 0.6),
+    2px 2px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-right .title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-rojo-oscuro);
+  padding: 0.7rem 1.5rem;
+  border: 2px solid #ff0000;
+  border-radius: 50px;
+  display: block;
+  background: linear-gradient(145deg, #f2d4b6, #eac19a);
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.25),
+    inset 0 4px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+  text-shadow:
+    1px 1px 1px rgba(255, 255, 255, 0.6),
+    2px 2px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-left .title:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 20px rgba(0, 0, 0, 0.35),
+    inset 0 4px 4px rgba(255, 255, 255, 0.7),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+
+
