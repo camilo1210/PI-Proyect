@@ -18,7 +18,7 @@ const Text3dBrokenHeart = ({
         bevelEnabled
         bevelSize={0.01}
         bevelThickness={0.02}
-        height={0.01}
+        height={0.09}
         lineHeight={0.8}
         letterSpacing={0.02}
         size={size}
