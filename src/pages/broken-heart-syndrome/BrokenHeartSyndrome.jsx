@@ -8,7 +8,7 @@ import { useEffect, useState, Suspense } from "react";
 // Modelos
 import { BrokenHeartModel } from "./models-3d/BrokenHeartModel";
 import { HeartCracksModel } from "./models-3d/HeartCracksModel";
-import { HeartEGCModel } from "./models-3d/HeartEGCModel";
+import { HeartMonitorModel } from "./models-3d/HeartMonitorModel.jsx";
 import { HeartPainModel } from "./models-3d/HeartPainModel";
 import { ManModel } from "./models-3d/ManModel";
 
@@ -63,7 +63,7 @@ const BrokenHeartSyndrome = () => {
             <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
           </Circle>
           <Suspense fallback={null}>
-            <Text3dBrokenHeart title="Sindrome Del Corazon Roto" position={[0, 0, 0.3]} size={4} />
+            <Text3dBrokenHeart title="Sindrome Del Corazon Roto" position={[0, 0, 1]} size={1} />
             <BrokenHeartModel scale={2} position={[0, 1.5, 0]} castShadow />
           </Suspense>
           <OrbitControls
@@ -95,12 +95,14 @@ const BrokenHeartSyndrome = () => {
           text="El síndrome del corazón roto es una afección cardíaca que a menudo se debe a situaciones estresantes y emociones extremas. También puede ocasionarse por una enfermedad física grave o una cirugía. Suele ser temporal, pero algunas personas pueden seguir sintiéndose mal después de que el corazón se cure."
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3dBrokenHeart title="¿Qué es?" color="#a83234" position={[0, 2, 0]} size={0.25} />
+              <Text3dBrokenHeart title="¿Qué es?" color="#a83234" position={[0, 2, 0]} size={0.5} />
               <HeartCracksModel {...props} animate={cracksVisible} onToggle={() => setCracksVisible((prev) => !prev)} />
             </Suspense>
           )}
           hasButton
           onButtonClick={() => setCracksVisible((prev) => !prev)}
+          trigger={cracksVisible}
+          setTrigger={setCracksVisible}
           modelScale={[5, 5, 5]}
           modelPosition={[0, 0.5, 0]}
         />
@@ -122,13 +124,15 @@ const BrokenHeartSyndrome = () => {
           }
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3dBrokenHeart title="¿Cuáles son sus síntomas?" color="#a83232" position={[0, 2.8, 0]} size={0.25} />
+              <Text3dBrokenHeart title="¿Cuáles son sus síntomas?" color="#a83232" position={[0, 2.8, 0]} size={0.6} />
               <HeartPainModel {...props} />
             </Suspense>
           )}
           reverse
           hasButton
           onButtonClick={() => setPainTriggered((prev) => !prev)}
+          trigger={painTriggered}
+          setTrigger={setPainTriggered}
           modelScale={[5.5, 5.5, 5.5]}
           modelPosition={[0, 0.5, 0]}
           rotationModel={[0, 3.3, 0]}
@@ -149,15 +153,16 @@ const BrokenHeartSyndrome = () => {
           }
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3dBrokenHeart title="¿Qué lo causa?" color="#a83232" position={[0, 1.5, 1]} size={0.25} />
+              <Text3dBrokenHeart title="¿Qué lo causa?" color="#a83232" position={[0, 1.5, 1]} size={0.5} />
               <ManModel {...props} />
             </Suspense>
           )}
           hasButton
           onButtonClick={() => setSoundPlaying((prev) => !prev)}
+          setTrigger={setSoundPlaying}
           playSound={soundPlaying}
-          modelScale={[2.5, 2.5, 2.5]}
-          modelPosition={[0, 1, 0]}
+          modelScale={[6, 6, 6]}
+          modelPosition={[0, 0.4, 0]}
           rotationModel={[0, 3, 0]}
         />
 
@@ -179,13 +184,15 @@ const BrokenHeartSyndrome = () => {
           }
           Model={(props) => (
             <Suspense fallback={null}>
-              <Text3dBrokenHeart title="¿Cómo tratarlo?" color="#a83232" position={[0, 2.8, 0]} size={0.25} />
-              <HeartEGCModel {...props} />
+              <Text3dBrokenHeart title="¿Cómo tratarlo?" color="#a83232" position={[0, 2.6, 0.5]} size={0.5} />
+              <HeartMonitorModel {...props} />
             </Suspense>
           )}
           reverse
           hasButton
           onButtonClick={() => setEcgAnimationTriggered((prev) => !prev)}
+          trigger={ecgAnimationTriggered}
+          setTrigger={setEcgAnimationTriggered}
           modelScale={[6, 6, 6]}
           modelPosition={[0, 1.2, 0]}
         />
@@ -194,13 +201,16 @@ const BrokenHeartSyndrome = () => {
   );
 };
 
+
+
 const Section = ({
   title,
   text,
   Model,
   reverse,
   hasButton = false,
-  onButtonClick,
+  trigger,
+  setTrigger,
   playSound,
   modelScale,
   modelPosition,
@@ -211,7 +221,7 @@ const Section = ({
       <div className="title">{title}</div>
       <div className="section-text">{text}</div>
     </div>
-    <div className="card-model">
+    <div className="card-model" style={{ position: "relative" }}>
       <Canvas
         shadows
         camera={{ position: [0, 0, 10], fov: 50 }}
@@ -235,39 +245,47 @@ const Section = ({
         >
           <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
         </Circle>
+
         {typeof Model === "function" ? (
           <Model
             scale={modelScale}
             position={modelPosition}
             castShadow
             rotation={rotationModel}
+            trigger={trigger}  // PASAMOS EL TRIGGER AQUÍ
             playSound={playSound}
           />
         ) : null}
+
         <Lights />
         <OrbitControls autoRotate enableZoom minDistance={2} maxDistance={10} />
-      </Canvas>
 
-      {hasButton && (
-        <button
-          onClick={typeof onButtonClick === "function" ? onButtonClick : undefined}
-          style={{
-            padding: "12px 20px",
-            fontSize: "16px",
-            borderRadius: "10px",
-            backgroundColor: "#800000",
-            color: "#fff",
-            border: "none",
-            cursor: "pointer",
-            marginTop: "10px",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
-          }}
-        >
-          Sonido de Agonía
-        </button>
-      )}
+        {/* Botón dentro del Canvas */}
+        {hasButton && (
+          <Html position={[0, -3.5, 0]} center style={{ pointerEvents: "auto" }}>
+            <button
+              onClick={() => setTrigger((prev) => !prev)}
+              style={{
+                padding: "12px 20px",
+                fontSize: "16px",
+                borderRadius: "10px",
+                backgroundColor: "#800000",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
+                userSelect: "none",
+              }}
+            >
+              {trigger ? "Detener Animación" : "Activar Animación"}
+            </button>
+          </Html>
+        )}
+      </Canvas>
     </div>
   </div>
 );
+
+
 
 export default BrokenHeartSyndrome;
