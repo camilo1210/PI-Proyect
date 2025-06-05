@@ -192,7 +192,7 @@ const Home = () => {
             >
               <meshStandardMaterial color="var(--canvas-bg)" />
             </Circle>
-            <HeartDilatedModel scale={2} position={[0, 1.5, 0]} castShadow />
+            <HeartDilatedModel scale={20} position={[0, 1.5, 0]} castShadow />
             <OrbitControls
               enableZoom
               autoRotate

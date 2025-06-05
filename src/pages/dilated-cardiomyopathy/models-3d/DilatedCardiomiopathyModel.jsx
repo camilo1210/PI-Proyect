@@ -1,6 +1,7 @@
 import { useGLTF, Sky, Stars } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import Text3dBrokenHeart from "../../broken-heart-syndrome/texts3d/Texts3DBrokenHeart";
 
 const HeartDilatedModel = () => {
   const HeartC = useGLTF("models-3d/dilated-cardiomyopathy-models/human-heart3.glb");
@@ -16,10 +17,11 @@ const HeartDilatedModel = () => {
   };
 
   useEffect(() => {
-    // Aplicar castShadow a todas las partes del modelo
+    // Aplicar castShadow y receiveShadow a todas las partes del modelo
     HeartC.scene.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
+        child.receiveShadow = true;
       }
     });
   }, [HeartC]);
@@ -40,7 +42,6 @@ const HeartDilatedModel = () => {
     <>
       {/* Cielo */}
       <Sky sunPosition={[100, 20, 100]} turbidity={8} rayleigh={6} />
-      
       {/* Estrellas amarillas */}
       <Stars
         radius={100}
@@ -49,13 +50,24 @@ const HeartDilatedModel = () => {
         factor={6}
         saturation={10}
         fade
-        color="red" // Cambiar el color de las estrellas a amarillo
+        color="red"
       />
-
       {/* Modelo del corazón */}
-      <group ref={meshRef} castShadow>
+      <group
+        ref={meshRef}
+        castShadow
+        receiveShadow
+        scale={20}
+      >
         <primitive object={HeartC.scene} />
       </group>
+      {/* Texto 3D BrokenHeart fuera del grupo para que NO rote */}
+      <Text3dBrokenHeart
+        title="Miocardiopatía Dilatada"
+        position={[0, -0.4, 0.5]}
+        size={0.2}
+        color="#a31d1d"
+      />
     </>
   );
 };
