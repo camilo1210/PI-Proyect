@@ -1,47 +1,67 @@
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 
-const HeartDilatedModel1 = () => {
+const HeartDilatedModel1 = (props) => {
   const HeartC = useGLTF("models-3d/dilated-cardiomyopathy-models/human-heart0.glb");
   const meshRef = useRef();
-/*
-  // Función para simular la animación del latido
-  const heartbeat = (time) => {
-    const cycle = time % 2.4; // Duración total de un ciclo "pum pum ___"
-    if (cycle < 0.2 || (cycle > 0.3 && cycle < 0.5)) {
-      return 1 + Math.sin((cycle % 0.2) * Math.PI) * 0.1; // Pulso rápido
-    }
-    return 1; // Reposo
+  const [scaleFactor, setScaleFactor] = useState(1);
+
+  // Evento de mouse: click para escalar al doble
+  const handleClick = () => {
+    setScaleFactor(2);
+    setTimeout(() => setScaleFactor(1), 1000);
   };
 
+  // Evento de teclado SOLO si mouse está sobre el modelo
+  const [hovered, setHovered] = useState(false);
+  React.useEffect(() => {
+    if (!hovered) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "h") {
+        setScaleFactor(2);
+        setTimeout(() => setScaleFactor(1), 1000);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [hovered]);
+
   useEffect(() => {
-    // Aplicar castShadow a todas las partes del modelo
     HeartC.scene.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
+        child.receiveShadow = true;
       }
     });
   }, [HeartC]);
 
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    const scale = 1.5 * heartbeat(t); // Puedes ajustar el 1.5 si quieres que sea más grande o pequeño
-
+  useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.scale.set(scale, scale, scale);
-
-      // Hacer que el modelo gire alrededor del eje Y
-      meshRef.current.rotation.y = t * 0.2; // Ajusta el valor "0.2" para hacer la rotación más rápida o lenta
+      meshRef.current.scale.set(10 * scaleFactor, 10 * scaleFactor, 10 * scaleFactor);
     }
   });
-  */
+
   return (
-    <group ref={meshRef} castShadow scale={5} position={[0,1,0]}>
+    <group
+      ref={meshRef}
+      castShadow
+      receiveShadow
+      scale={1}
+      position={[0, 1.6, 0]}
+      onClick={handleClick}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      {...props}
+    >
+      {/* Bounding box invisible para mejorar el área de hover */}
+      <mesh scale={[30, 30, 30]} position={[0, 0, 0]} visible={false}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshBasicMaterial transparent opacity={0} />
+      </mesh>
       <primitive object={HeartC.scene} />
     </group>
   );
-
 };
 
 export default HeartDilatedModel1;

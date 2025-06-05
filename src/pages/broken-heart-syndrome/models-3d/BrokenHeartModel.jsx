@@ -68,11 +68,10 @@ export function BrokenHeartModel(props) {
     };
   }, [camera]);
 
-
   useEffect(() => {
     const handleKeyDown = (a) => {
       if (a.key === "a") {
-      setClickStage((prev) => (prev + 1) % 3);
+        setClickStage((prev) => (prev + 1) % 3);
       }
     };
 
