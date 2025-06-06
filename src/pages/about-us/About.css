@@ -1,7 +1,7 @@
 @import "../../assets/variables.css";
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 .about-container {
-  background-color: #FFF8E7;
+  background-color: #fff8e7;
   font-family: Arial, sans-serif;
   padding: 40px;
   color: #000;
@@ -14,7 +14,7 @@
 }
 
 .team-section {
-  background-color: #8B0000;
+  background-color: #8b0000;
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
@@ -25,12 +25,12 @@
 }
 
 .member-card {
-  background-color: white;
-  width: 160px;
+  background-color: var(--color-arena);
+  width: auto;
   padding: 10px;
   border-radius: 6px;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-  text-align: center;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
 .avatar {
@@ -42,14 +42,15 @@
 }
 
 .section {
-  background-color: white;
+  background-color: var(--color-arena);
   padding: 20px;
   margin-top: 30px;
   border-radius: 10px;
+  font-size: 18px;
 }
 
 .section-title {
-  background-color: #8B0000;
+  background-color: #8b0000;
   color: white;
   padding: 8px 16px;
   display: inline-block;
