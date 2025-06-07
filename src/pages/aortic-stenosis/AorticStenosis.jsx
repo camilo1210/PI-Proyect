@@ -5,12 +5,15 @@ import {
   OrbitControls,
   SoftShadows,
   SpotLight,
+  Sparkles,
+  Environment,
 } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import FullHeartModel from "./models-3d/fullHeart";
 import * as THREE from "three";
 import MaleHumanModel from "./models-3d/maleHuman";
 import HalfHeart from "./models-3d/halfHeart";
+import HalfHeartDetails from "./models-3d/HalfHeartDetails";
 import Lights from "./lights/AorticLights";
 import Lights2 from "../dilated-cardiomyopathy/lights/Lights";
 import { useEffect, useMemo } from "react";
@@ -38,8 +41,6 @@ const AorticStenosis = () => {
     ],
     []
   );
-
-
   return (
     <>
       <div className="container">
@@ -55,7 +56,11 @@ const AorticStenosis = () => {
               camera={{ position: [0, 0.2, -0.4] }}
             >
               {/* <SoftShadows frustum={3.75} size={10} samples={16} focus={1} /> */}
-              <Texts3dFullHeart title={"Estenosis Aortica"}  size={0.06} position={[4.5, 0.45, 0]} />
+              <Texts3dFullHeart
+                title={"Estenosis Aortica"}
+                size={0.06}
+                position={[4.5, 0.45, 0]}
+              />
               <ambientLight intensity={0.5} />
               <directionalLight
                 position={[4, 4, -5]}
@@ -135,6 +140,21 @@ const AorticStenosis = () => {
                 shadow-camera-bottom={-5}
               />
               <Recipient />
+              <Sparkles
+                count={15}
+                speed={0.5}
+                opacity={0.4}
+                color="#ffffff"
+                size={1}
+              />
+              <Sparkles
+                count={10}
+                speed={0.5}
+                opacity={0.4}
+                color="yellow"
+                size={1}
+              />
+              <Title2D title={"Qué es"} />
               <OrbitControls
                 target={[0, 0.16, 0]}
                 enableZoom={true}
@@ -142,7 +162,7 @@ const AorticStenosis = () => {
               />
               <HalfHeart scale={1} position={[0, 0, 0]} rotation={[0, 0, 0]} />
               <OrbitControls />
-              <Lights2 />
+              {/* <Lights2 /> */}
             </Canvas>
           </div>
         </div>
@@ -207,6 +227,79 @@ const AorticStenosis = () => {
                 <StagingMale />
               </Canvas>
             </KeyboardControls>
+          </div>
+        </div>
+        {/* Como tratarlo */}
+        <div className="section ">
+          <div className="card left">
+            <div className="title">Como tratarlo</div>
+            <p>
+              El tratamiento de la EA es quirúrgico, y la intervención indicada
+              es la sustitución valvular. La cirugía se realiza generalmente
+              cuando el paciente presenta síntomas o cuando la función cardíaca
+              se ve comprometida. La cirugía puede ser abierta o mínimamente
+              invasiva, dependiendo de la gravedad.
+            </p>
+          </div>
+          <div className="card-model">
+            <Canvas
+              shadows={true}
+              camera={{ position: [0, 0.2, -0.33] }}
+              gl={{
+                shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+              }}
+              style={{
+                width: "100%",
+                height: "300px",
+                background: "var(--canvas-bg)",
+                borderRadius: "var(--border-radius)",
+              }}
+            >
+              <ambientLight intensity={0.4} />
+              <directionalLight
+                position={[3, 5, -5]}
+                intensity={1}
+                castShadow={true}
+                shadow-mapSize-width={2048}
+                shadow-mapSize-height={2048}
+                shadow-radius={4}
+                shadow-bias={-0.001} // Ajuste para mejorar la definición de la sombra
+                shadow-camera-near={0.5}
+                shadow-camera-far={20}
+                shadow-camera-left={-5}
+                shadow-camera-right={5}
+                shadow-camera-top={5}
+                shadow-camera-bottom={-5}
+              />
+              <Recipient />
+              <Sparkles
+                count={15}
+                speed={0.5}
+                opacity={0.4}
+                color="#ffffff"
+                size={1}
+              />
+              <Sparkles
+                count={10}
+                speed={0.5}
+                opacity={0.4}
+                color="yellow"
+                size={1}
+              />
+              <Title2D title={"Como tratarlo"} />
+              <OrbitControls
+                target={[0, 0.16, 0]}
+                enableZoom={true}
+                zoomSpeed={0.6}
+                minDistance={0.6}
+              />
+              <HalfHeartDetails
+                scale={0.5}
+                position={[0, 0, 0]}
+                rotation={[0, 0, 0]}
+              />
+              <OrbitControls />
+            </Canvas>
           </div>
         </div>
       </div>
