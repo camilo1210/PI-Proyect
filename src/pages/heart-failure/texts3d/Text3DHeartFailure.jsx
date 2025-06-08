@@ -1,5 +1,4 @@
 import { Center, Text3D } from "@react-three/drei";
-import "./Texts3D.css";
 
 const Text3DHeartFailure = ({ title }) => {
   return (

@@ -4,10 +4,15 @@ import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
 import HeartFailureModel from "./model-3d/HeartFailureModel";
 import HeartModelOne from "./model-3d/HeartModelOne";
 import Staging from "./staging/Staging";
+import StagingTwo from "./staging/StagingTwo";
 import React, {useState, useRef} from "react";
 import "./HeartFailure.css";
 import CigarettesModel from "./model-3d/CigarettesModel";
 import Text3DHeartFailure from "./texts3d/Text3DHeartFailure"
+import HeartModelTwo from "./model-3d/HeartModelTwo";
+import Text3DHeartNormal from "./texts3d/Text3DHeartNormal";
+import Text3DHeartSick from "./texts3d/Text3DHeartSick";
+import HealthyFood from "./model-3d/HealthyFood";
 
 const HeartFailure = () => {
 const [audio, setAudio] = useState(null); // Estado para almacenar el audio actual
@@ -28,7 +33,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
     // Detener el audio después de 10 segundos
     setTimeout(() => {
       newAudio.pause();
-    }, 10000);
+    }, 5000);
   };
 
   // Función para reproducir el sonido de latido rápido
@@ -46,7 +51,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
     // Detener el audio después de 10 segundos
     setTimeout(() => {
       newAudio.pause();
-    }, 10000);
+    }, 5000);
   };
 
   return (
@@ -86,10 +91,10 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
         </Canvas>
       </div>
 
-      <div className="labels">
+      {/* <div className="labels">
         <p> Corazón normal </p>
         <p> Corazón con insuficiencia </p>
-      </div>
+      </div> */}
 
       <div className="labelsTwo">
           <p>Prueba haciendo click en los corazones de arriba....</p>
@@ -120,6 +125,53 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
               mejorar rápidamente.
             </p>
           </div>
+
+          <div className="card-models">
+              <Canvas
+                shadows
+                camera={{ position: [20, 10, 20], fov: 50 }}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "12px",
+                  background: "transparent",
+                }}
+                gl={{
+                  alpha: true,
+                  antialias: true,
+                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+                }}
+              >
+                <Text3DHeartNormal title={"Corazón normal"}/>
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  castShadow
+                  position={[2, 4, 5]}
+                  intensity={2}
+                />
+                {/* Piso para proyectar sombra visible */}
+                <Circle
+                  rotation={[-Math.PI / 2, 0, 0]}
+                  position={[0, -3, 0]}
+                  args={[10, 10]}
+                  receiveShadow
+                >
+                  <meshStandardMaterial color="grey" />
+                </Circle>
+                <HeartModelTwo
+                  scale={2}
+                  position={[2, 0.5, 0]}
+                  castShadow
+                />
+                <StagingTwo />
+                <OrbitControls
+                  autoRotate
+                  enableZoom
+                  minDistance={2}
+                  maxDistance={10}
+                />
+              </Canvas>
+            </div>
         </div>  
 
           <div className="section reverse">
@@ -165,7 +217,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                   shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
                 }}
               >
-            
+                <Text3DHeartSick title={"Corazón con insuficiencia"}/>
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   castShadow
@@ -175,7 +227,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                 {/* Piso para proyectar sombra visible */}
                 <Circle
                   rotation={[-Math.PI / 2, 0, 0]}
-                  position={[0, -3, 0]}
+                  position={[0, -3.5, 0]}
                   args={[10, 10]}
                   receiveShadow
                 >
@@ -186,6 +238,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                   position={[-2, 0, 0]}
                   castShadow
                 />
+                <StagingTwo />
                 <OrbitControls
                   autoRotate
                   enableZoom
@@ -259,8 +312,76 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
             <div className="section reverse">
               <div className="card-right">
                 <div className="title">¿Cómo tratarlo?</div>
-                <p>Proximamente...</p>
+                <p>
+                  Para prevenir la insficiencia debes...
+                   <br />
+                   <br />
+                  °Controlar tu presión arterial
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;°Límite ideal: menos de 130/80 mmHg, especialmente si tienes factores de riesgo.
+                   <br />
+                  °Seguir una dieta saludable:
+                   <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;°Frutas, verduras, granos integrales.
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;°Baja en sal, grasas saturadas y azúcares añadidos.
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;°Evita alimentos ultraprocesados. 
+                   <br />
+                  °Dejar de fumar
+                   <br />
+                  °Mantener un peso saludable:
+                  <br />
+                  &nbsp;&nbsp;&nbsp;&nbsp;°Incluso perder un 5-10% del peso corporal puede mejorar la salud cardíaca.
+                </p>
               </div>
+
+              <div className="card-models">
+                <Canvas
+                shadows
+                camera={{ position: [20, 10, 20], fov: 50 }}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "12px",
+                  background: "transparent",
+                }}
+                gl={{
+                  alpha: true,
+                  antialias: true,
+                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+                }}
+              >
+            
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  castShadow
+                  position={[2, 4, 5]}
+                  intensity={2}
+                />
+                {/* Piso para proyectar sombra visible */}
+                <Circle
+                  rotation={[-Math.PI / 2, 0, 0]}
+                  position={[0, 0, 0]}
+                  args={[10, 10]}
+                  receiveShadow
+                >
+                  <meshStandardMaterial color="grey" />
+                </Circle>
+                <HealthyFood
+                  scale={0.5}
+                  position={[0, 0, 0]}
+                  castShadow
+                />
+                <OrbitControls
+                  autoRotate
+                  enableZoom
+                  minDistance={2}
+                  maxDistance={10}
+                />
+              </Canvas>
+              </div>
+
             </div>
         </div>
     </div>
