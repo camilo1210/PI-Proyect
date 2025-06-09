@@ -36,6 +36,7 @@ export function FullHeart(props) {
         geometry={nodes.FullHeart.geometry}
         material={materials.FullHeartMaterial}
         castShadow
+        receiveShadow
       />
     </group>
   );

@@ -5,7 +5,7 @@ const AboutUs = () => {
   const members = [
     { name: "Javier Mauricio Ortiz", email: "javiermauriciootriz@gmail.com", role: "Scrum Master & Desarrollador FullStack" },
     { name: "Andrick Buitrago Piedrahita", email: "sterraquio@hotmail.com", role: "Scrum Master & Desarrollador FullStack" },
-    { name: "Miembro 3", email: "email3@example.com", phone: "345678901", role: "CMO" },
+    { name: "Luisa María Llantén Correa", email: "luisamariallanten@gmail.com", role: "Scrum Master & Desarrollador FullStack"},
     { name: "Miembro 4", email: "email4@example.com", phone: "456789012", role: "COO" },
     { name: "Miembro 5", email: "email5@example.com", phone: "567890123", role: "CFO" },
   ];

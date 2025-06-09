@@ -13,13 +13,13 @@ const Staging = () => {
          turbidity={1}             // Baja turbidez -> cielo más claro y limpio
       />
       <Sparkles
-         count={300}
+         count={600}
          speed={0.1}
-         opacity={0.2}
+         opacity={0.3}
          color={"gray"}
          size={4.5}
          scale={[15, 8, 15]}
-         noise={1}
+         noise={2}
       />
       </>
     );

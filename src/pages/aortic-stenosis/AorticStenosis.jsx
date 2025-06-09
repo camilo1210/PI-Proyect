@@ -55,7 +55,7 @@ const AorticStenosis = () => {
               camera={{ position: [0, 0.2, -0.4] }}
             >
               {/* <SoftShadows frustum={3.75} size={10} samples={16} focus={1} /> */}
-              <Texts3dFullHeart title={"Estenosis Aortica"}/>
+              <Texts3dFullHeart title={"Estenosis Aortica"}  size={0.06} position={[4.5, 0.45, 0]} />
               <ambientLight intensity={0.5} />
               <directionalLight
                 position={[4, 4, -5]}

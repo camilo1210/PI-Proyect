@@ -10,12 +10,12 @@ import { Circle, Html, OrbitControls, Environment } from "@react-three/drei";
 // Modelos y componentes
 import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome.jsx";
 import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx";
-import HeartFailureModel from "../heart-failure/model-3d/HeartFailureModel.jsx";
 import FullHeartModel from "../aortic-stenosis/models-3d/fullHeart";
 import Texts3dFullHeart from "../aortic-stenosis/texts3d/Texts3DFullHeart.jsx";
 import Recipient from "../aortic-stenosis/models-3d/Recipient.jsx";
 import Staging from "../aortic-stenosis/staging/Staging.jsx";
 import Text3dFullHeart from "../aortic-stenosis/texts3d/Texts3DFullHeart.jsx";
+import TextWithRotation from "../heart-failure/texts3d/TextWithRotation.jsx";
 
 const CANVAS_BACKGROUND_COLOR = "#e5d0ac";
 
@@ -225,7 +225,7 @@ const Home = () => {
             >
               <meshStandardMaterial color="var(--canvas-bg)" />
             </Circle>
-            <HeartFailureModel scale={2} castShadow />
+            < TextWithRotation />
             <OrbitControls enableZoom />
           </Canvas>
         </div>
@@ -258,7 +258,7 @@ const Home = () => {
             >
               <meshStandardMaterial color="var(--canvas-bg)" />
             </Circle>
-            <HeartDilatedModel scale={2} position={[0, 1.5, 0]} castShadow />
+            <HeartDilatedModel scale={20} position={[0, 1.5, 0]} castShadow />
             <OrbitControls
               enableZoom
               autoRotate

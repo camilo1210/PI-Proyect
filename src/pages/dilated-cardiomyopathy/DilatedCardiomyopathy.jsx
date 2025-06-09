@@ -15,7 +15,7 @@ const DilatedCardiomyopathy = () => {
     <div className="container">
 
       <div className="model-container">
-        <Canvas shadows camera={{ position: [0.3, -0.2, -1] }}
+        <Canvas shadows camera={{ position: [-1, 0.2, 2] }}
           style={{
             width: "116%",
             height: 300,
@@ -34,13 +34,7 @@ const DilatedCardiomyopathy = () => {
             <meshStandardMaterial color="grey" />
           </Circle>
 
-          {/* Elemento HTML 3D */}
-          <Html position={[0, 1, 0]} style={{ pointerEvents: "none" }}>
-            <h1 style={{ color: "black", fontSize: "1.5rem", textAlign: "center" }}>
-              Miocardiopatía Dilatada
-            </h1>
-          </Html>
-
+   
           {/* Controles de cámara */}
           <OrbitControls target={[0, 0, 0]} />
 
@@ -90,16 +84,29 @@ const SectionQueEs = () => (
           background: "var(--canvas-bg)",
           borderRadius: "var(--border-radius)",
         }}
+        gl={{
+          antialias: true,
+          shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+        }}
       >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[2, 4, 5]} intensity={1} />
+        {/* Luz azulada */}
+        <ambientLight intensity={0.4} color="#b3e0ff" />
+        <directionalLight
+          position={[2, 4, 5]}
+          intensity={1}
+          color="#3a8dde"
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-bias={-0.001}
+        />
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
-          position={[0, -4, 0]}
+          position={[0, 0, 0]}
           args={[10, 10]}
           receiveShadow
         >
-          <meshStandardMaterial />
+          <meshStandardMaterial color="#bbb" />
         </Circle>
         <HeartDilatedModel2 scale={10} position={[0, -100, 0]} rotation={[0, 4, 0]} />
         <Lights />
@@ -129,16 +136,29 @@ const SectionSintomas = () => (
           background: "var(--canvas-bg)",
           borderRadius: "var(--border-radius)",
         }}
+        gl={{
+          antialias: true,
+          shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+        }}
       >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[2, 4, 5]} intensity={1} />
+        {/* Luz verdosa */}
+        <ambientLight intensity={0.4} color="#baffc9" />
+        <directionalLight
+          position={[2, 4, 5]}
+          intensity={1}
+          color="#3edc81"
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-bias={-0.001}
+        />
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, -0.5, 0]}
           args={[10, 10]}
           receiveShadow
         >
-          <meshStandardMaterial />
+          <meshStandardMaterial color="#bbb" />
         </Circle>
         <ModelDizzy scale={10} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
         <Lights />
@@ -167,16 +187,29 @@ const SectionCausas = () => (
           background: "var(--canvas-bg)",
           borderRadius: "var(--border-radius)",
         }}
+        gl={{
+          antialias: true,
+          shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+        }}
       >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[2, 4, 5]} intensity={1} />
+        {/* Luz anaranjada */}
+        <ambientLight intensity={0.4} color="#ffe5b4" />
+        <directionalLight
+          position={[2, 4, 5]}
+          intensity={1}
+          color="#ff9900"
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-bias={-0.001}
+        />
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
-          position={[0, -0.5, 0]}
+          position={[0, -1.5, 0]}
           args={[10, 10]}
           receiveShadow
         >
-          <meshStandardMaterial />
+          <meshStandardMaterial color="#bbb" />
         </Circle>
         <HeartDilatedModel3 scale={50} position={[0, 10, 0]} rotation={[0, 4, 0]} />
         <Lights />
@@ -205,16 +238,29 @@ const SectionTratamiento = () => (
           background: "var(--canvas-bg)",
           borderRadius: "var(--border-radius)",
         }}
+        gl={{
+          antialias: true,
+          shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+        }}
       >
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[2, 4, 5]} intensity={1} />
+        {/* Luz rosada */}
+        <ambientLight intensity={0.4} color="#ffd6f6" />
+        <directionalLight
+          position={[2, 4, 5]}
+          intensity={1}
+          color="#e75480"
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-bias={-0.001}
+        />
         <Circle
           rotation={[-Math.PI / 2, 0, 0]}
-          position={[0, -0.5, 0]}
+          position={[0, -1.5, 0]}
           args={[10, 10]}
           receiveShadow
         >
-          <meshStandardMaterial />
+          <meshStandardMaterial color="#bbb" />
         </Circle>
         <HeartDilatedModel1 scale={10} position={[0, 1.6, 0]} rotation={[0, 4, 0]} />
         <Lights />

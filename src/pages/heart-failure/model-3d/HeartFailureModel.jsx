@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import React, { useRef } from 'react'
 import { useFrame} from "@react-three/fiber";
 
-const HeartFailureModel = ({ onClickFailure, onClickNormal, ...props }) => {
+const HeartFailureModel = ({ onClickFailure, onClickNormal, disableAnimation = false, ...props }) => {
   const { nodes, materials} = useGLTF("models-3d/heart-failure-models/heart-failure.glb");
 
   const leftHeartRef = useRef(null);
@@ -10,11 +10,18 @@ const HeartFailureModel = ({ onClickFailure, onClickNormal, ...props }) => {
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
+
+    if (disableAnimation) {
+      // 🔁 Solo rotación si se desactiva la animación
+      if (leftHeartRef.current) leftHeartRef.current.rotation.y += 0.01;
+      if (rightHeartRef.current) rightHeartRef.current.rotation.y += 0.01;
+      return;
+    }
   
     // Función para latido realista (pum-pum descanso)
     const heartbeat = (time, speed = 1) => {
-      const cycle = (time * speed) % 2.4; // Modificamos con speed
-      if (cycle < 0.2 || (cycle > 0.3 && cycle < 0.5)) {
+      const cycle = (time * speed) % 2.5; // Modificamos con speed
+      if (cycle < 0.3 || (cycle > 0.4 && cycle < 0.6)) {
         return 1 + Math.sin((cycle % 0.2) * Math.PI) * 0.1; // Pulso rápido
       }
       return 1; // Reposo
@@ -22,7 +29,7 @@ const HeartFailureModel = ({ onClickFailure, onClickNormal, ...props }) => {
   
     // Latido izquierdo (corazón enfermo, más agitado)
     if (leftHeartRef.current) {
-      const scaleLeft = 3.5 * heartbeat(t, 2.0); // Más rápido (1.5x)
+      const scaleLeft = 3.5 * heartbeat(t, 3.8); // Más rápido (1.5x)
       leftHeartRef.current.scale.set(scaleLeft, scaleLeft, scaleLeft);
     }
   
