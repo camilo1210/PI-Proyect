@@ -1,7 +1,7 @@
-.title h1 {
+.title2D {
     text-shadow: 
     0 0 4px whitesmoke,
     0 0 8px whitesmoke,
     0 0 16px black;
-    font-size: x-large;
+    white-space: nowrap;
 }

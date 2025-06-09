@@ -41,7 +41,7 @@ body {
   padding: 0;
   font-family: "Raleway", sans-serif;
   background-color: var(--color-claro);
-  color: #333;
+  color: black;
   min-width: 320px;
   min-height: 100vh;
   align-items: stretch;
@@ -106,7 +106,7 @@ h1 {
   color: #b10000;
   padding: 10px 20px;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 18px;
   border-radius: 25px;
   max-width: 200px;
   display: flex;
@@ -134,8 +134,8 @@ h1 {
 
 .text {
   flex: 1;
-  font-size: 1rem;
-  color: #5a3a3a;
+  font-size: 18px;
+  color: black;
   line-height: 1.6;
   text-align: justify;
 }
@@ -185,7 +185,7 @@ h1 {
 
 .card .title {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 18px;
   color: var(--color-rojo-oscuro);
   margin-bottom: 0.8rem;
   border-width: 4px;
@@ -216,7 +216,7 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 5rem;
-  font-size: 1.5rem;
+  font-size: 18px;
   color: var(--color-rojo-oscuro);
   margin-top: 0.5rem;
 }
@@ -314,7 +314,7 @@ h1 {
 .home-description {
   max-width: 1200px;
   line-height: 1.6;
-  font-size: 1.1rem;
+  font-size: 20px;
   margin-bottom: 2rem;
   text-align: justify;
   animation: slideIn 1s ease-out;
@@ -323,7 +323,7 @@ h1 {
 
 .title-description-left {
   color: var(--color-rojo-oscuro);
-  font-size: 1.5rem;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: left;
@@ -332,8 +332,8 @@ h1 {
 .description-left {
   max-width: 450px;
   margin-left: -30px;
-  color: #555;
-  font-size: 0.95rem;
+  color: black;
+  font-size: 18px;
   line-height: 1.5;
   text-align: left;
 }
@@ -346,7 +346,7 @@ button,
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 18px;
   transition: background-color 0.3s;
 }
 

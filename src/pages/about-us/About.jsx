@@ -29,7 +29,9 @@ const AboutUs = () => {
       <div className="section">
         <h2 className="section-title">Sobre la página</h2>
         <p>
-          testo
+          Está página web fue creada como parte de un proyecto de la asignatura "Proyecto Integrador" del programa de Tecnología en desarrollo de software de la Universidad Del Valle.
+          La idea central es mostrar de manera sencilla y gráfica las enfermedades del órgano humano llamado corazón, así mismo sus síntomas, tratamientos y recomendaciones para cuidarlo.
+          Como detalle adicional, la página cuenta con el apartado de "Quiz" en el cuál se pueden responder preguntas relacionadas con la tematica de las enfermedades del corazón humano y sus síntomas.
         </p>
       </div>
 

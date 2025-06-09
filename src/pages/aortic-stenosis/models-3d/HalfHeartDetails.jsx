@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { Html, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import { MeshStandardMaterial } from "three";
 
-export function FullHeart(props) {
+export function HalfHeartDetails(props) {
   const { nodes, materials } = useGLTF(
-    "/models-3d/aortic-stenosis-models/full-heart.glb"
+    "/models-3d/aortic-stenosis-models/half-heart-details.glb"
   );
   const meshRef = useRef();
 
@@ -27,23 +28,16 @@ export function FullHeart(props) {
     }
   });
 
-  const handleHeart = useCallback((e) => {
-    // console.log(e);
-    // Aquí puedes agregar la lógica para manejar el clic en el corazón
-  }, []);
-
   return (
-    <group {...props} dispose={null} ref={meshRef} onClick={handleHeart}>
+    <group {...props} dispose={null} ref={meshRef}>
       <mesh
-        geometry={nodes.FullHeart.geometry}
-        material={materials.FullHeartMaterial}
+        geometry={nodes.HalfHeartDetails.geometry}
+        material={materials.HalfHeartDetailsMaterial}
         castShadow
-        receiveShadow
       />
     </group>
   );
 }
 
-export default FullHeart;
-
-useGLTF.preload("/models-3d/aortic-stenosis-models/full-heart.glb");
+export default HalfHeartDetails;
+useGLTF.preload("/models-3d/aortic-stenosis-models/half-heart-details.glb");
