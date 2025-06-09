@@ -8,12 +8,13 @@ export function HeartCracksModel({ trigger = false, ...props }) {
   const groupRef = useRef();
   const soundRef = useRef();
   const { camera } = useThree();
-    const [clickStage, setClickStage] = useState(true);
+  const [clickStage, setClickStage] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (s) => {
+      console.log("Key pressed", s.key);
       if (s.key === "s") {
-      setClickStage((prev) => !prev);
+      setClickStage((prev) => (prev + 1) % 3);
       }
     };
 
