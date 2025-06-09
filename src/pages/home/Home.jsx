@@ -9,7 +9,7 @@ import { Circle, Html, OrbitControls, Environment } from "@react-three/drei";
 
 // Modelos y componentes
 import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome.jsx";
-import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx";
+import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel.jsx";import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx";
 import FullHeartModel from "../aortic-stenosis/models-3d/fullHeart";
 import Texts3dFullHeart from "../aortic-stenosis/texts3d/Texts3DFullHeart.jsx";
 import Recipient from "../aortic-stenosis/models-3d/Recipient.jsx";
@@ -108,40 +108,15 @@ const Home = () => {
       </div>
 
       {/* ======================= HIPERTENSIÓN ======================= */}
-      <div className="card right">
-        <div className="title">Hipertensión Arterial</div>
-        <p>
-          Una amenaza silenciosa que obliga al corazón a trabajar sin descanso,
-          sin mostrar señales evidentes… hasta que es demasiado tarde.
-        </p>
-        <button className="btnClose">
-          <NavLink to="/Cardiac_hypertension" end>
-            Saber más
-          </NavLink>
-        </button>
-      </div>
-     <div className="section">
-        <div className="card left">
-          <div className="title">Hipertensión Arterial</div>
-          <p>
-            Una amenaza silenciosa que obliga al corazón a trabajar sin descanso,
-          sin mostrar señales evidentes… hasta que es demasiado tarde.
-          </p>
-          <button className="btnClose">
-            <NavLink to="/Broken_heart_syndrome" end>
-              Saber más
-            </NavLink>
-          </button>
-        </div>
-
+      <div className="section">
         <div className="card-model">
           <Canvas
             shadows
-            camera={{ position: [0, 0, -8], fov: 50 }}
+            camera={{ position: [0, 1, 8], fov: 50 }}
             style={{
               width: "100%",
               height: 300,
-              background: CANVAS_BACKGROUND_COLOR,
+              background: "var(--canvas-bg)",
               borderRadius: "var(--border-radius)",
             }}
             gl={{
@@ -151,31 +126,26 @@ const Home = () => {
           >
             <ambientLight intensity={0.4} />
             <directionalLight position={[2, 4, 5]} castShadow intensity={1} />
-            <Environment preset="studio" />
-
             <Circle
               rotation={[-Math.PI / 2, 0, 0]}
               position={[0, -0.5, 0]}
               args={[10, 10]}
               receiveShadow
             >
-              <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
+              <meshStandardMaterial color="var(--canvas-bg)" />
             </Circle>
-
-            <Suspense fallback={null}>
+           <Suspense fallback={null}>
               {/* Agrupación separada para el texto */}
               <group position={[0, 0, -1]}>
-                <Text3dFullHeart title="Síndrome del Corazón Roto" size={0.5} />
+                <Text3dFullHeart title="Hipertension arterial" size={0.5} />
               </group>
 
               {/* Agrupación separada para el modelo */}
               <group position={[0, 1.5, 0]}>
-                <BrokenHeartModelHome scale={2} castShadow />
+                <HealthyHeartModel scale={2} castShadow />
               </group>
             </Suspense>
-
             <OrbitControls
-              target={[0, 1.5, 0]}
               enableZoom
               autoRotate
               autoRotateSpeed={1}
@@ -183,6 +153,18 @@ const Home = () => {
               maxDistance={10}
             />
           </Canvas>
+        </div>
+        <div className="card right">
+          <div className="title">Hipertensión Arterial</div>
+          <p>
+            Una amenaza silenciosa que obliga al corazón a trabajar sin descanso,
+            sin mostrar señales evidentes… hasta que es demasiado tarde.
+          </p>
+          <button className="btnClose">
+            <NavLink to="/Cardiac_hypertension" end>
+              Saber más
+            </NavLink>
+          </button>
         </div>
       </div>
 
