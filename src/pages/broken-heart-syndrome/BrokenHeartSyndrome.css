@@ -4,6 +4,12 @@
 .container {
   padding: 2rem;
   font-family: var(--font-main);
+  max-width: 1200px;
+  margin: 0 auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
 /* Título principal */
@@ -172,6 +178,19 @@ h1.broken-heart-title {
   animation: fadeInOut 4s ease-in-out;
   z-index: 10;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  
+}
+
+* {
+  box-sizing: inherit;
+}
+
 
 /* @keyframes fadeInOut {
   0% { opacity: 0; transform: translateX(-50%) translateY(10px); }

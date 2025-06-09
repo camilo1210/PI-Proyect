@@ -1,37 +1,22 @@
-import { useThree } from "@react-three/fiber";
-import { Sky } from "three/examples/jsm/objects/Sky";
-import * as THREE from "three";
-import { useEffect } from "react";
+import { Clouds, Environment, Sparkles, Stars } from "@react-three/drei";
 
-const CustomSky = () => {
-    const { scene } = useThree();
-
-    useEffect(() => {
-        const sky = new Sky();
-        sky.scale.setScalar(450000);
-        scene.add(sky);
-
-    const sun = new THREE.Vector3();
-
-    // Configura parámetros atmosféricos
-    const { uniforms } = sky.material;
-    uniforms["turbidity"].value = 10;
-    uniforms["rayleigh"].value = 2;
-    uniforms["mieCoefficient"].value = 0.005;
-    uniforms["mieDirectionalG"].value = 0.8;
-
-    // Posición del sol en el cielo
-    const phi = THREE.MathUtils.degToRad(90 - 10); // Elevación
-    const theta = THREE.MathUtils.degToRad(180); // Azimut
-    sun.setFromSphericalCoords(1, phi, theta);
-    uniforms["sunPosition"].value.copy(sun);
-
-    return () => {
-      scene.remove(sky);
-    };
-  }, [scene]);
-
-  return null;
+const Staging = () => {
+  return (
+    <>
+      <Environment
+        files={["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]}
+        path="staging/cubemaps/hospital/"
+        ground={{
+          height: 50,
+          radius: 100,
+          scale: 1,
+        }}
+        background
+      />
+      <Sparkles count={15} speed={0.5} opacity={0.4} color="#ffffff" size={1} />
+      <Sparkles count={10} speed={0.5} opacity={0.4} color="yellow" size={1} />
+    </>
+  );
 };
 
-export default CustomSky;
+export default Staging;

@@ -11,7 +11,7 @@ const Text3dFullHeart = ({ title , position, size}) => {
         bevelEnabled
         bevelSize={0.01}
         bevelThickness={0.02}
-        height={0.01}
+        height={0.01}fontSize={0.3}
         lineHeight={0.8}
         letterSpacing={0.01}
         size={size}
