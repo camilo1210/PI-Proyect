@@ -120,6 +120,72 @@ const Home = () => {
           </NavLink>
         </button>
       </div>
+     <div className="section">
+        <div className="card left">
+          <div className="title">Hipertensión Arterial</div>
+          <p>
+            Una amenaza silenciosa que obliga al corazón a trabajar sin descanso,
+          sin mostrar señales evidentes… hasta que es demasiado tarde.
+          </p>
+          <button className="btnClose">
+            <NavLink to="/Broken_heart_syndrome" end>
+              Saber más
+            </NavLink>
+          </button>
+        </div>
+
+        <div className="card-model">
+          <Canvas
+            shadows
+            camera={{ position: [0, 0, -8], fov: 50 }}
+            style={{
+              width: "100%",
+              height: 300,
+              background: CANVAS_BACKGROUND_COLOR,
+              borderRadius: "var(--border-radius)",
+            }}
+            gl={{
+              antialias: true,
+              shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+            }}
+          >
+            <ambientLight intensity={0.4} />
+            <directionalLight position={[2, 4, 5]} castShadow intensity={1} />
+            <Environment preset="studio" />
+
+            <Circle
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[0, -0.5, 0]}
+              args={[10, 10]}
+              receiveShadow
+            >
+              <meshStandardMaterial color={CANVAS_BACKGROUND_COLOR} />
+            </Circle>
+
+            <Suspense fallback={null}>
+              {/* Agrupación separada para el texto */}
+              <group position={[0, 0, -1]}>
+                <Text3dFullHeart title="Síndrome del Corazón Roto" size={0.5} />
+              </group>
+
+              {/* Agrupación separada para el modelo */}
+              <group position={[0, 1.5, 0]}>
+                <BrokenHeartModelHome scale={2} castShadow />
+              </group>
+            </Suspense>
+
+            <OrbitControls
+              target={[0, 1.5, 0]}
+              enableZoom
+              autoRotate
+              autoRotateSpeed={1}
+              minDistance={2}
+              maxDistance={10}
+            />
+          </Canvas>
+        </div>
+      </div>
+
 
       {/* ======================= INSUFICIENCIA ======================= */}
       <div className="section">
