@@ -37,16 +37,30 @@
 
 .labelsTwo {
   text-align: center;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0px 8px;
+  border-radius: 10px;
+  color: white;
+  font-weight:normal;
+  font-size: 16px;
+}
+
+.labelsOne {
+  text-align: center;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0px 8px;
+  border-radius: 10px;
+  color: white;
+  font-weight:normal;
+  font-size: 10px;
 }
 
 /* Seccion de tarjetas*/
 
 .card-right p {
   text-align: left;
-}
-
-.card-right p1{
-  text-align: center;
 }
 
 .card-left p {
@@ -125,13 +139,6 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-left .title:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 12px 20px rgba(0, 0, 0, 0.35),
-    inset 0 4px 4px rgba(255, 255, 255, 0.7),
-    inset 0 -4px 6px rgba(0, 0, 0, 0.3);
-}
 
 
 

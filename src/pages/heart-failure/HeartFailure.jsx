@@ -5,7 +5,7 @@ import HeartFailureModel from "./model-3d/HeartFailureModel";
 import HeartModelOne from "./model-3d/HeartModelOne";
 import Staging from "./staging/Staging";
 import StagingTwo from "./staging/StagingTwo";
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import "./HeartFailure.css";
 import CigarettesModel from "./model-3d/CigarettesModel";
 import Text3DHeartFailure from "./texts3d/Text3DHeartFailure"
@@ -13,6 +13,8 @@ import HeartModelTwo from "./model-3d/HeartModelTwo";
 import Text3DHeartNormal from "./texts3d/Text3DHeartNormal";
 import Text3DHeartSick from "./texts3d/Text3DHeartSick";
 import HealthyFood from "./model-3d/HealthyFood";
+import { Html } from "@react-three/drei";
+
 
 const HeartFailure = () => {
 const [audio, setAudio] = useState(null); // Estado para almacenar el audio actual
@@ -54,6 +56,22 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
     }, 5000);
   };
 
+  const audio1Ref = useRef(null);
+  const audio2Ref = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "a") {
+        audio1Ref.current?.play();
+      } else if (e.key === "b") {
+        audio2Ref.current?.play();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div className="heart-failure-container">
       {/* <h1 className="heart-failure-title">Insuficiencia cardíaca</h1> */}
@@ -88,17 +106,13 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
           >
             <meshStandardMaterial color="var(--canvas-bg)" />
           </Circle>
+          <Html position={[0, -4.5, 0]} center transform={false} zIndexRange={[0, 10]}>
+           <div className="labelsTwo">
+           <p>Prueba haciendo click en cada uno de los corazones de arriba....</p>
+           </div>
+          </Html>
         </Canvas>
       </div>
-
-      {/* <div className="labels">
-        <p> Corazón normal </p>
-        <p> Corazón con insuficiencia </p>
-      </div> */}
-
-      <div className="labelsTwo">
-          <p>Prueba haciendo click en los corazones de arriba....</p>
-        </div>
 
       <div className="cards-container">
       <div className="section">
@@ -175,6 +189,10 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
         </div>  
 
           <div className="section reverse">
+
+           <audio ref={audio1Ref} src="/sounds/labored-breathing.mp3" preload="auto" />
+           <audio ref={audio2Ref} src="/sounds/dry-cough.mp3" preload="auto" />
+
             <div className="card-right">
               <div className="title">¿Cuales son sus síntomas?</div>
               <p>
@@ -234,8 +252,8 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                   <meshStandardMaterial color="grey" />
                 </Circle>
                 <HeartModelOne
-                  scale={2}
-                  position={[-2, 0, 0]}
+                  scale={1.5}
+                  position={[-1.2, 0, 0]}
                   castShadow
                 />
                 <StagingTwo />
@@ -245,6 +263,11 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                   minDistance={2}
                   maxDistance={10}
                 />
+                <Html position={[0, 3, 0]} center transform={false} zIndexRange={[0, 10]}>
+                <div className="labelsOne">
+                <p>Presiona las teclas "A" y "B" para escuchar los síntomas</p>
+                </div>
+                </Html>
               </Canvas>
             </div>
           </div>
@@ -313,7 +336,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
               <div className="card-right">
                 <div className="title">¿Cómo tratarlo?</div>
                 <p>
-                  Para prevenir la insficiencia debes...
+                  Para prevenir la insuficiencia debes...
                    <br />
                    <br />
                   °Controlar tu presión arterial
