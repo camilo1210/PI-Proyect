@@ -148,8 +148,8 @@ export function MaleHumanFull(props) {
               morphTargetDictionary={nodes.MaleHuman_8.morphTargetDictionary}
               morphTargetInfluences={nodes.MaleHuman_8.morphTargetInfluences}
             />
-            <Html position={[180, -150, -100]} >
-              <button className="btn-3D" onClick={handleMaleWalking}>
+            <Html position={[180, -150, -100]}>
+              {/* <button className="btn-3D" onClick={handleMaleWalking}>
                 1.
               </button>
               <button className="btn-3D" onClick={handleMaleFatigue}>
@@ -163,7 +163,18 @@ export function MaleHumanFull(props) {
               </button>
               <button className="btn-3D" onClick={handleMaleBreathless}>
                 5.
-              </button>
+              </button> */}
+              <div className="btn-3D-container">
+                <button type="btn-3D">
+                  &larr;
+                </button>
+                <button type="btn-3D">
+                  Texto
+                </button>
+                <button type="btn-3D" >
+                  &rarr;
+                </button>
+              </div>
             </Html>
           </group>
           <primitive object={nodes.mixamorigHips} />
