@@ -12,6 +12,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import FullHeartModel from "./models-3d/fullHeart";
 import * as THREE from "three";
 import MaleHumanModel from "./models-3d/maleHuman";
+import MaleHumanModelCare from "./models-3d/maleHumanCares";
 import HalfHeart from "./models-3d/halfHeart";
 import HalfHeartDetails from "./models-3d/HalfHeartDetails";
 import Lights from "./lights/AorticLights";
@@ -300,6 +301,70 @@ const AorticStenosis = () => {
               />
               <OrbitControls />
             </Canvas>
+          </div>
+        </div>
+        {/* ===================================================================================================================================================== */}
+        {/* CUÁLES SON SUS SÍNTOMAS */}
+        <div className="section reverse">
+          <div className="card left">
+            <div className="title">Prevención y cuidados</div>
+            <p>
+              La prevención de la EA implica el control de factores de riesgo
+              como la hipertensión arterial, la diabetes y el colesterol alto.
+              Mantener un estilo de vida saludable, realizar ejercicio
+              regularmente y seguir una dieta equilibrada son fundamentales.
+              Además, es importante realizar chequeos médicos regulares para
+              detectar cualquier problema cardíaco a tiempo.
+            </p>
+          </div>
+          <div className="card-model">
+            <KeyboardControls map={map}>
+              <Canvas
+                camera={{ position: [0, 1.8, 2] }}
+                gl={{
+                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+                }}
+                shadows={true}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  background: "var(--canvas-bg)",
+                  borderRadius: "var(--border-radius)",
+                }}
+                raycaster={{ enabled: true }}
+              >
+                {/* <Texts3d title={"Síntomas"} /> */}
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  position={[-3, 4, 4]}
+                  intensity={1}
+                  castShadow={true}
+                  shadow-mapSize-width={2048}
+                  shadow-mapSize-height={2048}
+                  shadow-radius={4}
+                  shadow-bias={-0.001} // Ajuste para mejorar la definición de la sombra
+                  shadow-camera-near={0.5}
+                  shadow-camera-far={20}
+                  shadow-camera-left={-5}
+                  shadow-camera-right={5}
+                  shadow-camera-top={5}
+                  shadow-camera-bottom={-5}
+                />
+                <Recipient />
+                <MaleHumanModelCare
+                  scale={1}
+                  position={[0, -0.9, 0]}
+                  rotation={[0, 0, 0]}
+                />
+                <OrbitControls
+                  target={[0, 0, -0.8]}
+                  enableZoom={true}
+                  zoomSpeed={0.6}
+                />
+                <Controls />
+                <StagingMale />
+              </Canvas>
+            </KeyboardControls>
           </div>
         </div>
       </div>
