@@ -1,17 +1,71 @@
 import { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
 
 export function HeartMonitorModel({ trigger = false, ...props }) {
+
   const { nodes, materials } = useGLTF("/models-3d/broken-heart-sysdrome/heart-egc.glb");
   const meshRef = useRef();
   const startTimeRef = useRef(null);
+  const { camera } = useThree();
+  const heartbeatSoftRef = useRef(null);
+  const heartbeatStrongRef = useRef(null);
+
+
+
+  useEffect(() => {
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    const soft = new THREE.Audio(listener);
+    const strong = new THREE.Audio(listener);
+    const loader = new THREE.AudioLoader();
+
+    // Cargamos sonido de latido normal
+    loader.load("/sounds/heartbeat-distorted.mp3", (buffer) => {
+      strong.setBuffer(buffer);
+      strong.setVolume(1);
+      strong.setLoop(false);
+    });
+
+    // Guardamos referencias
+    heartbeatSoftRef.current = soft;
+    heartbeatStrongRef.current = strong;
+
+    // Limpieza: detener sonidos y quitar listener
+    return () => {
+      if (soft.isPlaying) {
+        soft.stop();
+      }
+      if (strong.isPlaying) {
+        strong.stop();
+      }
+      camera.remove(listener);
+    };
+  }, [camera]);
 
   useEffect(() => {
     if (trigger) {
       startTimeRef.current = performance.now();
     }
   }, [trigger]);
+
+  useEffect(() => {
+  if (trigger && heartbeatSoftRef.current && heartbeatStrongRef.current) {
+    // Aseguramos que no estén ya sonando
+    if (!heartbeatSoftRef.current.isPlaying) {
+      heartbeatSoftRef.current.play();
+    }
+
+    setTimeout(() => {
+      if (!heartbeatStrongRef.current.isPlaying) {
+        heartbeatStrongRef.current.play();
+      }
+    }, 1000); // Por ejemplo, 2 segundos después
+  }
+}, [trigger]);
+
 
   useFrame(() => {
     if (!trigger || !meshRef.current) return;
@@ -24,6 +78,7 @@ export function HeartMonitorModel({ trigger = false, ...props }) {
       meshRef.current.scale.set(1, 1, 1);
     }
   });
+  
 
   return (
     <group {...props} dispose={null}>
