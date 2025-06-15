@@ -10,11 +10,11 @@ import { useFrame } from "@react-three/fiber";
 export function MaleHumanFull(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models-3d/aortic-stenosis-models/male-human.glb"
+    "/models-3d/aortic-stenosis-models/male-human-copy.glb"
   );
-  const [, get] = useKeyboardControls();
+  
   const { actions } = useAnimations(animations, group);
-  const [currentAction, setCurrentAction] = useState("Idle");
+  const [currentAction, setCurrentAction] = useState("Breathless");
 
   useEffect(() => {
     actions[currentAction].fadeIn(0.5).play();
@@ -23,48 +23,32 @@ export function MaleHumanFull(props) {
     };
   }, [actions, currentAction]);
 
-  const handleMaleWalking = useCallback((e) => {
-    console.log(e);
-    setCurrentAction("Walking");
-  }, []);
+
 
   const handleMaleBreathless = useCallback((e) => {
     console.log(e);
     setCurrentAction("Breathless");
   }, []);
-  const handleMaleFatigue = useCallback((e) => {
-    console.log(e);
-    setCurrentAction("Fatigue");
-  }, []);
+  
 
-  const handleMaleTired = useCallback((e) => {
-    console.log(e);
-    setCurrentAction("Tired");
-  }, []);
-
-  const handleMaleIdle = useCallback((e) => {
-    console.log(e);
-    setCurrentAction("Idle");
-  }, []);
-
-  useFrame(() => {
-    const { one, two, three, four, five } = get();
-    if (one) {
-      handleMaleWalking();
-    } else if (two) {
-      handleMaleBreathless();
-    }
-    if (three) {
-      handleMaleFatigue();
-    } else if (four) {
-      handleMaleTired();
-    } else if (five) {
-      handleMaleIdle();
-    }
-  });
+  //   useFrame(() => {
+  //     const { one, two, three, four, five } = get();
+  //     if (one) {
+  //       handleMaleWalking();
+  //     } else if (two) {
+  //       handleMaleBreathless();
+  //     }
+  //     if (three) {
+  //       handleMaleFatigue();
+  //     } else if (four) {
+  //       handleMaleTired();
+  //     } else if (five) {
+  //       handleMaleIdle();
+  //     }
+  //   });
 
   return (
-    <group ref={group} {...props} dispose={null} onClick={handleMaleWalking}>
+    <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <group name="MaleHuman">
@@ -148,19 +132,6 @@ export function MaleHumanFull(props) {
               morphTargetDictionary={nodes.MaleHuman_8.morphTargetDictionary}
               morphTargetInfluences={nodes.MaleHuman_8.morphTargetInfluences}
             />
-            <Html position={[180, -150, -100]}>
-              <div className="btn-3D-container">
-                <button type="btn-3D">
-                  &larr;
-                </button>
-                <button type="btn-3D">
-                  Texto
-                </button>
-                <button type="btn-3D" >
-                  &rarr;
-                </button>
-              </div>
-            </Html>
           </group>
           <primitive object={nodes.mixamorigHips} />
         </group>
@@ -182,4 +153,4 @@ export function MaleHumanFull(props) {
 
 */
 export default MaleHumanFull;
-useGLTF.preload("/models-3d/aortic-stenosis-models/male-human.glb");
+useGLTF.preload("/models-3d/aortic-stenosis-models/male-human-copy.glb");

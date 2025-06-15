@@ -1,6 +1,5 @@
 @import "../../assets/variables.css";
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
 container {
   max-width: 1200px;
@@ -88,11 +87,22 @@ container {
   }
 }
 
-
-.btn-3D{
+.btn-3D {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 1rem;
+  flex-direction: row; /* Asegura que los elementos estén en fila */
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center; /* Centra los botones verticalmente */
+  gap: 1rem; /* Espacio entre botones */
   font-size: 20px;
+  margin: 1rem 0; /* Añade algo de margen arriba y abajo */
+}
+
+.btn-3D-container {
+  display: flex;
+  flex-direction: row; /* Asegura que los elementos estén en fila */
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center; /* Centra los botones verticalmente */
+  gap: 0rem; /* Espacio entre botones */
+  font-size: 20px;
+  margin: 1rem 0; /* Añade algo de margen arriba y abajo */
 }
