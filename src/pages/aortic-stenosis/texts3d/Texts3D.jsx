@@ -3,7 +3,7 @@ import "./Texts3D.css";
 
 const Text3d = ({ title }) => {
   return (
-    <Center position={[-0.3, 0.5, 0.6]}>
+    <Center position={[-0.3, 0.3, 0.6]}>
       <Text3D
         position={[0, 0, 0]}
         font="/Fonts/Arial.json"
@@ -14,9 +14,17 @@ const Text3d = ({ title }) => {
         lineHeight={0.8}
         letterSpacing={0.02}
         size={0.3}
+        castShadow={true}
+        receiveShadow={true}
       >
         {`${title} `}
-        <meshStandardMaterial />
+        <meshStandardMaterial
+          color="#ff0000" // Color rojo
+          metalness={0.5} // Ajusta el aspecto metálico (0-1)
+          roughness={0.2} // Ajusta la rugosidad (0-1)
+          castShadow={true}
+          receiveShadow={true}
+        />
       </Text3D>
     </Center>
   );

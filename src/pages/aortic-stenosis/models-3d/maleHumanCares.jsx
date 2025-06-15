@@ -10,7 +10,7 @@ import { useFrame } from "@react-three/fiber";
 export function MaleHumanFull(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models-3d/aortic-stenosis-models/male-human.glb"
+    "/models-3d/aortic-stenosis-models/male-human-copy.glb"
   );
   
   const { actions } = useAnimations(animations, group);
@@ -153,4 +153,4 @@ export function MaleHumanFull(props) {
 
 */
 export default MaleHumanFull;
-useGLTF.preload("/models-3d/aortic-stenosis-models/male-human.glb");
+useGLTF.preload("/models-3d/aortic-stenosis-models/male-human-copy.glb");

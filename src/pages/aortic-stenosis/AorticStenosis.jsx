@@ -183,7 +183,7 @@ const AorticStenosis = () => {
           <div className="card-model">
             <KeyboardControls map={map}>
               <Canvas
-                camera={{ position: [0, 1.8, 2] }}
+                camera={{ position: [0, 1, 2.5] }}
                 gl={{
                   shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
                 }}
@@ -196,7 +196,7 @@ const AorticStenosis = () => {
                 }}
                 raycaster={{ enabled: true }}
               >
-                <Texts3d title={"Síntomas"} />
+                <Texts3d title={"Demostración"} />
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   position={[-3, 4, 4]}

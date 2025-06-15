@@ -149,21 +149,6 @@ export function MaleHumanFull(props) {
               morphTargetInfluences={nodes.MaleHuman_8.morphTargetInfluences}
             />
             <Html position={[180, -150, -100]}>
-              {/* <button className="btn-3D" onClick={handleMaleWalking}>
-                1.
-              </button>
-              <button className="btn-3D" onClick={handleMaleFatigue}>
-                2.
-              </button>
-              <button className="btn-3D" onClick={handleMaleTired}>
-                3.
-              </button>
-              <button className="btn-3D" onClick={handleMaleIdle}>
-                4.
-              </button>
-              <button className="btn-3D" onClick={handleMaleBreathless}>
-                5.
-              </button> */}
               <div className="btn-3D-container">
                 <button type="btn-3D">
                   &larr;
