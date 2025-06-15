@@ -148,7 +148,7 @@ export function MaleHumanFull(props) {
               morphTargetDictionary={nodes.MaleHuman_8.morphTargetDictionary}
               morphTargetInfluences={nodes.MaleHuman_8.morphTargetInfluences}
             />
-            <Html position={[180, -150, 0]}>
+            <Html position={[180, -150, -100]} >
               <button className="btn-3D" onClick={handleMaleWalking}>
                 1.
               </button>

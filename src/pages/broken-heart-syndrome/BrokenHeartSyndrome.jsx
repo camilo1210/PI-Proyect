@@ -2,7 +2,14 @@
 /* eslint-disable react/prop-types */
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import {Circle,OrbitControls,Text,Html,Sky,Environment,} from "@react-three/drei";
+import {
+  Circle,
+  OrbitControls,
+  Text,
+  Html,
+  Sky,
+  Environment,
+} from "@react-three/drei";
 import { useEffect, useState, Suspense, useRef } from "react";
 import Staging from "./staging/Staging";
 // Modelos
@@ -28,42 +35,42 @@ const BrokenHeartSyndrome = () => {
 
   const containerRef = useRef(null);
 
-useEffect(() => {
-  const show = () => {
-    setShowHint(true);
-    setTimeout(() => setShowHint(false), 4000);
-  };
-  const interval = setInterval(show, 20000);
-  show(); 
-  return () => clearInterval(interval);
-}, []);
+  useEffect(() => {
+    const show = () => {
+      setShowHint(true);
+      setTimeout(() => setShowHint(false), 4000);
+    };
+    const interval = setInterval(show, 20000);
+    show();
+    return () => clearInterval(interval);
+  }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch (e.key.toLowerCase()) {
+        case "s":
+          setCracksVisible((prev) => !prev);
+          break;
 
-useEffect(() => {
-  const handleKeyDown = (e) => {
-    switch (e.key.toLowerCase()) {
-      case "s":
-        setCracksVisible((prev) => !prev);
-        break;
-      case "d":
-        setPainTriggered((prev) => !prev);
-        break;
-      case "w":
-        setEcgAnimationTriggered((prev) => !prev);
-        break;
-      case "e":
-        setSoundPlaying((prev) => !prev);
-        break;
-      default:
-        break;
-    }
-  };
+        case "d":
+          setPainTriggered((prev) => !prev);
+          break;
 
-  window.addEventListener("keydown", handleKeyDown);
-  return () => window.removeEventListener("keydown", handleKeyDown);
-}, []);
+        case "w":
+          setEcgAnimationTriggered((prev) => !prev);
+          break;
 
+        case "e":
+          setSoundPlaying((prev) => !prev);
+          break;
+        default:
+          break;
+      }
+    };
 
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className="container" ref={containerRef}>
@@ -114,7 +121,6 @@ useEffect(() => {
             fontSize={0.09}
             color="red"
             textAlign="center"
-
           >
             Haz clic o presiona la tecla "a" 💓
           </Text>
@@ -126,7 +132,7 @@ useEffect(() => {
         </Canvas>
         {showHint && (
           <div className="interaction-hint">
-            💡 Haz clic en el corazón para interactuar, o presiona una tecla
+            💡 Utiliza las teclas a,s,d,e,w o presiona en el primer modelo
           </div>
         )}
       </div>
@@ -221,7 +227,7 @@ useEffect(() => {
                 position={[0, 1.5, 1]}
                 size={0.5}
               />
-              <ManModel {...props} />
+              <ManModel {...props} trigger={soundPlaying}  playSound={soundPlaying}/>
             </Suspense>
           )}
           hasButton
