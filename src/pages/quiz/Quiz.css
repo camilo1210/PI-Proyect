@@ -106,7 +106,7 @@
     height: 100px;
 }
 
-canvas {
+canvas.quiz {
     margin-top: -150px;
     margin-left: -135px;
     display: block;
