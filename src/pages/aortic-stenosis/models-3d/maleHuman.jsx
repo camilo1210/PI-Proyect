@@ -171,11 +171,20 @@ export function MaleHumanFull(props) {
             <Html position={[180, -150, -100]}>
               <div className="btn-3D-container">
                 <button onClick={prevAction}>&larr;</button>
-                {/* Muestra el nombre de la animación actual */}
+                {/* Muestra el nombre de la animación actual, traducida */}
                 <textarea
                   className="area3D"
                   readOnly
-                  value={currentAction === "Idle" ? "Normal" : currentAction
+                  value={
+                    currentAction === "Walking"
+                      ? "Caminando"
+                      : currentAction === "Fatigue"
+                      ? "Fatigado"
+                      : currentAction === "Tired"
+                      ? "Cansado"
+                      : currentAction === "Idle"
+                      ? "Normal"
+                      : currentAction
                   }
                 />
                 <button onClick={nextAction}>&rarr;</button>
