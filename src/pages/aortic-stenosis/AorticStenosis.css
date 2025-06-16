@@ -106,3 +106,9 @@ container {
   font-size: 20px;
   margin: 1rem 0; /* Añade algo de margen arriba y abajo */
 }
+
+.area3D{
+  width:100px;
+  height: 38px;
+  text-align: center;
+}

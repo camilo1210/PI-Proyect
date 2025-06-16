@@ -63,6 +63,26 @@ export function MaleHumanFull(props) {
     }
   });
 
+  const animationOrder = ["Idle", "Walking", "Fatigue", "Tired"];
+
+  // Función para ir a la animación anterior
+  const prevAction = useCallback(() => {
+    setCurrentAction((prev) => {
+      const idx = animationOrder.indexOf(prev);
+      const newIdx = (idx - 1 + animationOrder.length) % animationOrder.length;
+      return animationOrder[newIdx];
+    });
+  }, []);
+
+  // Función para ir a la animación siguiente
+  const nextAction = useCallback(() => {
+    setCurrentAction((prev) => {
+      const idx = animationOrder.indexOf(prev);
+      const newIdx = (idx + 1) % animationOrder.length;
+      return animationOrder[newIdx];
+    });
+  }, []);
+
   return (
     <group ref={group} {...props} dispose={null} onClick={handleMaleWalking}>
       <group name="Scene">
@@ -150,15 +170,15 @@ export function MaleHumanFull(props) {
             />
             <Html position={[180, -150, -100]}>
               <div className="btn-3D-container">
-                <button type="btn-3D">
-                  &larr;
-                </button>
-                <button type="btn-3D">
-                  Texto
-                </button>
-                <button type="btn-3D" >
-                  &rarr;
-                </button>
+                <button onClick={prevAction}>&larr;</button>
+                {/* Muestra el nombre de la animación actual */}
+                <textarea
+                  className="area3D"
+                  readOnly
+                  value={currentAction === "Idle" ? "Normal" : currentAction
+                  }
+                />
+                <button onClick={nextAction}>&rarr;</button>
               </div>
             </Html>
           </group>
