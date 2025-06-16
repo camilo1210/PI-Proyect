@@ -155,7 +155,7 @@ const AorticStenosis = () => {
                 color="yellow"
                 size={1}
               />
-              <Title2D title={"Qué es"} />
+              <Title2D title={"Valvulas endurecidas"}/>
               <OrbitControls
                 target={[0, 0.16, 0]}
                 enableZoom={true}
@@ -287,7 +287,7 @@ const AorticStenosis = () => {
                 color="yellow"
                 size={1}
               />
-              <Title2D title={"Como tratarlo"} />
+              <Title2D title={"Único arreglo es por cirugía"} />
               <OrbitControls
                 target={[0, 0.16, 0]}
                 enableZoom={true}
