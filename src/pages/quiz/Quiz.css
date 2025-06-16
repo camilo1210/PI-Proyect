@@ -1,4 +1,113 @@
-@import "../../assets/variables.css"; /* Importa las variables de color */
+@import "../../assets/variables.css";
+/* Importa las variables de color */
+
+.quiz-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 6rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: var(--background-color, #f8f9fa);
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+}
+
+.quiz-left {
+    flex: 1;
+    padding: 1rem 2rem;
+    border-right: 2px solid #e0e0e0;
+}
+
+.quiz-progress h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    margin-left: 40px;
+}
+
+.quiz-progress span {
+    font-weight: bold;
+    color: var(--primary-color, #007bff);
+}
+
+.quiz-question h2 {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.quiz-right {
+    flex: 1;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.quiz-option:hover button {
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: var(--secondary-color, #000000);
+    border: 2px solid #9e0f0f;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.quiz-option:hover {
+    background-color: var(--hover-color, #3f3636);
+    border-color: var(--primary-color, #ff5500);
+}
+
+.correct {
+    background-color: var(--correct-color, #00f339);
+}
+
+.incorrect {
+    background-color: var(--incorrect-color, #fb0418);
+}
 
 
+.juego-terminado {
+    margin-top: 200px;
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
+.juego-terminado span {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.juego-terminado button {
+
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color, #000000);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.modelo-3d {
+    margin-top: -100px;
+    margin: 2rem auto;
+    width: 100px;
+    height: 100px;
+}
+
+canvas {
+    margin-top: -150px;
+    margin-left: -135px;
+    display: block;
+}
