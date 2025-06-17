@@ -3,11 +3,13 @@ import './About.css';
 
 const AboutUs = () => {
   const members = [
-    { name: "Javier Mauricio Ortiz", email: "javiermauriciootriz@gmail.com", role: "Scrum Master & Desarrollador FullStack" },
-    { name: "Andrick Buitrago Piedrahita", email: "sterraquio@hotmail.com", role: "Scrum Master & Desarrollador FullStack" },
-    { name: "Luisa María Llantén Correa", email: "luisamariallanten@gmail.com", role: "Scrum Master & Desarrollador FullStack"},
-    { name: "Miembro 4", email: "email4@example.com", phone: "456789012", role: "COO" },
-    { name: "Miembro 5", email: "email5@example.com", phone: "567890123", role: "CFO" },
+    { name: "Javier Mauricio Ortiz", email: "javiermauriciootriz@gmail.com", role: "Scrum Master & Desarrollador FullStack" ,disease: "Miocardiopatía" },
+
+    { name: "Andrick Buitrago Piedrahita", email: "andrickbuitrago706@gmail.com", role: "Scrum Master & Desarrollador FullStack",disease: "Estenosis Aortica" },
+
+    { name: "Luisa María Llantén Correa", email: "luisamariallanten@gmail.com", role: "Scrum Master & Desarrollador FullStack", disease: "Insuficiencia Cardiaca" },
+
+    { name: "Cristian Camilo Pavas", email: "camilopavasrios@gmail.com", role: "Administrador de bases de datos & Desarrollador FullStack", disease: "Sindrome del Corazon roto" },
   ];
 
   return (
@@ -17,29 +19,14 @@ const AboutUs = () => {
       <div className="team-section">
         {members.map((member, index) => (
           <div className="member-card" key={index}>
-            <div className="avatar" />
+            {/* <div className="avatar" /> */}
             <h3>{member.name}</h3>
             <p>{member.email}</p>
             <p>{member.phone}</p>
             <p>{member.role}</p>
+            <p>{member.disease}</p>
           </div>
         ))}
-      </div>
-
-      <div className="section">
-        <h2 className="section-title">Sobre la página</h2>
-        <p>
-          Está página web fue creada como parte de un proyecto de la asignatura "Proyecto Integrador" del programa de Tecnología en desarrollo de software de la Universidad Del Valle.
-          La idea central es mostrar de manera sencilla y gráfica las enfermedades del órgano humano llamado corazón, así mismo sus síntomas, tratamientos y recomendaciones para cuidarlo.
-          Como detalle adicional, la página cuenta con el apartado de "Quiz" en el cuál se pueden responder preguntas relacionadas con la tematica de las enfermedades del corazón humano y sus síntomas.
-        </p>
-      </div>
-
-      <div className="section">
-        <h2 className="section-title">Sobre nuestro grupo</h2>
-        <p>
-          testo
-        </p>
       </div>
     </div>
   );

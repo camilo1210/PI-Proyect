@@ -9,7 +9,8 @@ import { Circle, Html, OrbitControls, Environment } from "@react-three/drei";
 
 // Modelos y componentes
 import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome.jsx";
-import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel.jsx";import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx";
+import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel.jsx";
+import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx";
 import FullHeartModel from "../aortic-stenosis/models-3d/fullHeart";
 import Texts3dFullHeart from "../aortic-stenosis/texts3d/Texts3DFullHeart.jsx";
 import Recipient from "../aortic-stenosis/models-3d/Recipient.jsx";
@@ -24,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="welcome">Bienvenido.</h1>
+      
       <h1 className="home-title">
         Cuidemos Nuestro Corazón: Conoce,
         <br />

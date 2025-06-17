@@ -8,15 +8,31 @@ import { FaGithub } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer>
+      {/* Botón de acción centrado */}
+      <h1 className="footer-title">¡PON A PRUEBA LO APRENDIDO!</h1>
+      <div className="footer-action">
+        <div className="footer-action-btn-container">
+          <img src="/interrogation.png" className="img-interrogation" />
+          <h1 className="footer-title">Quiz</h1>
+          <button
+            className="footer-action-btn"
+            onClick={() => (window.location.href = "/quiz")}
+            title="Juega ahora un quiz interactivo sobre enfermedades cardiovasculares"
+          >
+            Intentar
+          </button>
+        </div>
+      </div>
       {/* Sección superior del Footer */}
       <div className="footer-top">
         <ul>
           <li>
-            <Link to="/mapa">Mapa de la página web</Link>
+            <Link to="/Map_site">Mapa de la página web</Link>
           </li>
           <li>
-            {/* Para un enlace mailto o texto */}
-            <a href="mailto:soporteNe9@gmail.com" className="mail">soporteNe9@gmail.com</a>
+            <a href="mailto:soporteNe9@gmail.com" className="mail">
+              soporteNe9@gmail.com
+            </a>
           </li>
           <li>
             <Link to="/politica-privacidad">Política de privacidad</Link>
@@ -36,13 +52,15 @@ const Footer = () => {
         <div className="footer-bottom">
           <p>©2025, All rights reserved</p>
           <span>Heart Visuals</span>
-          {
-            <div className="social-icons">
-              <FaFacebook href="" />
-              <FaInstagram href="" />
-              <FaGithub href="https://github.com/camilo1210/PI-Proyect" />
-            </div>
-          }
+          <div className="social-icons">
+            <a
+              href="https://github.com/camilo1210/PI-Proyect"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </a>
+          </div>
         </div>
       }
     </footer>

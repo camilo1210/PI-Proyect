@@ -1,0 +1,52 @@
+@import "@/assets/variables.css";
+
+.sitemap-container {
+    max-width: 2000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fffaf5;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: left;
+}
+
+.cards-container.map{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem; 
+}
+
+.sitemap-card {
+    background-color: #fbe2d2;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.sitemap-card h3 {
+    color: #800000;
+    margin-bottom: 0.8rem;
+}
+
+.sitemap-card a {
+    color: #0c0000;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0.3rem 0;
+}
+
+.sitemap-card a:hover {
+    text-decoration: underline;
+}
+
+.sitemap-card ul {
+    list-style: none;
+    padding-left: 0;
+    color: #333;
+}
+
+
