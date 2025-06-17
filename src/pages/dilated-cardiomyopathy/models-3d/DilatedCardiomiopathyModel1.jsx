@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { Html, useGLTF } from "@react-three/drei";
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 
@@ -7,9 +7,9 @@ const HeartDilatedModel1 = (props) => {
   const meshRef = useRef();
   const [scaleFactor, setScaleFactor] = useState(1);
 
-  // Evento de mouse: click para escalar al doble
+  // Evento de mouse: click para escalar
   const handleClick = () => {
-    setScaleFactor(2);
+    setScaleFactor(1.4);
     setTimeout(() => setScaleFactor(1), 1000);
   };
 
@@ -19,7 +19,7 @@ const HeartDilatedModel1 = (props) => {
     if (!hovered) return;
     const handleKeyDown = (e) => {
       if (e.key === "h") {
-        setScaleFactor(2);
+        setScaleFactor(1.4);
         setTimeout(() => setScaleFactor(1), 1000);
       }
     };
@@ -39,6 +39,7 @@ const HeartDilatedModel1 = (props) => {
   useFrame(() => {
     if (meshRef.current) {
       meshRef.current.scale.set(10 * scaleFactor, 10 * scaleFactor, 10 * scaleFactor);
+      meshRef.current.rotation.y += 0.01; // Rotate around Y-axis
     }
   });
 
@@ -48,7 +49,8 @@ const HeartDilatedModel1 = (props) => {
       castShadow
       receiveShadow
       scale={1}
-      position={[0, 1.6, 0]}
+      autorotate
+      position={[0, 2, 0]}
       onClick={handleClick}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
@@ -60,6 +62,23 @@ const HeartDilatedModel1 = (props) => {
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
       <primitive object={HeartC.scene} />
+      {/* HTML 3D H1 acomodado para que siempre se vea arriba del corazón */}
+      <Html position={[0, 0.2, 0.6]} center>
+        <h1 style={{
+          background: "rgba(255,255,255,0.92)",
+          padding: "12px 22px",
+          borderRadius: "14px",
+          color: "blue",
+          fontWeight: "bold",
+          fontSize: "1.2rem",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+          margin: 0,
+          textAlign: "left",
+          minWidth: "220px"
+        }}>
+          Dale click al corazón<br />o presiona H
+        </h1>
+      </Html>
     </group>
   );
 };

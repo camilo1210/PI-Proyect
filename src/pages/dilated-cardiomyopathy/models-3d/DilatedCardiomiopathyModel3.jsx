@@ -38,6 +38,7 @@ const HeartDilatedModel3 = () => {
   useFrame(() => {
     if (meshRef.current) {
       meshRef.current.scale.set(10 * scaleFactor, 10 * scaleFactor, 10 * scaleFactor);
+      meshRef.current.rotation.y += 0.01; // Rotate around Y-axis
     }
   });
   return (
