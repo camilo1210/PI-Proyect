@@ -38,6 +38,12 @@ const HeartDilatedModel = () => {
     }
   });
 
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01; // Rotate around Y-axis
+    }
+  });
+
   return (
     <>
       {/* Cielo */}
