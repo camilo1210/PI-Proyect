@@ -9,6 +9,7 @@ import { Circle, Html, OrbitControls, Environment } from "@react-three/drei";
 
 // Modelos y componentes
 import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome.jsx";
+import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel.jsx";
 import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel.jsx";
 import FullHeartModel from "../aortic-stenosis/models-3d/fullHeart";
 import Texts3dFullHeart from "../aortic-stenosis/texts3d/Texts3DFullHeart.jsx";
@@ -24,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="welcome">Bienvenido.</h1>
+      
       <h1 className="home-title">
         Cuidemos Nuestro Corazón: Conoce,
         <br />
@@ -108,18 +109,66 @@ const Home = () => {
       </div>
 
       {/* ======================= HIPERTENSIÓN ======================= */}
-      <div className="card right">
-        <div className="title">Hipertensión Arterial</div>
-        <p>
-          Una amenaza silenciosa que obliga al corazón a trabajar sin descanso,
-          sin mostrar señales evidentes… hasta que es demasiado tarde.
-        </p>
-        <button className="btnClose">
-          <NavLink to="/Cardiac_hypertension" end>
-            Saber más
-          </NavLink>
-        </button>
+      <div className="section">
+        <div className="card-model">
+          <Canvas
+            shadows
+            camera={{ position: [0, 1, 8], fov: 50 }}
+            style={{
+              width: "100%",
+              height: 300,
+              background: "var(--canvas-bg)",
+              borderRadius: "var(--border-radius)",
+            }}
+            gl={{
+              antialias: true,
+              shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+            }}
+          >
+            <ambientLight intensity={0.4} />
+            <directionalLight position={[2, 4, 5]} castShadow intensity={1} />
+            <Circle
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[0, -0.5, 0]}
+              args={[10, 10]}
+              receiveShadow
+            >
+              <meshStandardMaterial color="var(--canvas-bg)" />
+            </Circle>
+           <Suspense fallback={null}>
+              {/* Agrupación separada para el texto */}
+              <group position={[0, 0, -1]}>
+                <Text3dFullHeart title="Hipertension arterial" size={0.5} />
+              </group>
+
+              {/* Agrupación separada para el modelo */}
+              <group position={[0, 1.5, 0]}>
+                <HealthyHeartModel scale={2} castShadow />
+              </group>
+            </Suspense>
+            <OrbitControls
+              enableZoom
+              autoRotate
+              autoRotateSpeed={1}
+              minDistance={2}
+              maxDistance={10}
+            />
+          </Canvas>
+        </div>
+        <div className="card right">
+          <div className="title">Hipertensión Arterial</div>
+          <p>
+            Una amenaza silenciosa que obliga al corazón a trabajar sin descanso,
+            sin mostrar señales evidentes… hasta que es demasiado tarde.
+          </p>
+          <button className="btnClose">
+            <NavLink to="/Cardiac_hypertension" end>
+              Saber más
+            </NavLink>
+          </button>
+        </div>
       </div>
+
 
       {/* ======================= INSUFICIENCIA ======================= */}
       <div className="section">

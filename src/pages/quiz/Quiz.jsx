@@ -1,28 +1,27 @@
-import { useCallback } from "react";
-import useQuizStore from "../../stores/use-quiz-store";
-import "./Quiz.css";
 import { Canvas } from "@react-three/fiber";
-import Recipient from "../aortic-stenosis/models-3d/Recipient";
-
+import { Suspense, useState } from "react";
+import ModeloQuiz from "./ModeloQuiz";
 
 const Quiz = () => {
-  const { quiz, incrementQuizProgress } = useQuizStore();
+  const [feedback, setFeedback] = useState(null);
+  const correctAnswer = "heartRotten"; // nombre del modelo
 
-  const handleQuizNext = useCallback(() => {
-    incrementQuizProgress();
-  }, [incrementQuizProgress]);
-  
+  const handleSelection = (selectedModelName) => {
+    setFeedback(selectedModelName === correctAnswer ? "¡Correcto!" : "Incorrecto");
+  };
+
   return (
-    <>
-    <div>
-      <h1>Quiz</h1>
-      <span>Progreso del quiz: {quiz.percentageQuizCompleted} % </span>
-      <Canvas>
-        <Recipient />
+    <div className="quiz-container">
+      <Canvas shadows camera={{ position: [0, 60, 120], fov: 60 }}>
+        <Suspense fallback={null}>
+          <ModeloQuiz onModelClick={handleSelection} />
+        </Suspense>
       </Canvas>
-      <button onClick={handleQuizNext}>Siguiente</button>
+      <div className="quiz-question">
+        <p>¿Cuál de los dos modelos representa el corazón roto?</p>
+        {feedback && <p className={feedback === "¡Correcto!" ? "correct" : "wrong"}>{feedback}</p>}
+      </div>
     </div>
-    </>
   );
 };
 

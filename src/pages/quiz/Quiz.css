@@ -1,4 +1,16 @@
-@import "../../assets/variables.css"; /* Importa las variables de color */
+@import "../../assets/variables.css";
 
+.quiz-canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-
+.quiz-canvas {
+  width: 600px;
+  height: 400px;
+  border: 2px solid #388e3c;
+  background: #c8e6c9;
+  box-shadow: 0 4px 16px rgba(60, 100, 60, 0.1);
+}

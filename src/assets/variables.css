@@ -250,6 +250,7 @@ h1 {
   .layout-content {
     max-width: 1400px;
     margin: 0 auto;
+    min-height: 600px;
   }
 }
 
@@ -305,8 +306,8 @@ h1 {
 
 .home-title {
   font-size: 2.5em;
-  margin: 0.5rem 0 2rem 0;
-  color: black;
+  margin: 32px;
+  color: var(--color-rojo-oscuro);
   text-align: center;
   animation: slideIn 1s ease-out;
 }

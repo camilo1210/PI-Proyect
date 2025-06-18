@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, Text3D, Center } from "@react-three/drei";
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 
@@ -54,12 +54,26 @@ const HeartDilatedModel2 = () => {
       onPointerOut={() => setHovered(false)}
     >
       {/* Bounding box invisible para mejorar el área de hover */}
-      <mesh scale={[30, 30, 30]} position={[0, 0, 0]} visible={false}>
+      <mesh scale={[1, 1, 1]} position={[0, 0, 0]} visible={false}>
         <boxGeometry args={[1, 1, 1]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
       <primitive object={HeartC.scene} />
-      {/* Se eliminó el Html con el texto */}
+      {/* Texto 3D agregado */}
+      <Center position={[0.04, -0.03, 0.02]}>
+        <Text3D
+          font="/Fonts/Arial.json"
+          size={0.02}
+          height={0.01}
+          bevelEnabled
+          bevelSize={0.0002}
+          bevelThickness={0}
+          rotation={[1.6, Math.PI /  3, 0]} 
+        >
+          {"Que Es?"}
+          <meshStandardMaterial color="#ff0000" />
+        </Text3D>
+      </Center>
     </group>
   );
 };

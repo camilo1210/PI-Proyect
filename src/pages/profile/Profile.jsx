@@ -24,11 +24,14 @@ const Profile = () => {
       const { displayName, email } = userLogged;
       const data = { displayName, email };
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}users`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}users`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          }
+        );
         if (!response.ok)
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         return await response.json();
@@ -41,11 +44,13 @@ const Profile = () => {
 
   return (
     <>
-      <h1>Perfil de usuario</h1>
-      <h2>¡Bienvenido! {userLogged?.displayName}</h2>
-      <button onClick={handleLogout} className="btnClose">
-        Cerrar sesión
-      </button>
+      <div className="profile-container">
+        <h1>Perfil de usuario</h1>
+        <h2>¡Bienvenido! {userLogged?.displayName}</h2>
+        <button onClick={handleLogout} className="btnClose">
+          Cerrar sesión
+        </button>
+      </div>
     </>
   );
 };
