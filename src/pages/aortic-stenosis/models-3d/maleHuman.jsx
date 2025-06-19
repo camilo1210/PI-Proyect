@@ -6,6 +6,7 @@ import {
   Html,
 } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import "../AorticStenosis.css";
 
 export function MaleHumanFull(props) {
   const group = useRef();
@@ -170,7 +171,7 @@ export function MaleHumanFull(props) {
             />
             <Html position={[180, -150, -100]}>
               <div className="btn-3D-container">
-                <button onClick={prevAction}>&larr;</button>
+                <button onClick={prevAction} className="btn-3D">&larr;</button>
                 {/* Muestra el nombre de la animación actual, traducida */}
                 <textarea
                   className="area3D"

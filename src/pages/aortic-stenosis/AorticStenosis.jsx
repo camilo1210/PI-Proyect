@@ -7,7 +7,9 @@ import {
   SpotLight,
   Sparkles,
   Environment,
+  PositionalAudio,
 } from "@react-three/drei";
+import { useCallback, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import FullHeartModel from "./models-3d/fullHeart";
 import * as THREE from "three";
@@ -42,6 +44,34 @@ const AorticStenosis = () => {
     ],
     []
   );
+  const audioRef = useRef();
+  const [showButton, setShowButton] = useState(false);
+
+  const handleMouse = useCallback(() => {
+    audioRef.current.play();
+    audioRef.current.setVolume(5);
+    setShowButton(true); // Mostrar el botón cuando se reproduce el audio
+  }, [audioRef]);
+
+  const handleMouseOff = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.stop();
+      setShowButton(false); // Ocultar el botón cuando se detiene el audio
+    }
+  }, [audioRef]);
+  const handleSoundMen = useCallback(() => {
+    audioRef.current.play();
+    audioRef.current.setVolume(5);
+    setShowButton(true); // Mostrar el botón cuando se reproduce el audio
+  }, [audioRef]);
+
+  const handleSoundMenOff = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.stop();
+      setShowButton(false); // Ocultar el botón cuando se detiene el audio
+    }
+  }, [audioRef]);
+
   return (
     <>
       <div className="container">
@@ -155,7 +185,7 @@ const AorticStenosis = () => {
                 color="yellow"
                 size={1}
               />
-              <Title2D title={"Valvulas endurecidas"}/>
+              <Title2D title={"Valvulas endurecidas"} />
               <OrbitControls
                 target={[0, 0.16, 0]}
                 enableZoom={true}
@@ -241,6 +271,18 @@ const AorticStenosis = () => {
               se ve comprometida. La cirugía puede ser abierta o mínimamente
               invasiva, dependiendo de la gravedad.
             </p>
+            {showButton && (
+              <button
+                className="btn-3D"
+                onClick={handleMouseOff}
+                style={{
+                  margin: "20px auto",
+                  display: "block",
+                }}
+              >
+                Detener sonido
+              </button>
+            )}
           </div>
           <div className="card-model">
             <Canvas
@@ -294,6 +336,21 @@ const AorticStenosis = () => {
                 zoomSpeed={0.6}
                 minDistance={0.6}
               />
+              <Html center position={[0, -0.4, 0]}>
+                <div className="btn-3D-container">
+                  <button className="btn-3D" onClick={handleMouse}>
+                    ¡Escucha el corazón humano!
+                  </button>
+                </div>
+              </Html>
+              <group>
+                <PositionalAudio
+                  ref={audioRef}
+                  loop
+                  distance={5}
+                  url="/sounds/Heart-sound-stenosis.mp3"
+                />
+              </group>
               <HalfHeartDetails
                 scale={0.5}
                 position={[0, 0, 0]}
@@ -304,7 +361,7 @@ const AorticStenosis = () => {
           </div>
         </div>
         {/* ===================================================================================================================================================== */}
-        {/* CUÁLES SON SUS SÍNTOMAS */}
+        {/* PREVENCIÓN Y CUIDADOS*/}
         <div className="section reverse">
           <div className="card left">
             <div className="title">Prevención y cuidados</div>
@@ -316,6 +373,19 @@ const AorticStenosis = () => {
               Además, es importante realizar chequeos médicos regulares para
               detectar cualquier problema cardíaco a tiempo.
             </p>
+            {showButton && (
+              <button
+                className="btn-3D"
+                onClick={handleSoundMenOff}
+                style={{
+                  margin: "20px auto",
+                  display: "block",
+                }}
+                title="Que podría ser el problema?"
+              >
+                Detener sonido
+              </button>
+            )}
           </div>
           <div className="card-model">
             <KeyboardControls map={map}>
@@ -334,6 +404,21 @@ const AorticStenosis = () => {
                 raycaster={{ enabled: true }}
               >
                 {/* <Texts3d title={"Síntomas"} /> */}
+                 <Html center position={[0, -0.4, 0]}>
+                <div className="btn-3D-container">
+                  <button className="btn-3D" onClick={handleSoundMen}>
+                    ¿Que tiene?
+                  </button>
+                </div>
+              </Html>
+              <group>
+                <PositionalAudio
+                  ref={audioRef}
+                  loop
+                  distance={5}
+                  url="/sounds/breathing-fast.mp3"
+                />
+              </group>
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   position={[-3, 4, 4]}
