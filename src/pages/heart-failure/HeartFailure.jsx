@@ -17,6 +17,12 @@ import { Html } from "@react-three/drei";
 
 
 const HeartFailure = () => {
+const [autoRotate, setAutoRotate] = useState(true);
+
+  const toggleRotation = () => {
+    setAutoRotate((prev) => !prev);
+  };
+
 const [audio, setAudio] = useState(null); // Estado para almacenar el audio actual
   const audioRef = useRef(null); // Referencia para el audio, así podemos detenerlo
 
@@ -73,6 +79,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
   }, []);
 
   return (
+
     <div className="heart-failure-container">
       {/* <h1 className="heart-failure-title">Insuficiencia cardíaca</h1> */}
 
@@ -146,7 +153,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                 camera={{ position: [20, 10, 20], fov: 50 }}
                 style={{
                   width: "100%",
-                  height: "300px",
+                  height: "350px",
                   borderRadius: "12px",
                   background: "transparent",
                 }}
@@ -225,7 +232,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                 camera={{ position: [20, 10, 20], fov: 50 }}
                 style={{
                   width: "100%",
-                  height: "300px",
+                  height: "350px",
                   borderRadius: "12px",
                   background: "transparent",
                 }}
@@ -285,125 +292,137 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
                  </p>
             </div>
 
-            <div className="card-models">
+            <div className="card-models" style={{ position: "relative" }}>
+              <button
+                onClick={toggleRotation}
+                className="pause-button"
+              >
+                {autoRotate ? "Pausar animación" : "Reanudar animación"}
+              </button>
               <Canvas
                 shadows
-                camera={{ position: [20, 10, 20], fov: 50 }}
-                style={{
-                  width: "100%",
-                  height: "300px",
-                  borderRadius: "12px",
-                  background: "transparent",
-                }}
-                gl={{
-                  alpha: true,
-                  antialias: true,
-                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
-                }}
-              >
-            
-                <ambientLight intensity={0.4} />
-                <directionalLight
-                  castShadow
-                  position={[2, 4, 5]}
-                  intensity={2}
-                />
-                {/* Piso para proyectar sombra visible */}
-                <Circle
-                  rotation={[-Math.PI / 2, 0, 0]}
-                  position={[0, 0, 0]}
-                  args={[10, 10]}
-                  receiveShadow
-                >
-                  <meshStandardMaterial color="grey" />
-                </Circle>
-                <CigarettesModel
-                  scale={40}
-                  position={[0, 0, 0]}
-                  castShadow
-                />
-                <OrbitControls
-                  autoRotate
-                  enableZoom
-                  minDistance={2}
-                  maxDistance={10}
-                />
+          camera={{ position: [20, 10, 20], fov: 50 }}
+          style={{
+            width: "100%",
+            height: "350px",
+            borderRadius: "12px",
+            background: "transparent",
+          }}
+          gl={{
+            alpha: true,
+            antialias: true,
+            shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+          }}
+        >
+          <ambientLight intensity={0.4} />
+          <directionalLight
+            castShadow
+            position={[2, 4, 5]}
+            intensity={2}
+          />
+          <Circle
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0, 0, 0]}
+            args={[10, 10]}
+            receiveShadow
+          >
+            <meshStandardMaterial color="grey" />
+          </Circle>
+          <CigarettesModel
+            scale={30}
+            position={[0, 0, 0]}
+            castShadow
+          />
+          <OrbitControls
+            autoRotate={autoRotate}
+            enableZoom
+            minDistance={2}
+            maxDistance={10}
+          />
               </Canvas>
             </div>
           </div>
 
             <div className="section reverse">
-              <div className="card-right">
-                <div className="title">¿Cómo tratarlo?</div>
-                <p>
-                  Para prevenir la insuficiencia debes...
-                   <br />
-                   <br />
-                  °Controlar tu presión arterial
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;°Límite ideal: menos de 130/80 mmHg, especialmente si tienes factores de riesgo.
-                   <br />
-                  °Seguir una dieta saludable:
-                   <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;°Frutas, verduras, granos integrales.
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;°Baja en sal, grasas saturadas y azúcares añadidos.
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;°Evita alimentos ultraprocesados. 
-                   <br />
-                  °Dejar de fumar
-                   <br />
-                  °Mantener un peso saludable:
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;°Incluso perder un 5-10% del peso corporal puede mejorar la salud cardíaca.
-                </p>
-              </div>
+      <div className="card-right">
+        <div className="title">¿Cómo tratarlo?</div>
+        <p>
+          Para prevenir la insuficiencia debes...
+          <br />
+          <br />
+          °Controlar tu presión arterial
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;°Límite ideal: menos de 130/80 mmHg, especialmente si tienes factores de riesgo.
+          <br />
+          °Seguir una dieta saludable:
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;°Frutas, verduras, granos integrales.
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;°Baja en sal, grasas saturadas y azúcares añadidos.
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;°Evita alimentos ultraprocesados.
+          <br />
+          °Dejar de fumar
+          <br />
+          °Mantener un peso saludable:
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;°Incluso perder un 5-10% del peso corporal puede mejorar la salud cardíaca.
+        </p>
+      </div>
 
-              <div className="card-models">
-                <Canvas
-                shadows
-                camera={{ position: [20, 10, 20], fov: 50 }}
-                style={{
-                  width: "100%",
-                  height: "300px",
-                  borderRadius: "12px",
-                  background: "transparent",
-                }}
-                gl={{
-                  alpha: true,
-                  antialias: true,
-                  shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
-                }}
-              >
-            
-                <ambientLight intensity={0.4} />
-                <directionalLight
-                  castShadow
-                  position={[2, 4, 5]}
-                  intensity={2}
-                />
-                {/* Piso para proyectar sombra visible */}
-                <Circle
-                  rotation={[-Math.PI / 2, 0, 0]}
-                  position={[0, 0, 0]}
-                  args={[10, 10]}
-                  receiveShadow
-                >
-                  <meshStandardMaterial color="grey" />
-                </Circle>
-                <HealthyFood
-                  scale={0.5}
-                  position={[0, 0, 0]}
-                  castShadow
-                />
-                <OrbitControls
-                  autoRotate
-                  enableZoom
-                  minDistance={2}
-                  maxDistance={10}
-                />
-              </Canvas>
-              </div>
+      <div className="card-models" style={{ position: "relative" }}>
+        {/* Botón para pausar/reanudar animación */}
+        <button
+          onClick={toggleRotation}
+          className="pause-button"
+        >
+          {autoRotate ? "Pausar animación" : "Reanudar animación"}
+        </button>
+
+        {/* Canvas con rotación controlada */}
+        <Canvas
+          shadows
+          camera={{ position: [20, 10, 20], fov: 50 }}
+          style={{
+            width: "100%",
+            height: "350px",
+            borderRadius: "12px",
+            background: "transparent",
+          }}
+          gl={{
+            alpha: true,
+            antialias: true,
+            shadowMap: { enabled: true, type: THREE.PCFSoftShadowMap },
+          }}
+        >
+          <Text3DHeartFailure title={"Tips para cuidarte"} />
+          <ambientLight intensity={0.4} />
+          <directionalLight
+            castShadow
+            position={[2, 4, 5]}
+            intensity={2}
+          />
+          <Circle
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0, 0, 0]}
+            args={[10, 10]}
+            receiveShadow
+          >
+            <meshStandardMaterial color="grey" />
+          </Circle>
+          <HealthyFood
+            scale={0.5}
+            position={[0, 0, 0]}
+            castShadow
+          />
+          <OrbitControls
+            autoRotate={autoRotate}
+            enableZoom
+            minDistance={2}
+            maxDistance={10}
+          />
+        </Canvas>
+      </div>
 
             </div>
         </div>

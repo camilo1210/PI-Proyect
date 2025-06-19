@@ -74,7 +74,8 @@
   border: 2px solid var(--canvas-bg);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 300px;
+  width: 380px;
+  height: 390px;
 }
 
 .card-left {
@@ -139,7 +140,23 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.pause-button {
+  position: absolute;
+  top: 280px;
+  right: 100px;
+  z-index: 1;
+  padding: 6px 12px;
+  background: var(--color-rojo-vibrante);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
+.pause-button:hover {
+  background: var(--color-rojo-oscuro);
+}
 
 
 
