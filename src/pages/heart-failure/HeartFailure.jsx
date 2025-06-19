@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Circle, OrbitControls, SoftShadows } from "@react-three/drei";
 import HeartFailureModel from "./model-3d/HeartFailureModel";
 import HeartModelOne from "./model-3d/HeartModelOne";
@@ -14,9 +14,29 @@ import Text3DHeartNormal from "./texts3d/Text3DHeartNormal";
 import Text3DHeartSick from "./texts3d/Text3DHeartSick";
 import HealthyFood from "./model-3d/HealthyFood";
 import { Html } from "@react-three/drei";
+import { AudioListener } from "three";
+import { useInView } from "react-intersection-observer";
+
+
+const AddAudioListener = () => {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    const listener = new AudioListener();
+    camera.add(listener);
+  }, [camera]);
+
+  return null;
+};
 
 
 const HeartFailure = () => {
+
+const { ref, inView } = useInView({
+  threshold: 0.5,
+  triggerOnce: false,
+});  
+
 const [autoRotate, setAutoRotate] = useState(true);
 
   const toggleRotation = () => {
@@ -279,7 +299,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
             </div>
           </div>
 
-          <div className="section">
+          <div className="section" ref={ref}>
             <div className="card-left">
               <div className="title">¿Qué lo causa?</div>
               <p>La insuficiencia cardíaca se puede producir a causa de un corazón debilitado, dañado o rígido.
@@ -299,6 +319,8 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
               >
                 {autoRotate ? "Pausar animación" : "Reanudar animación"}
               </button>
+
+              {inView && (
               <Canvas
                 shadows
           camera={{ position: [20, 10, 20], fov: 50 }}
@@ -328,6 +350,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
           >
             <meshStandardMaterial color="grey" />
           </Circle>
+          <AddAudioListener />
           <CigarettesModel
             scale={30}
             position={[0, 0, 0]}
@@ -340,6 +363,7 @@ const [audio, setAudio] = useState(null); // Estado para almacenar el audio actu
             maxDistance={10}
           />
               </Canvas>
+              )}
             </div>
           </div>
 
