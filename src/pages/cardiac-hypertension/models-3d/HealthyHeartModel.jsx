@@ -39,5 +39,5 @@ export function Model(props) {
     </group>
   );
 }
-
+export default Model;
 useGLTF.preload('/models-3d/cardiac-hypertension/healthyHeart.glb');
