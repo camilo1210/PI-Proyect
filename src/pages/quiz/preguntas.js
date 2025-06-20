@@ -7,9 +7,9 @@ const preguntas = [
 },
 {
     pregunta: "¿Cuál de los dos modelos representa la enfermedad estenosis aortica?",
-    modelos: ["", ""],
-    modeloCorrecto: "",
-    feedback: "",
+    modelos: ["halfHeart", "heartPainModel"],
+    modeloCorrecto: "halfHeart",
+    feedback: "Un corazón con estenosis tiene las valvulas aórticas se engrosan impidiendo el flujo adecuado de sangre",
 },
 {
     pregunta: "¿Cuál de los dos modelos representa la enfermedad miocardiopatía dilatada?",

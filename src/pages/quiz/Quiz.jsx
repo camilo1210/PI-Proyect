@@ -2,11 +2,30 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense, useState } from "react";
 import preguntas from "./preguntas";
+import { Html } from "@react-three/drei";
 
 /* Modelos */
 import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome";
 import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel";
 import StenosisHeart from "../aortic-stenosis/models-3d/fullHeart";
+import { HeartPainModel } from "../broken-heart-syndrome/models-3d/HeartPainModel";
+import { HalfHeart } from "../aortic-stenosis/models-3d/halfHeart";
+import HalfHeartDetails from "../aortic-stenosis/models-3d/HalfHeartDetails";
+import MaleHumanModelCare from "../aortic-stenosis/models-3d/maleHumanCares";
+import { ManModel } from "../broken-heart-syndrome/models-3d/ManModel";
+import MaleHumanModel from "../aortic-stenosis/models-3d/maleHuman";
+import { HeartCracksModel } from "../broken-heart-syndrome/models-3d/HeartCracksModel";
+import { HeartMonitorModel } from "../broken-heart-syndrome/models-3d/HeartMonitorModel";
+import HeartDilatedModel1 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel1";
+import HeartDilatedModel2 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomioPathyModel2";
+import HeartDilatedModel3 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel3";
+import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel";
+import ModelDizzy from "../dilated-cardiomyopathy/models-3d/ManDizzyAnimation";
+import HealthyFood from "../heart-failure/model-3d/HealthyFood";
+import HeartModelTwo from "../heart-failure/model-3d/HeartModelTwo";
+import CigarettesModel from "../heart-failure/model-3d/CigarettesModel";
+import HeartModelOne from "../heart-failure/model-3d/HeartModelOne";
+import { Model } from "../cardiac-hypertension/models-3d/HealthyHeartModel";
 
 const Quiz = () => {
   const [feedback, setFeedback] = useState(null);
@@ -18,7 +37,7 @@ const Quiz = () => {
 
   const handleModelClick = (e) => {
     e.stopPropagation();
-    const name = e.object?.name || e.object?.parent?.name || "";
+    const name = e.object?.parent?.parent?.name || e.object?.parent?.name || e.object?.name || "";
     if (!name || respuestaSeleccionada) return;
 
     const esCorrecto = name === preguntaActual.modeloCorrecto;
@@ -43,6 +62,7 @@ const Quiz = () => {
   }
 
   return (
+
     <div className="quiz-container">
       <div className="quiz-sidebar">
         {/* <button>Botón 1</button>
@@ -65,17 +85,49 @@ const Quiz = () => {
             </mesh>
 
             {/* Modelos */}
-            <group position={[-20, 10, 0]} name="heartHealthy" scale={[10, 10, 10]}>
-              <HealthyHeartModel onClick={handleModelClick} />
-            </group>
+            {/* Renderizar modelos solo si están en la pregunta */}
+            {preguntaActual.modelos.includes("heartHealthy") && (
+              <group position={[-20, 10, 0]} name="heartHealthy" scale={[10, 10, 10]}>
+                <HealthyHeartModel onClick={handleModelClick} />
+              </group>
+            )}
 
-            <group position={[0, 10, 0]} name="stenosisHeart" scale={70}>
-              <StenosisHeart onClick={handleModelClick} />
-            </group>
+            {preguntaActual.modelos.includes("heartRotten") && (
+              <group position={[20, 10, 0]} name="heartRotten" scale={[10, 10, 10]}>
+                <BrokenHeartModelHome onClick={handleModelClick} />
+              </group>
+            )}
 
-            <group position={[20, 10, 0]} name="heartRotten" scale={[10, 10, 10]}>
-              <BrokenHeartModelHome onClick={handleModelClick} />
-            </group>
+            {preguntaActual.modelos.includes("stenosisHeart") && (
+              <group position={[-20, 10, 0]} name="stenosisHeart" scale={[70, 70, 70]}>
+                <StenosisHeart onClick={handleModelClick} />
+              </group>
+            )}
+
+            {preguntaActual.modelos.includes("heartPainModel") && (
+              <group position={[20, 10, 0]} name="heartPainModel" scale={[40, 40, 40]}>
+                <HeartPainModel onClick={handleModelClick} />
+              </group>
+            )}
+
+            {preguntaActual.modelos.includes("halfHeart") && (
+              <group position={[-20, 0, 0]} name="halfHeart" scale={[90, 90, 90]}>
+                <HalfHeart onClick={handleModelClick} />
+              </group>
+            )}
+
+           <Html position={[40, 40, 0]}>
+            <div style={{
+             backgroundColor: "#ffffffdd",
+             padding: "10px 16px",
+             borderRadius: "10px",
+             fontWeight: "bold",
+             fontSize: "16px",
+             boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+           }}>
+             Puntuación: {puntuacion} / {preguntas.length}
+            </div>
+           </Html>
 
             <OrbitControls target={[0, 10, 0]} />
           </Canvas>
@@ -111,6 +163,7 @@ const Quiz = () => {
         )}
       </div>
     </div>
+
   );
 };
 

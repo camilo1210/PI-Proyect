@@ -1,11 +1,3 @@
-import React from "react";
-import { OrbitControls } from "@react-three/drei";
-
-/*modelos*/
-import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome";
-import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel";
-import StenosisHeart from "../aortic-stenosis/models-3d/fullHeart";
-import { Canvas } from "@react-three/fiber";
 /* import HeartDilatedModel1 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel1";
 import HeartDilatedModel2 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomioPathyModel2";
 import HeartDilatedModel3 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel3";
@@ -15,7 +7,15 @@ import HealthyFood from "../heart-failure/model-3d/HealthyFood";
 import HeartModelTwo from "../heart-failure/model-3d/HeartModelTwo";
 import CigarettesModel from "./heart-failure/model-3d/CigarettesModel";
 import HeartModelOne from "./heart-failure/model-3d/HeartModelOne";
-import { Model } from "./cardiac-hypertension/models-3d/HealthyHeartModel";
+import { Model } from "./cardiac-hypertension/models-3d/HealthyHeartModel";import React from "react";
+import { OrbitControls } from "@react-three/drei";
+
+/*modelos*/
+/*import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome";
+import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel";
+import StenosisHeart from "../aortic-stenosis/models-3d/fullHeart";
+import { Canvas } from "@react-three/fiber";
+
 import { BrokenHeartModel } from "./broken-heart-syndrome/models-3d/BrokenHeartModel";
 import { HeartCracksModel } from "./broken-heart-syndrome/models-3d/HeartCracksModel";
 import { HeartMonitorModel } from "./broken-heart-syndrome/models-3d/HeartMonitorModel";
@@ -24,7 +24,7 @@ import { ManModel } from "./broken-heart-syndrome/models-3d/ManModel";
 import MaleHumanModel from "./aortic-stenosis/models-3d/maleHuman";
 import MaleHumanModelCare from "./aortic-stenosis/models-3d/maleHumanCares";
 import HalfHeart from "./aortic-stenosis/models-3d/halfHeart";
-import HalfHeartDetails from "./models-3d/HalfHeartDetails";  */
+import HalfHeartDetails from "./models-3d/HalfHeartDetails";*/
 
 const ModeloQuiz = ({ onModelClick }) => {
   const handleClick = (e) => {
