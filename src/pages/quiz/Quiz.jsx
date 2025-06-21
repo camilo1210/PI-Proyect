@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/no-unknown-property */
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense, useState } from "react";
@@ -72,7 +74,7 @@ const Quiz = () => {
   if (!userLogged) return;
 
   const { displayName, email } = userLogged;
-  const data = { displayName, email };
+  const data = { displayName, email ,score: puntuacion, totalPreguntas: preguntas.length };
 
   try {
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/quiz/save-score`, {

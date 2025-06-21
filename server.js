@@ -1,65 +1,76 @@
-// server.js
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3001;
 
-// Middlewares
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// MongoDB conexión
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => console.log("🟢 Conectado a MongoDB"))
-    .catch((err) => {
-        console.error("🔴 Error conectando a MongoDB:", err.message);
-        process.exit(1);
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ Conectado a MongoDB Atlas"))
+  .catch((err) => console.error("❌ Error de conexión a MongoDB", err));
+
+// Esquema del resultado del quiz
+const resultadoSchema = new mongoose.Schema({
+  displayName: String,
+  email: String,
+  score: Number,
+  totalQuestions: Number,
+  date: { type: Date, default: Date.now },
+});
+
+const Resultado = mongoose.model("Resultado", resultadoSchema);
+
+// Ruta para guardar el resultado del quiz
+app.post("/quiz/save-score", async (req, res) => {
+  const { displayName, email, score, totalQuestions } = req.body;
+
+  if (!email || score == null || !totalQuestions) {
+    return res.status(400).json({ message: "Datos incompletos" });
+  }
+
+  try {
+    const nuevoResultado = new Resultado({
+      displayName,
+      email,
+      score,
+      totalQuestions,
     });
 
-// Modelo de puntuación
-const scoreSchema = new mongoose.Schema({
-    displayName: String,
-    email: String,
-    score: Number,
-    createdAt: { type: Date, default: Date.now },
+    await nuevoResultado.save();
+    res.status(200).json({ message: "Puntuación guardada con éxito" });
+  } catch (error) {
+    console.error("Error al guardar el resultado:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
 });
 
-const Score = mongoose.model("Score", scoreSchema);
-
-// Ruta: guardar puntuación
-app.post("/api/quiz/score", async (req, res) => {
-    const { displayName, email, score } = req.body;
-    if (!displayName || !email || typeof score !== "number") {
-    return res.status(400).json({ error: "Faltan datos requeridos" });
-    }
-
-    try {
-        const newScore = new Score({ displayName, email, score });
-        await newScore.save();
-        res.status(201).json({ success: true, message: "Puntuación guardada" });
-    } catch (err) {
-        res.status(500).json({ error: "Error interno al guardar" });
-    }
+// Arrancar servidor
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
 });
 
-// Ruta: obtener puntuaciones por usuario
-app.get("/api/quiz/scores", async (req, res) => {
-    const { email } = req.query;
-    if (!email) return res.status(400).json({ error: "Email requerido" });
-
-    try {
-        const scores = await Score.find({ email }).sort({ createdAt: -1 });
-        res.json({ success: true, scores });
-    } catch (err) {
-        res.status(500).json({ error: "Error al obtener puntuaciones" });
-    }
+app.get("/", (req, res) => {
+  res.send("🚀 Backend del Quiz corriendo");
 });
 
-// Start server
-app.listen(PORT, () => console.log(`🚀 Backend activo en puerto ${PORT}`));
+
+app.get("/quiz/results", async (req, res) => {
+  try {
+    const resultados = await Resultado.find().sort({ date: -1 }).limit(50);
+    res.status(200).json(resultados);
+  } catch (err) {
+    console.error("Error al obtener resultados:", err);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
