@@ -96,7 +96,7 @@ const Quiz = () => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/quiz/save-score`,
+        '${import.meta.env.VITE_API_BASE_URL}/quiz/save-score',
         {
           method: "POST",
           headers: {
