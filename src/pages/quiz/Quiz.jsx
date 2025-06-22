@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unknown-property */
+
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense, useState } from "react";
 import preguntas from "./preguntas";
 import { Html } from "@react-three/drei";
+import { Physics } from "@react-three/rapier";
+import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import "./Quiz.css";
 import { useEffect } from "react";
 import useAuthStore from "../../stores/use-auth-store";
@@ -12,6 +15,7 @@ import useAuthStore from "../../stores/use-auth-store";
 import { BrokenHeartModelHome } from "../broken-heart-syndrome/models-3d/BrokenHeartModelHome";
 import { Model as HealthyHeartModel } from "../cardiac-hypertension/models-3d/HealthyHeartModel";
 import StenosisHeart from "../aortic-stenosis/models-3d/fullHeart";
+import StenosisHalfHeart from "../aortic-stenosis/models-3d/HalfHeartDetails";
 import { HeartPainModel } from "../broken-heart-syndrome/models-3d/HeartPainModel";
 import { HalfHeart } from "../aortic-stenosis/models-3d/halfHeart";
 import { FullHeart } from "../aortic-stenosis/models-3d/fullHeart";
@@ -24,6 +28,7 @@ import { HeartMonitorModel } from "../broken-heart-syndrome/models-3d/HeartMonit
 import HeartDilatedModel1 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel1";
 import HeartDilatedModel2 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomioPathyModel2";
 import HeartDilatedModel3 from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel3";
+import HeartDilatedModelQuiz from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModelQuiz";
 import HeartDilatedModel from "../dilated-cardiomyopathy/models-3d/DilatedCardiomiopathyModel";
 import ModelDizzy from "../dilated-cardiomyopathy/models-3d/ManDizzyAnimation";
 import HealthyFood from "../heart-failure/model-3d/HealthyFood";
@@ -31,6 +36,9 @@ import HeartModelTwo from "../heart-failure/model-3d/HeartModelTwo";
 import Cigarettes from "../heart-failure/model-3d/Cigarettes";
 import HeartModelOne from "../heart-failure/model-3d/HeartModelOne";
 import { Model } from "../cardiac-hypertension/models-3d/HealthyHeartModel";
+import Medallero3D from "./Medallero3D";
+import GoldenMedal from "./GoldenMedal";
+import TopResultados from "./TopResultados/TopResultados";
 
 const Quiz = () => {
   const [feedback, setFeedback] = useState(null);
@@ -40,7 +48,6 @@ const Quiz = () => {
   const { userLogged, loginGoogleWithPopUp, logout } = useAuthStore();
   const preguntaActual = preguntas[preguntaIndex];
 
-
   const handleModelClick = (e) => {
     e.stopPropagation();
     const name =
@@ -48,10 +55,15 @@ const Quiz = () => {
       e.object?.parent?.name ||
       e.object?.name ||
       "";
+    console.log("Clicked model name:", name); // Debugging log
     if (!name || respuestaSeleccionada) return;
 
     const esCorrecto = name === preguntaActual.modeloCorrecto;
-    setFeedback(esCorrecto ? "¡Correcto!" : "Incorrecto");
+    setFeedback(
+      esCorrecto
+        ? `¡Correcto! ${preguntaActual.feedback}`
+        : `Incorrecto. La respuesta correcta era: ${preguntaActual.modeloCorrecto}`
+    );
     if (esCorrecto) setPuntuacion((prev) => prev + 1);
     setRespuestaSeleccionada(name);
   };
@@ -69,29 +81,34 @@ const Quiz = () => {
     setFeedback(null);
   };
 
-
   const guardarResultado = async () => {
-  if (!userLogged) return;
+    if (!userLogged) return;
 
-  const { displayName, email } = userLogged;
-  const data = { displayName, email ,score: puntuacion, totalPreguntas: preguntas.length };
+    const { displayName, email } = userLogged;
+    const data = {
+      displayName,
+      email,
+      score: puntuacion,
+    };
 
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/quiz/save-score`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/quiz/save-score`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-    if (!res.ok) throw new Error("Error al guardar puntuación");
-    console.log("Resultado guardado correctamente");
-  } catch (err) {
-    console.error("Error al guardar el resultado:", err);
-  }
-};
-
+      if (!res.ok) throw new Error("Error al guardar puntuación");
+      console.log("Resultado guardado correctamente");
+    } catch (err) {
+      console.error("Error al guardar el resultado:", err);
+    }
+  };
 
   if (!preguntaActual) {
     return (
@@ -104,12 +121,11 @@ const Quiz = () => {
     );
   }
 
-useEffect(() => {
-  if (preguntaIndex === preguntas.length && userLogged) {
-    guardarResultado();
-  }
-}, [preguntaIndex]);
-
+  useEffect(() => {
+    if (preguntaIndex === preguntas.length && userLogged) {
+      guardarResultado();
+    }
+  }, [preguntaIndex]);
 
   return (
     <div className="quiz-container">
@@ -121,135 +137,156 @@ useEffect(() => {
               camera={{ position: [0, 60, 120], fov: 60 }}
               style={{ height: "500px", width: "600px" }}
             >
-              <ambientLight intensity={0.4} />
-              <directionalLight
-                castShadow
-                intensity={0.7}
-                position={[50, 100, 50]}
-                shadow-mapSize-width={2048}
-                shadow-mapSize-height={2048}
-              />
-              <mesh rotation-x={-Math.PI / 2} receiveShadow>
-                <circleGeometry args={[80, 64]} />
-                <meshStandardMaterial color="#4caf50" roughness={0.8} />
-              </mesh>
+              <Physics  gravity={[0, -5, 0]} debug>
+                <RigidBody type="dynamic" colliders={false}>
+                  <CuboidCollider args={[5, 5, 5]} />
+                </RigidBody>
+                <RigidBody type="dynamic" colliders={false}>
+                  <CuboidCollider args={[5, 5, 5]} />
+                </RigidBody>
+                <RigidBody type="dynamic" colliders={false}>
+                  <CuboidCollider args={[5, 5, 5]} />
+                </RigidBody>
 
-              {/* Modelos */}
-              {/* Renderizar modelos solo si están en la pregunta */}
+                <ambientLight intensity={0.4} />
+                <directionalLight
+                  castShadow
+                  intensity={0.7}
+                  position={[50, 100, 50]}
+                  shadow-mapSize-width={2048}
+                  shadow-mapSize-height={2048}
+                />
+                <RigidBody type="fixed" colliders={false}>
+                  <mesh rotation-x={-Math.PI / 2} receiveShadow>
+                    <circleGeometry args={[1024, 1024]} />
+                    <meshStandardMaterial color="#4caf50" roughness={0.8} />
+                  </mesh>
+                  <CuboidCollider args={[80, 4, 100]} />
+                </RigidBody>
 
-              {/* ===========PREGUNTA 1============ */}
-              {preguntaActual.modelos.includes("heartHealthy") && (
-                <group
-                  position={[-20, 10, 0]}
-                  name="heartHealthy"
-                  scale={[10, 10, 10]}
-                >
-                  <HealthyHeartModel onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 1============ */}
-              {preguntaActual.modelos.includes("heartRotten") && (
-                <group
-                  position={[20, 10, 0]}
-                  name="heartRotten"
-                  scale={[10, 10, 10]}
-                >
-                  <BrokenHeartModelHome onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 2============ */}
-              {preguntaActual.modelos.includes("HeartDilated") && (
-                <group
-                  position={[-20, 10, 0]}
-                  name="HeartDilated"
-                  scale={[10, 10, 1]}
-                >
-                  <HeartModelOne onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 2============ */}
-              {preguntaActual.modelos.includes("stenosisHeart") && (
-                <group
-                  position={[20, 10, 0]}
-                  name="stenosisHeart"
-                  scale={[40, 40, 40]}
-                >
-                  <StenosisHeart onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 3============ */}
-              {preguntaActual.modelos.includes("heartDilatedModel3") && (
-                <group
-                  position={[-20, 10, 0]}
-                  name="heartDilatedModel3"
-                  scale={5}
-                >
-                  <HeartDilatedModel1 onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 3============ */}
-              {preguntaActual.modelos.includes("heartMonitor") && (
-                <group position={[20, 10, 0]} name="heartMonitor" scale={30}>
-                  <HeartMonitorModel onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 4============ */}
-              {preguntaActual.modelos.includes("cigarettes") && (
-                <group
-                  position={[-20, 10, 0]}
-                  name="cigarettes"
-                  scale={[40, 40, 40]}
-                >
-                  <Cigarettes onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 4============ */}
-              {preguntaActual.modelos.includes("healthyFood") && (
-                <group
-                  position={[20, 10, 0]}
-                  name="healthyFood"
-                  scale={[2, 2, 2]}
-                >
-                  <HealthyFood onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 5============ */}
-              {preguntaActual.modelos.includes("heartHypertension") && (
-                <group
-                  position={[20, 10, 0]}
-                  name="heartHypertension"
-                  scale={[10, 10, 10]}
-                >
-                  <Model onPointerDown={handleModelClick} />
-                </group>
-              )}
-              {/* ===========PREGUNTA 5============ */}
-              {preguntaActual.modelos.includes("heartCracks") && (
-                <group
-                  position={[-20, 10, 0]}
-                  name="heartCracks"
-                  scale={[30, 30, 30]}
-                >
-                  <HeartCracksModel onPointerDown={handleModelClick} />
-                </group>
-              )}
+                {/* Modelos */}
+                {/* Renderizar modelos solo si están en la pregunta */}
 
-              <Html position={[40, 40, 0]}>
-                <div
-                  style={{
-                    backgroundColor: "#ffffffdd",
-                    padding: "10px 16px",
-                    borderRadius: "10px",
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-                  }}
-                >
-                  Puntuación: {puntuacion} / {preguntas.length}
-                </div>
-              </Html>
+                {/* ===========PREGUNTA 1============ */}
+                <RigidBody type="dynamic" colliders={"trimesh"}>
+                  {preguntaActual.modelos.includes("heartHealthy") && (
+                    <group
+                      position={[-20, 50, 0]}
+                      name="heartHealthy"
+                      scale={[10, 10, 10]}
+                    >
+                      <HealthyHeartModel onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                  {/* <CuboidCollider args={[5, 5, 5]} /> */}
+                </RigidBody>
+                {/* ===========PREGUNTA 1============ */}
+                <RigidBody type="dynamic" colliders={"trimesh"}>
+                  {preguntaActual.modelos.includes("heartRotten") && (
+                    <group
+                      position={[20, 50, 0]}
+                      name="heartRotten"
+                      scale={[10, 10, 10]}
+                    >
+                      <BrokenHeartModelHome onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                  {/* <CuboidCollider args={[5, 5, 5]} /> */}
+                </RigidBody>
+                {/* ===========PREGUNTA 2============ */}
+                {preguntaActual.modelos.includes("HeartDilated") && (
+                  <group
+                    position={[-20, 10, 0]}
+                    name="HeartDilated"
+                    scale={[10, 10, 10]}
+                  >
+                    <HeartModelOne onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 2============ */}
+                {preguntaActual.modelos.includes("stenosisHeart") && (
+                  <group
+                    position={[20, 10, 0]}
+                    name="stenosisHeart"
+                    scale={[40, 40, 40]}
+                  >
+                    <StenosisHeart onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 3============ */}
+                {preguntaActual.modelos.includes("HeartDilatedModelQuiz") && (
+                  <group
+                    position={[-20, 10, 0]}
+                    name="HeartDilatedModelQuiz"
+                    scale={5}
+                  >
+                    <HeartDilatedModelQuiz onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 3============ */}
+                {preguntaActual.modelos.includes("heartMonitor") && (
+                  <group position={[20, 10, 0]} name="heartAMonitor" scale={30}>
+                    <HeartMonitorModel onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 4============ */}
+                {preguntaActual.modelos.includes("cigarettes") && (
+                  <group
+                    position={[-20, 10, 0]}
+                    name="cigarettes"
+                    scale={[60, 60, 60]}
+                  >
+                    <Cigarettes onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 4============ */}
+                {preguntaActual.modelos.includes("healthyFood") && (
+                  <group
+                    position={[20, 10, 0]}
+                    name="healthyFood"
+                    scale={[2, 2, 2]}
+                  >
+                    <HealthyFood onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 5============ */}
+                {preguntaActual.modelos.includes("heartHypertension") && (
+                  <group
+                    position={[20, 10, 0]}
+                    name="heartHypertension"
+                    scale={[10, 10, 10]}
+                  >
+                    <Model onPointerDown={handleModelClick} />
+                  </group>
+                )}
+                {/* ===========PREGUNTA 5============ */}
+                {preguntaActual.modelos.includes("heartCracks") && (
+                  <group
+                    position={[-20, 10, 0]}
+                    name="heartCracks"
+                    scale={[30, 30, 30]}
+                  >
+                    <HeartCracksModel onPointerDown={handleModelClick} />
+                  </group>
+                )}
 
-              <OrbitControls target={[0, 10, 0]} />
+                <Html position={[40, 40, 0]}>
+                  <div
+                    style={{
+                      backgroundColor: "#ffffffdd",
+                      padding: "10px 16px",
+                      borderRadius: "10px",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    Puntuación: {puntuacion} / {preguntas.length}
+                  </div>
+                </Html>
+
+                <OrbitControls target={[0, 10, 0]} />
+              </Physics>
             </Canvas>
           </Suspense>
         </div>
@@ -275,10 +312,6 @@ useEffect(() => {
             </p>
           )}
 
-          {/* {!preguntaActual && (
-
-            )} */}
-
           {feedback && preguntaIndex < preguntas.length - 1 && (
             <button onClick={handleSiguientePregunta}>Siguiente</button>
           )}
@@ -302,11 +335,17 @@ useEffect(() => {
                     </button>
                   </div>
                 )}
+
+                <h2 style={{ marginTop: "32px" }}> Medallero</h2>
+                <div style={{ marginTop: "16px" }}>
+                  <Medallero3D />
+                </div>
               </div>
             </>
           )}
         </div>
       </div>
+      <TopResultados />
     </div>
   );
 };

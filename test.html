@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Probar Guardado de Quiz</title>
+</head>
+<body>
+  <h2>📤 Test de Envío de Resultado</h2>
+  <button onclick="enviarResultado()">Enviar resultado de prueba</button>
+
+  <p id="respuesta"></p>
+
+  <script>
+    async function enviarResultado() {
+      const data = {
+        displayName: "Camilo HTML",
+        email: "camilo@html.com",
+        score: 5,
+        totalQuestions: 5
+      };
+
+      try {
+        const res = await fetch("http://localhost:3001/quiz/save-score", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        document.getElementById("respuesta").innerText = "✅ Guardado: " + JSON.stringify(result);
+      } catch (error) {
+        document.getElementById("respuesta").innerText = "❌ Error: " + error.message;
+        console.error("Error al enviar:", error);
+      }
+    }
+  </script>
+</body>
+</html>

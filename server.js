@@ -48,11 +48,31 @@ app.post("/quiz/save-score", async (req, res) => {
     });
 
     await nuevoResultado.save();
+    console.log("✅ Resultado guardado:", nuevoResultado);
     res.status(200).json({ message: "Puntuación guardada con éxito" });
   } catch (error) {
     console.error("Error al guardar el resultado:", error);
     res.status(500).json({ message: "Error del servidor" });
   }
+});
+
+// Ruta para obtener el TOP 10 de puntuaciones
+app.get("/quiz/scores", async (req, res) => {
+  console.log("📩 Datos recibidos en /quiz/save-score:", req.body);
+  try {
+    const topScores = await Resultado.find()
+      .sort({ score: -1, date: 1 }) // Mayor puntaje, más reciente en caso de empate
+      .limit(10);
+
+    res.status(200).json(topScores);
+  } catch (err) {
+    console.error("Error al obtener top puntuaciones:", err);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
+
+app.get("/", (req, res) => {
+  res.send("🚀 Backend del Quiz corriendo");
 });
 
 // Arrancar servidor
@@ -74,3 +94,18 @@ app.get("/quiz/results", async (req, res) => {
     res.status(500).json({ message: "Error del servidor" });
   }
 });
+
+// Obtener los 3 mejores puntajes
+app.get("/quiz/top", async (req, res) => {
+  try {
+    const topResultados = await Resultado.find()
+      .sort({ score: -1, date: 1 }) // Primero más puntaje, luego más reciente
+      .limit(3);
+
+    res.status(200).json(topResultados);
+  } catch (error) {
+    console.error("Error al obtener top:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
+
