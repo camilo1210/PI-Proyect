@@ -33,6 +33,7 @@ const Resultado = mongoose.model("Resultado", resultadoSchema);
 
 // Ruta para guardar el resultado del quiz
 app.post("/quiz/save-score", async (req, res) => {
+  console.log("📥 Datos recibidos:", req.body);
   const { displayName, email, score, totalQuestions } = req.body;
 
   if (!email || score == null || !totalQuestions) {

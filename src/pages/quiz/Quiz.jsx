@@ -82,17 +82,26 @@ const Quiz = () => {
   };
 
   const guardarResultado = async () => {
-    if (!userLogged) return;
+    console.log("🌐 API BASE:", import.meta.env.VITE_API_BASE_URL);
+    if (!userLogged) {
+      console.log("⛔ Usuario no logueado");
+      return;
+    }
+    console.log("📤 Guardando desde QUIZ");
+    
 
     const { displayName, email } = userLogged;
     const data = {
       displayName,
       email,
       score: puntuacion,
+      totalQuestions: preguntas.length,
+
     };
 
     try {
       const res = await fetch(
+        
         `${import.meta.env.VITE_API_BASE_URL}/quiz/save-score`,
         {
           method: "POST",
@@ -100,7 +109,9 @@ const Quiz = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
+          
         }
+        
       );
 
       if (!res.ok) throw new Error("Error al guardar puntuación");
@@ -137,7 +148,7 @@ const Quiz = () => {
               camera={{ position: [0, 60, 120], fov: 60 }}
               style={{ height: "500px", width: "600px" }}
             >
-              <Physics  gravity={[0, -5, 0]} debug>
+              <Physics gravity={[0, -5, 0]} debug>
                 <RigidBody type="dynamic" colliders={false}>
                   <CuboidCollider args={[5, 5, 5]} />
                 </RigidBody>
@@ -327,6 +338,13 @@ const Quiz = () => {
                 <button onClick={handleRestartQuiz} className="btnClose">
                   Reiniciar Quiz
                 </button>
+
+                {userLogged && (
+                  <button onClick={guardarResultado}>
+                    Guardar Resultado Manual
+                  </button>
+                )}
+
                 {!userLogged && (
                   <div style={{ marginBottom: "16px" }}>
                     <p>Para guardar tu puntuación, inicia sesión:</p>
