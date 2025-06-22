@@ -55,17 +55,14 @@ const Quiz = () => {
       e.object?.parent?.name ||
       e.object?.name ||
       "";
-    console.log("Clicked model name:", name); // Debugging log
+    console.log("Clicked model name:", name);
     if (!name || respuestaSeleccionada) return;
 
     const esCorrecto = name === preguntaActual.modeloCorrecto;
-    setFeedback(
-      esCorrecto
-        ? `¡Correcto! ${preguntaActual.feedback}`
-        : `Incorrecto. La respuesta correcta era: ${preguntaActual.modeloCorrecto}`
-    );
+      setFeedback(esCorrecto ? "¡Correcto!" : "Incorrecto");
+      setRespuestaSeleccionada(name);
+
     if (esCorrecto) setPuntuacion((prev) => prev + 1);
-    setRespuestaSeleccionada(name);
   };
 
   const handleRestartQuiz = () => {
@@ -315,23 +312,21 @@ const Quiz = () => {
           <h2>{preguntaActual.pregunta}</h2>
 
           {feedback && (
-            <p className={feedback === "¡Correcto!" ? "correct" : "wrong"}>
-              {feedback}
-              {feedback === "¡Correcto!" && (
-                <>
+            <div className={`feedback ${feedback === "¡Correcto!" ? "correct" : "incorrecto"}`}>
+              <p>{feedback}</p>
+
+              {feedback === "¡Correcto!" ? (
+                <p>{preguntaActual.feedback}</p>
+              ) : (
+                <p>
+                  La respuesta correcta era: <strong>{preguntaActual.modeloCorrecto}</strong>
                   <br />
-                  {preguntaActual.feedback}
-                </>
+                  {preguntaActual.feedback || "Intenta observar mejor las diferencias entre los modelos."}
+                </p>
               )}
-              {feedback !== "¡Correcto!" && (
-                <>
-                  <br />
-                  La respuesta correcta era:{" "}
-                  <strong>{preguntaActual.modeloCorrecto}</strong>
-                </>
-              )}
-            </p>
+            </div>
           )}
+
 
           {feedback && preguntaIndex < preguntas.length - 1 && (
             <button onClick={handleSiguientePregunta}>Siguiente</button>

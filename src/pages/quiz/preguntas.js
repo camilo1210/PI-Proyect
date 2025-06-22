@@ -16,16 +16,16 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Cuál de los dos modelos representa la enfermedad miocardiopatía dilatada?",
+        pregunta: "¿Cuál de los dos modelos 'NO' representa la enfermedad miocardiopatía dilatada?",
         modelos: ["HeartDilatedModelQuiz", "heartMonitor"],
-        modeloCorrecto: "HeartDilatedModelQuiz",
-        feedback:"El corazon con miocardiopatia dilatada por lo general es mas grande que un corazon que no tiene esta enfermadad",
+        modeloCorrecto: "heartMonitor",
+        feedback:"El corazon con miocardiopatia dilatada por lo general se representa siendo mas grande que un corazon que no tiene esta enfermadad",
     },
 
     {
         pregunta: "¿Qué debes evitar para no tener insuficiencia cardíaca?",
         modelos: ["cigarettes", "healthyFood"],
-        modeloCorrecto: "healthyFood",
+        modeloCorrecto: "cigarettes",
         feedback:"Para evitar la insuficiencia cardíaca, es importante evitar fumar, beber alcohol en exceso y consumir grasas saturadas"
     },
     
