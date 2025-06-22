@@ -88,7 +88,6 @@ const Quiz = () => {
       return;
     }
     console.log("📤 Guardando desde QUIZ");
-    
 
     const { displayName, email } = userLogged;
     const data = {
@@ -96,12 +95,10 @@ const Quiz = () => {
       email,
       score: puntuacion,
       totalQuestions: preguntas.length,
-
     };
 
     try {
       const res = await fetch(
-        
         `${import.meta.env.VITE_API_BASE_URL}/quiz/save-score`,
         {
           method: "POST",
@@ -109,9 +106,7 @@ const Quiz = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
-          
         }
-        
       );
 
       if (!res.ok) throw new Error("Error al guardar puntuación");
@@ -137,6 +132,13 @@ const Quiz = () => {
       guardarResultado();
     }
   }, [preguntaIndex]);
+  const DynamicModel = ({ name, position, scale, children }) => (
+    <RigidBody type="dynamic" colliders="hull" mass={1}>
+      <group name={name} position={position} scale={scale}>
+        {children}
+      </group>
+    </RigidBody>
+  );
 
   return (
     <div className="quiz-container">
@@ -148,17 +150,7 @@ const Quiz = () => {
               camera={{ position: [0, 60, 120], fov: 60 }}
               style={{ height: "500px", width: "600px" }}
             >
-              <Physics gravity={[0, -5, 0]} debug>
-                <RigidBody type="dynamic" colliders={false}>
-                  <CuboidCollider args={[5, 5, 5]} />
-                </RigidBody>
-                <RigidBody type="dynamic" colliders={false}>
-                  <CuboidCollider args={[5, 5, 5]} />
-                </RigidBody>
-                <RigidBody type="dynamic" colliders={false}>
-                  <CuboidCollider args={[5, 5, 5]} />
-                </RigidBody>
-
+              <Physics gravity={[0, -8, 0]} >
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   castShadow
@@ -169,7 +161,7 @@ const Quiz = () => {
                 />
                 <RigidBody type="fixed" colliders={false}>
                   <mesh rotation-x={-Math.PI / 2} receiveShadow>
-                    <circleGeometry args={[1024, 1024]} />
+                    <circleGeometry args={[624, 624]} />
                     <meshStandardMaterial color="#4caf50" roughness={0.8} />
                   </mesh>
                   <CuboidCollider args={[80, 4, 100]} />
@@ -179,7 +171,7 @@ const Quiz = () => {
                 {/* Renderizar modelos solo si están en la pregunta */}
 
                 {/* ===========PREGUNTA 1============ */}
-                <RigidBody type="dynamic" colliders={"trimesh"}>
+                <RigidBody type="dynamic" colliders={"hull"}>
                   {preguntaActual.modelos.includes("heartHealthy") && (
                     <group
                       position={[-20, 50, 0]}
@@ -189,10 +181,9 @@ const Quiz = () => {
                       <HealthyHeartModel onPointerDown={handleModelClick} />
                     </group>
                   )}
-                  {/* <CuboidCollider args={[5, 5, 5]} /> */}
                 </RigidBody>
                 {/* ===========PREGUNTA 1============ */}
-                <RigidBody type="dynamic" colliders={"trimesh"}>
+                <RigidBody type="dynamic" colliders={"hull"}>
                   {preguntaActual.modelos.includes("heartRotten") && (
                     <group
                       position={[20, 50, 0]}
@@ -202,84 +193,103 @@ const Quiz = () => {
                       <BrokenHeartModelHome onPointerDown={handleModelClick} />
                     </group>
                   )}
-                  {/* <CuboidCollider args={[5, 5, 5]} /> */}
                 </RigidBody>
                 {/* ===========PREGUNTA 2============ */}
-                {preguntaActual.modelos.includes("HeartDilated") && (
-                  <group
-                    position={[-20, 10, 0]}
-                    name="HeartDilated"
-                    scale={[10, 10, 10]}
-                  >
-                    <HeartModelOne onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel >
+                  {preguntaActual.modelos.includes("HeartDilated") && (
+                    <group
+                      position={[-20, 50, 0]}
+                      name="HeartDilated"
+                      scale={[10, 10, 10]}
+                    >
+                      <HeartModelOne onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 2============ */}
-                {preguntaActual.modelos.includes("stenosisHeart") && (
-                  <group
-                    position={[20, 10, 0]}
-                    name="stenosisHeart"
-                    scale={[40, 40, 40]}
-                  >
-                    <StenosisHeart onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("stenosisHeart") && (
+                    <group
+                      position={[20, 50, 0]}
+                      name="stenosisHeart"
+                      scale={[40, 40, 40]}
+                    >
+                      <StenosisHeart onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 3============ */}
-                {preguntaActual.modelos.includes("HeartDilatedModelQuiz") && (
-                  <group
-                    position={[-20, 10, 0]}
-                    name="HeartDilatedModelQuiz"
-                    scale={5}
-                  >
-                    <HeartDilatedModelQuiz onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("HeartDilatedModelQuiz") && (
+                    <group
+                      position={[-20, 50, 0]}
+                      name="HeartDilatedModelQuiz"
+                      scale={5}
+                    >
+                      <HeartDilatedModelQuiz onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 3============ */}
-                {preguntaActual.modelos.includes("heartMonitor") && (
-                  <group position={[20, 10, 0]} name="heartAMonitor" scale={30}>
-                    <HeartMonitorModel onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("heartMonitor") && (
+                    <group
+                      position={[20, 50, 0]}
+                      name="heartMonitor"
+                      scale={30}
+                    >
+                      <HeartMonitorModel onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 4============ */}
-                {preguntaActual.modelos.includes("cigarettes") && (
-                  <group
-                    position={[-20, 10, 0]}
-                    name="cigarettes"
-                    scale={[60, 60, 60]}
-                  >
-                    <Cigarettes onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("cigarettes") && (
+                    <group
+                      position={[-20, 50, 0]}
+                      name="cigarettes"
+                      scale={[100, 100, 100]}
+                    >
+                      <Cigarettes onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 4============ */}
-                {preguntaActual.modelos.includes("healthyFood") && (
-                  <group
-                    position={[20, 10, 0]}
-                    name="healthyFood"
-                    scale={[2, 2, 2]}
-                  >
-                    <HealthyFood onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("healthyFood") && (
+                    <group
+                      position={[20, 50, 0]}
+                      name="healthyFood"
+                      scale={[2, 2, 2]}
+                    >
+                      <HealthyFood onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 5============ */}
-                {preguntaActual.modelos.includes("heartHypertension") && (
-                  <group
-                    position={[20, 10, 0]}
-                    name="heartHypertension"
-                    scale={[10, 10, 10]}
-                  >
-                    <Model onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("heartHypertension") && (
+                    <group
+                      position={[20, 50, 0]}
+                      name="heartHypertension"
+                      scale={[10, 10, 10]}
+                    >
+                      <Model onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
                 {/* ===========PREGUNTA 5============ */}
-                {preguntaActual.modelos.includes("heartCracks") && (
-                  <group
-                    position={[-20, 10, 0]}
-                    name="heartCracks"
-                    scale={[30, 30, 30]}
-                  >
-                    <HeartCracksModel onPointerDown={handleModelClick} />
-                  </group>
-                )}
+                <DynamicModel>
+                  {preguntaActual.modelos.includes("heartCracks") && (
+                    <group
+                      position={[-20, 50, 0]}
+                      name="heartCracks"
+                      scale={[30, 30, 30]}
+                    >
+                      <HeartCracksModel onPointerDown={handleModelClick} />
+                    </group>
+                  )}
+                </DynamicModel>
 
                 <Html position={[40, 40, 0]}>
                   <div

@@ -4,8 +4,8 @@ const preguntas = [
     {
         pregunta: "¿Cuál de los dos modelos representa el corazón roto?",
         modelos: ["heartHealthy", "heartRotten"],
-        modeloCorrecto:"el ano de andrick es moradito" ,
-        feedback:""
+        modeloCorrecto:"heartRotten" ,
+        feedback:"El corazón roto tiene daños visibles y se ve fracturado."
     },
 
     {
