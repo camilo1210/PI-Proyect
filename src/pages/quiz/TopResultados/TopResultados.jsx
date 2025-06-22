@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 const TopResultados = () => {
   const [top, setTop] = useState([]);
 
@@ -7,6 +8,7 @@ const TopResultados = () => {
     const fetchTop = async () => {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/quiz/top`);
+        console.log("📡 Fetching from:", import.meta.env.VITE_API_BASE_URL);
 
         const data = await res.json();
         setTop(data);
