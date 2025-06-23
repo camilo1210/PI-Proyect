@@ -45,32 +45,35 @@ const AorticStenosis = () => {
     []
   );
   const audioRef = useRef();
+  const audioRefCare = useRef(); // Nuevo ref para prevención y cuidados
   const [showButton, setShowButton] = useState(false);
+  const [showButtonCare, setShowButtonCare] = useState(false); // Estado para el botón de detener sonido en prevención y cuidados
 
   const handleMouse = useCallback(() => {
     audioRef.current.play();
     audioRef.current.setVolume(5);
-    setShowButton(true); // Mostrar el botón cuando se reproduce el audio
+    setShowButton(true);
   }, [audioRef]);
 
   const handleMouseOff = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.stop();
-      setShowButton(false); // Ocultar el botón cuando se detiene el audio
+      setShowButton(false);
     }
-  }, [audioRef]);
-  const handleSoundMen = useCallback(() => {
-    audioRef.current.play();
-    audioRef.current.setVolume(5);
-    setShowButton(true); // Mostrar el botón cuando se reproduce el audio
   }, [audioRef]);
 
+  const handleSoundMen = useCallback(() => {
+    audioRefCare.current.play();
+    audioRefCare.current.setVolume(5);
+    setShowButtonCare(true);
+  }, [audioRefCare]);
+
   const handleSoundMenOff = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.stop();
-      setShowButton(false); // Ocultar el botón cuando se detiene el audio
+    if (audioRefCare.current) {
+      audioRefCare.current.stop();
+      setShowButtonCare(false);
     }
-  }, [audioRef]);
+  }, [audioRefCare]);
 
   return (
     <>
@@ -373,7 +376,7 @@ const AorticStenosis = () => {
               Además, es importante realizar chequeos médicos regulares para
               detectar cualquier problema cardíaco a tiempo.
             </p>
-            {showButton && (
+            {showButtonCare && (
               <button
                 className="btn-3D"
                 onClick={handleSoundMenOff}
@@ -404,21 +407,21 @@ const AorticStenosis = () => {
                 raycaster={{ enabled: true }}
               >
                 {/* <Texts3d title={"Síntomas"} /> */}
-                 <Html center position={[0, -0.4, 0]}>
-                <div className="btn-3D-container">
-                  <button className="btn-3D" onClick={handleSoundMen}>
-                    ¿Que tiene?
-                  </button>
-                </div>
-              </Html>
-              <group>
-                <PositionalAudio
-                  ref={audioRef}
-                  loop
-                  distance={5}
-                  url="/sounds/breathing-fast.mp3"
-                />
-              </group>
+                <Html center position={[0, -0.4, 0]}>
+                  <div className="btn-3D-container">
+                    <button className="btn-3D" onClick={handleSoundMen}>
+                      ¿Que tiene?
+                    </button>
+                  </div>
+                </Html>
+                <group>
+                  <PositionalAudio
+                    ref={audioRefCare}
+                    loop
+                    distance={5}
+                    url="/sounds/breathing-fast.mp3"
+                  />
+                </group>
                 <ambientLight intensity={0.4} />
                 <directionalLight
                   position={[-3, 4, 4]}

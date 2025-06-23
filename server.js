@@ -14,6 +14,7 @@ app.use(express.json());
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
+    dbName:"quizDB"
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
