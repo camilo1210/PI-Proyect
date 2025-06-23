@@ -357,11 +357,24 @@ const Quiz = () => {
                 </button>
 
                 {userLogged && (
-                  <button onClick={guardarResultado}>
-                    Guardar Resultado Manual
-                  </button>
+                  <>
+                    <button onClick={guardarResultado}>
+                      Guardar Resultado
+                    </button>
+                    {mensajeGuardado && (
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          color: "green",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
+                        ✅ {mensajeGuardado}
+                      </p>
+                    )}
+                  </>
                 )}
-
                 {!userLogged && (
                   <div style={{ marginBottom: "16px" }}>
                     <p>Para guardar tu puntuación, inicia sesión:</p>
