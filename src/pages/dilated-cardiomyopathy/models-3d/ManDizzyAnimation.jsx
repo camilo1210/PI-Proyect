@@ -35,7 +35,8 @@ const ModelDizzy = (props) => {
     const breathing = new THREE.PositionalAudio(listener);
     const loader = new THREE.AudioLoader();
 
-    loader.load("/sounds/breathing-fast.wav", (buffer) => {
+    // Corrige la ruta y extensión del audio
+    loader.load("/sounds/breathing-fast.mp3", (buffer) => {
       breathing.setBuffer(buffer);
       breathing.setRefDistance(2);
       breathing.setVolume(1);
@@ -44,10 +45,18 @@ const ModelDizzy = (props) => {
 
     breathingAudioRef.current = breathing;
 
+    // Adjuntar el audio al grupo 3D cuando esté disponible
+    if (group.current) {
+      group.current.add(breathing);
+    }
+
     // Limpieza
     return () => {
       if (breathing.isPlaying) breathing.stop();
       camera.remove(listener);
+      if (group.current && breathing) {
+        group.current.remove(breathing);
+      }
     };
   }, [camera]);
 
@@ -80,8 +89,7 @@ const ModelDizzy = (props) => {
             receiveShadow
           />
           <primitive object={nodes.mixamorigHips} />
-          {/* Audio Posicional */}
-          <primitive object={breathingAudioRef.current} />
+          {/* Audio Posicional eliminado del JSX, ahora se adjunta por useEffect */}
           {/* HTML 3D H1 agregado */}
           <Html position={[0, 1, 1]} >
             <h1
