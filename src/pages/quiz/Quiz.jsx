@@ -108,6 +108,7 @@ const Quiz = () => {
 
       if (!res.ok) throw new Error("Error al guardar puntuación");
       console.log("Resultado guardado correctamente");
+      console.log("Datos enviados:", data);
     } catch (err) {
       console.error("Error al guardar el resultado:", err);
     }
