@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations, Html } from "@react-three/drei";
 import usePersonStore from "../../../stores/dilated-cardiomiopathy-stores/use-person-store";
+import { useThree } from "@react-three/fiber";
+import * as THREE from "three";
 
 const ModelDizzy = (props) => {
   const group = useRef();
@@ -9,17 +11,56 @@ const ModelDizzy = (props) => {
   );
   const { actions } = useAnimations(animations, group);
   const { currentAnimation } = usePersonStore();
+  const { camera } = useThree();
+
+  // Audio
+  const breathingAudioRef = useRef(null);
 
   useEffect(() => {
     if (actions[currentAnimation]) {
-      actions[currentAnimation].reset().fadeIn(0.5).play(); // Asegúrate de reiniciar y reproducir la animación
+      actions[currentAnimation].reset().fadeIn(0.5).play();
     }
     return () => {
       if (actions[currentAnimation]) {
-        actions[currentAnimation].fadeOut(0.5); // Detén la animación anterior
+        actions[currentAnimation].fadeOut(0.5);
       }
     };
   }, [actions, currentAnimation]);
+
+  useEffect(() => {
+    // Audio setup
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    const breathing = new THREE.PositionalAudio(listener);
+    const loader = new THREE.AudioLoader();
+
+    loader.load("/sounds/breathing-fast.wav", (buffer) => {
+      breathing.setBuffer(buffer);
+      breathing.setRefDistance(2);
+      breathing.setVolume(1);
+      breathing.setLoop(false);
+    });
+
+    breathingAudioRef.current = breathing;
+
+    // Limpieza
+    return () => {
+      if (breathing.isPlaying) breathing.stop();
+      camera.remove(listener);
+    };
+  }, [camera]);
+
+  useEffect(() => {
+    // Play audio on Enter
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter" && breathingAudioRef.current && !breathingAudioRef.current.isPlaying) {
+        breathingAudioRef.current.play();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -39,6 +80,8 @@ const ModelDizzy = (props) => {
             receiveShadow
           />
           <primitive object={nodes.mixamorigHips} />
+          {/* Audio Posicional */}
+          <primitive object={breathingAudioRef.current} />
           {/* HTML 3D H1 agregado */}
           <Html position={[0, 1, 1]} >
             <h1
