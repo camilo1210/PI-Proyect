@@ -370,7 +370,7 @@ const Quiz = () => {
                     )}
                   </>
                 )}
-                
+
                 {!userLogged && (
                   <div style={{ marginBottom: "16px" }}>
                     <p>Para guardar tu puntuación, inicia sesión:</p>
