@@ -47,6 +47,8 @@ const Quiz = () => {
   const [puntuacion, setPuntuacion] = useState(0);
   const { userLogged, loginGoogleWithPopUp, logout } = useAuthStore();
   const preguntaActual = preguntas[preguntaIndex];
+  const [mensajeGuardado, setMensajeGuardado] = useState("");
+
 
   const handleModelClick = (e) => {
     e.stopPropagation();
@@ -59,8 +61,8 @@ const Quiz = () => {
     if (!name || respuestaSeleccionada) return;
 
     const esCorrecto = name === preguntaActual.modeloCorrecto;
-      setFeedback(esCorrecto ? "¡Correcto!" : "Incorrecto");
-      setRespuestaSeleccionada(name);
+    setFeedback(esCorrecto ? "¡Correcto!" : "Incorrecto");
+    setRespuestaSeleccionada(name);
 
     if (esCorrecto) setPuntuacion((prev) => prev + 1);
   };
@@ -109,6 +111,12 @@ const Quiz = () => {
       if (!res.ok) throw new Error("Error al guardar puntuación");
       console.log("Resultado guardado correctamente");
       console.log("Datos enviados:", data);
+
+      setMensajeGuardado("Resultado guardado correctamente");
+      setTimeout(() => {
+        setMensajeGuardado("");
+      }, 3000);
+
     } catch (err) {
       console.error("Error al guardar el resultado:", err);
     }
@@ -346,11 +354,23 @@ const Quiz = () => {
                 </button>
 
                 {userLogged && (
-                  <button onClick={guardarResultado}>
-                    Guardar Resultado Manual
-                  </button>
+                  <>
+                    <button onClick={guardarResultado}>Guardar Resultado</button>
+                    {mensajeGuardado && (
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          color: "green",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
+                        ✅ {mensajeGuardado}
+                      </p>
+                    )}
+                  </>
                 )}
-
+                
                 {!userLogged && (
                   <div style={{ marginBottom: "16px" }}>
                     <p>Para guardar tu puntuación, inicia sesión:</p>
