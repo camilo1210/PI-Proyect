@@ -10,6 +10,8 @@ const AboutUs = () => {
     { name: "Luisa María Llantén Correa", email: "luisamariallanten@gmail.com", role: "Scrum Master & Desarrollador FullStack", disease: "Insuficiencia Cardiaca" },
 
     { name: "Cristian Camilo Pavas", email: "camilopavasrios@gmail.com", role: "Administrador de bases de datos & Desarrollador FullStack", disease: "Sindrome del Corazon roto" },
+ 
+    { name: "John Brandon Idarraga Toro", email: "johnsito.toro13@gmail.com", role: "Scrum Master & Desarrollador FullStack", disease: "Hypertension Arterial" },
   ];
 
   return (

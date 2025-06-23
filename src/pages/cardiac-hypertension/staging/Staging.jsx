@@ -1,27 +1,22 @@
-import { useThree } from "@react-three/fiber";
-import { Sky } from "three/examples/jsm/objects/Sky";
-import { useEffect } from "react";
+import { Clouds, Environment, Sparkles, Stars } from "@react-three/drei";
 
-
-const CustomSky = () => {
-    const { scene } = useThree();
-
-    useEffect(() => {
-        const sky = new Sky();
-        sky.scale.setScalar(450000);
-        scene.add(sky);
-
-        sky.material.uniforms["turbidity"].value = 10;
-        sky.material.uniforms["rayleigh"].value = 3;
-        sky.material.uniforms["mieCoefficient"].value = 0.005;
-        sky.material.uniforms["mieDirectionalG"].value = 0.07;
-
-        return () => {
-    scene.remove(sky);
-    };
-    }, [scene]);
-
-    return null;
+const Staging = () => {
+  return (
+    <>
+      <Environment
+        files={["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]}
+        path="staging/cubemaps/hospital/"
+        ground={{
+          height: 50,
+          radius: 100,
+          scale: 1,
+        }}
+        background
+      />
+      <Sparkles count={15} speed={0.5} opacity={0.4} color="#ffffff" size={1} />
+      <Sparkles count={10} speed={0.5} opacity={0.4} color="yellow" size={1} />
+    </>
+  );
 };
 
-export default CustomSky;
+export default Staging;

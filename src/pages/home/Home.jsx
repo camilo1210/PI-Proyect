@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      
+
       <h1 className="home-title">
         Cuidemos Nuestro Corazón: Conoce,
         <br />
@@ -135,9 +135,9 @@ const Home = () => {
             >
               <meshStandardMaterial color="var(--canvas-bg)" />
             </Circle>
-           <Suspense fallback={null}>
+            <Suspense fallback={null}>
               {/* Agrupación separada para el texto */}
-              <group position={[0, 0, -1]}>
+              <group position={[0, 0, 1]} rotation={[0, Math.PI, 0]}>
                 <Text3dFullHeart title="Hipertension arterial" size={0.5} />
               </group>
 
