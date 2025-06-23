@@ -47,6 +47,8 @@ const Quiz = () => {
   const [puntuacion, setPuntuacion] = useState(0);
   const { userLogged, loginGoogleWithPopUp, logout } = useAuthStore();
   const preguntaActual = preguntas[preguntaIndex];
+  const [mensajeGuardado, setMensajeGuardado] = useState("");
+
 
   const handleModelClick = (e) => {
     e.stopPropagation();
@@ -109,6 +111,12 @@ const Quiz = () => {
       if (!res.ok) throw new Error("Error al guardar puntuación");
       console.log("Resultado guardado correctamente");
       console.log("Datos enviados:", data);
+
+      setMensajeGuardado("Resultado guardado correctamente");
+      setTimeout(() => {
+      setMensajeGuardado("");
+      }, 3000);
+
     } catch (err) {
       console.error("Error al guardar el resultado:", err);
     }
@@ -347,7 +355,7 @@ const Quiz = () => {
 
                 {userLogged && (
                   <button onClick={guardarResultado}>
-                    Guardar Resultado Manual
+                    Guardar Resultado
                   </button>
                 )}
 
