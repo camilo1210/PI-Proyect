@@ -61,8 +61,8 @@ const Quiz = () => {
     if (!name || respuestaSeleccionada) return;
 
     const esCorrecto = name === preguntaActual.modeloCorrecto;
-      setFeedback(esCorrecto ? "¡Correcto!" : "Incorrecto");
-      setRespuestaSeleccionada(name);
+    setFeedback(esCorrecto ? "¡Correcto!" : "Incorrecto");
+    setRespuestaSeleccionada(name);
 
     if (esCorrecto) setPuntuacion((prev) => prev + 1);
   };
@@ -114,7 +114,7 @@ const Quiz = () => {
 
       setMensajeGuardado("Resultado guardado correctamente");
       setTimeout(() => {
-      setMensajeGuardado("");
+        setMensajeGuardado("");
       }, 3000);
 
     } catch (err) {
@@ -354,10 +354,23 @@ const Quiz = () => {
                 </button>
 
                 {userLogged && (
-                  <button onClick={guardarResultado}>
-                    Guardar Resultado
-                  </button>
+                  <>
+                    <button onClick={guardarResultado}>Guardar Resultado</button>
+                    {mensajeGuardado && (
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          color: "green",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
+                        ✅ {mensajeGuardado}
+                      </p>
+                    )}
+                  </>
                 )}
+
 
                 {!userLogged && (
                   <div style={{ marginBottom: "16px" }}>
